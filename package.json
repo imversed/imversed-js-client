@@ -1,6 +1,6 @@
 {
   "name": "@fulldivevr/metachain-client",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "FullDive team",
   "description": "Fulldive Metachain Client Library",
   "scripts": {
@@ -15,8 +15,7 @@
   "files": [
     "lib"
   ],
-  "dependencies": {
-  },
+  "dependencies": {},
   "license": "UNLICENSED",
   "devDependencies": {
     "@types/config": "^0.0.36",
