@@ -1,0 +1,45 @@
+{
+  "name": "@fulldivevr/metachain-client",
+  "version": "0.0.1",
+  "author": "FullDive team",
+  "description": "Fulldive Metachain Client Library",
+  "scripts": {
+    "build": "rm -rf lib/* && tsc --build ./tsconfig.json",
+    "test": "yarn build && yarn lint",
+    "prepare": "yarn build",
+    "lint": "tslint --project .",
+    "lint:fix": "tslint --fix --project ."
+  },
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "dependencies": {
+  },
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@types/config": "^0.0.36",
+    "@types/node": "^12.7.12",
+    "lint-staged": "^8.1.5",
+    "nodemon": "^1.19.4",
+    "organize-imports-cli": "^0.7.0",
+    "prettier": "^1.18.2",
+    "prettier-tslint": "^0.4.2",
+    "ts-node": "^8.4.1",
+    "tslint": "^5.20.0",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-plugin-prettier": "^2.0.1",
+    "typescript": "^3.6.3"
+  },
+  "lint-staged": {
+    "*.{js,json,yml,yaml}": [
+      "prettier --write"
+    ],
+    "*.{ts,tsx}": [
+      "organize-imports-cli",
+      "tslint --fix",
+      "prettier --write"
+    ]
+  }
+}
