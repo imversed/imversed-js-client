@@ -1,6 +1,6 @@
 {
   "name": "@fulldivevr/metachain-client",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "FullDive team",
   "description": "Fulldive Metachain Client Library",
   "scripts": {
@@ -15,7 +15,11 @@
   "files": [
     "lib"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "@cosmjs/launchpad": "^0.26.0",
+    "@cosmjs/stargate": "^0.26.0",
+    "protobufjs": "^6.11.2"
+  },
   "license": "UNLICENSED",
   "devDependencies": {
     "@types/config": "^0.0.36",
