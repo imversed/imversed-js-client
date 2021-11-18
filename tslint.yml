@@ -13,14 +13,17 @@ env:
 rules:
   import-spacing: false
   ordered-imports: false
-  semicolon: [ true, never ]
-  no-console: false
+  semicolon: [ false, never ]
+  no-bitwise: false
+  no-console: true
   new-cap: false
   strict: false
+  no-empty-interface: false
+  ban-types: false
   no-string-literal: false
   no-use-before-define: false
   eol-last: false
-  quotemark: [ true, single, "avoid-escape" ]
+  quotemark: [ true, double, "avoid-escape" ]
   trailing-comma: [false, {"multiline": "always", "singleline": "never"}]
   arrow-parens: [true, "ban-single-arg-parens"]
   no-shadowed-variable: false

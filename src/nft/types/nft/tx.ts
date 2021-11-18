@@ -1,7 +1,7 @@
 /* eslint-disable */
-import { Reader, Writer } from 'protobufjs/minimal'
+import { Reader, Writer } from "protobufjs/minimal"
 
-export const protobufPackage = 'metachain.nft'
+export const protobufPackage = "imversed.nft"
 
 /** MsgIssueDenom defines an SDK message for creating a new denom. */
 export interface MsgIssueDenom {
@@ -79,30 +79,30 @@ export interface MsgTransferDenom {
 export interface MsgTransferDenomResponse {}
 
 const baseMsgIssueDenom: object = {
-    id: '',
-    name: '',
-    schema: '',
-    sender: '',
-    symbol: '',
+    id: "",
+    name: "",
+    schema: "",
+    sender: "",
+    symbol: "",
     mintRestricted: false,
     updateRestricted: false
 }
 
 export const MsgIssueDenom = {
     encode(message: MsgIssueDenom, writer: Writer = Writer.create()): Writer {
-        if (message.id !== '') {
+        if (message.id !== "") {
             writer.uint32(10).string(message.id)
         }
-        if (message.name !== '') {
+        if (message.name !== "") {
             writer.uint32(18).string(message.name)
         }
-        if (message.schema !== '') {
+        if (message.schema !== "") {
             writer.uint32(26).string(message.schema)
         }
-        if (message.sender !== '') {
+        if (message.sender !== "") {
             writer.uint32(34).string(message.sender)
         }
-        if (message.symbol !== '') {
+        if (message.symbol !== "") {
             writer.uint32(42).string(message.symbol)
         }
         if (message.mintRestricted === true) {
@@ -155,27 +155,27 @@ export const MsgIssueDenom = {
         if (object.id !== undefined && object.id !== null) {
             message.id = String(object.id)
         } else {
-            message.id = ''
+            message.id = ""
         }
         if (object.name !== undefined && object.name !== null) {
             message.name = String(object.name)
         } else {
-            message.name = ''
+            message.name = ""
         }
         if (object.schema !== undefined && object.schema !== null) {
             message.schema = String(object.schema)
         } else {
-            message.schema = ''
+            message.schema = ""
         }
         if (object.sender !== undefined && object.sender !== null) {
             message.sender = String(object.sender)
         } else {
-            message.sender = ''
+            message.sender = ""
         }
         if (object.symbol !== undefined && object.symbol !== null) {
             message.symbol = String(object.symbol)
         } else {
-            message.symbol = ''
+            message.symbol = ""
         }
         if (object.mintRestricted !== undefined && object.mintRestricted !== null) {
             message.mintRestricted = Boolean(object.mintRestricted)
@@ -207,27 +207,27 @@ export const MsgIssueDenom = {
         if (object.id !== undefined && object.id !== null) {
             message.id = object.id
         } else {
-            message.id = ''
+            message.id = ""
         }
         if (object.name !== undefined && object.name !== null) {
             message.name = object.name
         } else {
-            message.name = ''
+            message.name = ""
         }
         if (object.schema !== undefined && object.schema !== null) {
             message.schema = object.schema
         } else {
-            message.schema = ''
+            message.schema = ""
         }
         if (object.sender !== undefined && object.sender !== null) {
             message.sender = object.sender
         } else {
-            message.sender = ''
+            message.sender = ""
         }
         if (object.symbol !== undefined && object.symbol !== null) {
             message.symbol = object.symbol
         } else {
-            message.symbol = ''
+            message.symbol = ""
         }
         if (object.mintRestricted !== undefined && object.mintRestricted !== null) {
             message.mintRestricted = object.mintRestricted
@@ -282,36 +282,36 @@ export const MsgIssueDenomResponse = {
 }
 
 const baseMsgTransferNFT: object = {
-    id: '',
-    denomId: '',
-    name: '',
-    uri: '',
-    data: '',
-    sender: '',
-    recipient: ''
+    id: "",
+    denomId: "",
+    name: "",
+    uri: "",
+    data: "",
+    sender: "",
+    recipient: ""
 }
 
 export const MsgTransferNFT = {
     encode(message: MsgTransferNFT, writer: Writer = Writer.create()): Writer {
-        if (message.id !== '') {
+        if (message.id !== "") {
             writer.uint32(10).string(message.id)
         }
-        if (message.denomId !== '') {
+        if (message.denomId !== "") {
             writer.uint32(18).string(message.denomId)
         }
-        if (message.name !== '') {
+        if (message.name !== "") {
             writer.uint32(26).string(message.name)
         }
-        if (message.uri !== '') {
+        if (message.uri !== "") {
             writer.uint32(34).string(message.uri)
         }
-        if (message.data !== '') {
+        if (message.data !== "") {
             writer.uint32(42).string(message.data)
         }
-        if (message.sender !== '') {
+        if (message.sender !== "") {
             writer.uint32(50).string(message.sender)
         }
-        if (message.recipient !== '') {
+        if (message.recipient !== "") {
             writer.uint32(58).string(message.recipient)
         }
         return writer
@@ -358,37 +358,37 @@ export const MsgTransferNFT = {
         if (object.id !== undefined && object.id !== null) {
             message.id = String(object.id)
         } else {
-            message.id = ''
+            message.id = ""
         }
         if (object.denomId !== undefined && object.denomId !== null) {
             message.denomId = String(object.denomId)
         } else {
-            message.denomId = ''
+            message.denomId = ""
         }
         if (object.name !== undefined && object.name !== null) {
             message.name = String(object.name)
         } else {
-            message.name = ''
+            message.name = ""
         }
         if (object.uri !== undefined && object.uri !== null) {
             message.uri = String(object.uri)
         } else {
-            message.uri = ''
+            message.uri = ""
         }
         if (object.data !== undefined && object.data !== null) {
             message.data = String(object.data)
         } else {
-            message.data = ''
+            message.data = ""
         }
         if (object.sender !== undefined && object.sender !== null) {
             message.sender = String(object.sender)
         } else {
-            message.sender = ''
+            message.sender = ""
         }
         if (object.recipient !== undefined && object.recipient !== null) {
             message.recipient = String(object.recipient)
         } else {
-            message.recipient = ''
+            message.recipient = ""
         }
         return message
     },
@@ -410,37 +410,37 @@ export const MsgTransferNFT = {
         if (object.id !== undefined && object.id !== null) {
             message.id = object.id
         } else {
-            message.id = ''
+            message.id = ""
         }
         if (object.denomId !== undefined && object.denomId !== null) {
             message.denomId = object.denomId
         } else {
-            message.denomId = ''
+            message.denomId = ""
         }
         if (object.name !== undefined && object.name !== null) {
             message.name = object.name
         } else {
-            message.name = ''
+            message.name = ""
         }
         if (object.uri !== undefined && object.uri !== null) {
             message.uri = object.uri
         } else {
-            message.uri = ''
+            message.uri = ""
         }
         if (object.data !== undefined && object.data !== null) {
             message.data = object.data
         } else {
-            message.data = ''
+            message.data = ""
         }
         if (object.sender !== undefined && object.sender !== null) {
             message.sender = object.sender
         } else {
-            message.sender = ''
+            message.sender = ""
         }
         if (object.recipient !== undefined && object.recipient !== null) {
             message.recipient = object.recipient
         } else {
-            message.recipient = ''
+            message.recipient = ""
         }
         return message
     }
@@ -484,26 +484,26 @@ export const MsgTransferNFTResponse = {
     }
 }
 
-const baseMsgEditNFT: object = { id: '', denomId: '', name: '', uri: '', data: '', sender: '' }
+const baseMsgEditNFT: object = { id: "", denomId: "", name: "", uri: "", data: "", sender: "" }
 
 export const MsgEditNFT = {
     encode(message: MsgEditNFT, writer: Writer = Writer.create()): Writer {
-        if (message.id !== '') {
+        if (message.id !== "") {
             writer.uint32(10).string(message.id)
         }
-        if (message.denomId !== '') {
+        if (message.denomId !== "") {
             writer.uint32(18).string(message.denomId)
         }
-        if (message.name !== '') {
+        if (message.name !== "") {
             writer.uint32(26).string(message.name)
         }
-        if (message.uri !== '') {
+        if (message.uri !== "") {
             writer.uint32(34).string(message.uri)
         }
-        if (message.data !== '') {
+        if (message.data !== "") {
             writer.uint32(42).string(message.data)
         }
-        if (message.sender !== '') {
+        if (message.sender !== "") {
             writer.uint32(50).string(message.sender)
         }
         return writer
@@ -547,32 +547,32 @@ export const MsgEditNFT = {
         if (object.id !== undefined && object.id !== null) {
             message.id = String(object.id)
         } else {
-            message.id = ''
+            message.id = ""
         }
         if (object.denomId !== undefined && object.denomId !== null) {
             message.denomId = String(object.denomId)
         } else {
-            message.denomId = ''
+            message.denomId = ""
         }
         if (object.name !== undefined && object.name !== null) {
             message.name = String(object.name)
         } else {
-            message.name = ''
+            message.name = ""
         }
         if (object.uri !== undefined && object.uri !== null) {
             message.uri = String(object.uri)
         } else {
-            message.uri = ''
+            message.uri = ""
         }
         if (object.data !== undefined && object.data !== null) {
             message.data = String(object.data)
         } else {
-            message.data = ''
+            message.data = ""
         }
         if (object.sender !== undefined && object.sender !== null) {
             message.sender = String(object.sender)
         } else {
-            message.sender = ''
+            message.sender = ""
         }
         return message
     },
@@ -593,32 +593,32 @@ export const MsgEditNFT = {
         if (object.id !== undefined && object.id !== null) {
             message.id = object.id
         } else {
-            message.id = ''
+            message.id = ""
         }
         if (object.denomId !== undefined && object.denomId !== null) {
             message.denomId = object.denomId
         } else {
-            message.denomId = ''
+            message.denomId = ""
         }
         if (object.name !== undefined && object.name !== null) {
             message.name = object.name
         } else {
-            message.name = ''
+            message.name = ""
         }
         if (object.uri !== undefined && object.uri !== null) {
             message.uri = object.uri
         } else {
-            message.uri = ''
+            message.uri = ""
         }
         if (object.data !== undefined && object.data !== null) {
             message.data = object.data
         } else {
-            message.data = ''
+            message.data = ""
         }
         if (object.sender !== undefined && object.sender !== null) {
             message.sender = object.sender
         } else {
-            message.sender = ''
+            message.sender = ""
         }
         return message
     }
@@ -663,36 +663,36 @@ export const MsgEditNFTResponse = {
 }
 
 const baseMsgMintNFT: object = {
-    id: '',
-    denomId: '',
-    name: '',
-    uri: '',
-    data: '',
-    sender: '',
-    recipient: ''
+    id: "",
+    denomId: "",
+    name: "",
+    uri: "",
+    data: "",
+    sender: "",
+    recipient: ""
 }
 
 export const MsgMintNFT = {
     encode(message: MsgMintNFT, writer: Writer = Writer.create()): Writer {
-        if (message.id !== '') {
+        if (message.id !== "") {
             writer.uint32(10).string(message.id)
         }
-        if (message.denomId !== '') {
+        if (message.denomId !== "") {
             writer.uint32(18).string(message.denomId)
         }
-        if (message.name !== '') {
+        if (message.name !== "") {
             writer.uint32(26).string(message.name)
         }
-        if (message.uri !== '') {
+        if (message.uri !== "") {
             writer.uint32(34).string(message.uri)
         }
-        if (message.data !== '') {
+        if (message.data !== "") {
             writer.uint32(42).string(message.data)
         }
-        if (message.sender !== '') {
+        if (message.sender !== "") {
             writer.uint32(50).string(message.sender)
         }
-        if (message.recipient !== '') {
+        if (message.recipient !== "") {
             writer.uint32(58).string(message.recipient)
         }
         return writer
@@ -739,37 +739,37 @@ export const MsgMintNFT = {
         if (object.id !== undefined && object.id !== null) {
             message.id = String(object.id)
         } else {
-            message.id = ''
+            message.id = ""
         }
         if (object.denomId !== undefined && object.denomId !== null) {
             message.denomId = String(object.denomId)
         } else {
-            message.denomId = ''
+            message.denomId = ""
         }
         if (object.name !== undefined && object.name !== null) {
             message.name = String(object.name)
         } else {
-            message.name = ''
+            message.name = ""
         }
         if (object.uri !== undefined && object.uri !== null) {
             message.uri = String(object.uri)
         } else {
-            message.uri = ''
+            message.uri = ""
         }
         if (object.data !== undefined && object.data !== null) {
             message.data = String(object.data)
         } else {
-            message.data = ''
+            message.data = ""
         }
         if (object.sender !== undefined && object.sender !== null) {
             message.sender = String(object.sender)
         } else {
-            message.sender = ''
+            message.sender = ""
         }
         if (object.recipient !== undefined && object.recipient !== null) {
             message.recipient = String(object.recipient)
         } else {
-            message.recipient = ''
+            message.recipient = ""
         }
         return message
     },
@@ -791,37 +791,37 @@ export const MsgMintNFT = {
         if (object.id !== undefined && object.id !== null) {
             message.id = object.id
         } else {
-            message.id = ''
+            message.id = ""
         }
         if (object.denomId !== undefined && object.denomId !== null) {
             message.denomId = object.denomId
         } else {
-            message.denomId = ''
+            message.denomId = ""
         }
         if (object.name !== undefined && object.name !== null) {
             message.name = object.name
         } else {
-            message.name = ''
+            message.name = ""
         }
         if (object.uri !== undefined && object.uri !== null) {
             message.uri = object.uri
         } else {
-            message.uri = ''
+            message.uri = ""
         }
         if (object.data !== undefined && object.data !== null) {
             message.data = object.data
         } else {
-            message.data = ''
+            message.data = ""
         }
         if (object.sender !== undefined && object.sender !== null) {
             message.sender = object.sender
         } else {
-            message.sender = ''
+            message.sender = ""
         }
         if (object.recipient !== undefined && object.recipient !== null) {
             message.recipient = object.recipient
         } else {
-            message.recipient = ''
+            message.recipient = ""
         }
         return message
     }
@@ -865,17 +865,17 @@ export const MsgMintNFTResponse = {
     }
 }
 
-const baseMsgBurnNFT: object = { id: '', denomId: '', sender: '' }
+const baseMsgBurnNFT: object = { id: "", denomId: "", sender: "" }
 
 export const MsgBurnNFT = {
     encode(message: MsgBurnNFT, writer: Writer = Writer.create()): Writer {
-        if (message.id !== '') {
+        if (message.id !== "") {
             writer.uint32(10).string(message.id)
         }
-        if (message.denomId !== '') {
+        if (message.denomId !== "") {
             writer.uint32(18).string(message.denomId)
         }
-        if (message.sender !== '') {
+        if (message.sender !== "") {
             writer.uint32(26).string(message.sender)
         }
         return writer
@@ -910,17 +910,17 @@ export const MsgBurnNFT = {
         if (object.id !== undefined && object.id !== null) {
             message.id = String(object.id)
         } else {
-            message.id = ''
+            message.id = ""
         }
         if (object.denomId !== undefined && object.denomId !== null) {
             message.denomId = String(object.denomId)
         } else {
-            message.denomId = ''
+            message.denomId = ""
         }
         if (object.sender !== undefined && object.sender !== null) {
             message.sender = String(object.sender)
         } else {
-            message.sender = ''
+            message.sender = ""
         }
         return message
     },
@@ -938,17 +938,17 @@ export const MsgBurnNFT = {
         if (object.id !== undefined && object.id !== null) {
             message.id = object.id
         } else {
-            message.id = ''
+            message.id = ""
         }
         if (object.denomId !== undefined && object.denomId !== null) {
             message.denomId = object.denomId
         } else {
-            message.denomId = ''
+            message.denomId = ""
         }
         if (object.sender !== undefined && object.sender !== null) {
             message.sender = object.sender
         } else {
-            message.sender = ''
+            message.sender = ""
         }
         return message
     }
@@ -992,17 +992,17 @@ export const MsgBurnNFTResponse = {
     }
 }
 
-const baseMsgTransferDenom: object = { id: '', sender: '', recipient: '' }
+const baseMsgTransferDenom: object = { id: "", sender: "", recipient: "" }
 
 export const MsgTransferDenom = {
     encode(message: MsgTransferDenom, writer: Writer = Writer.create()): Writer {
-        if (message.id !== '') {
+        if (message.id !== "") {
             writer.uint32(10).string(message.id)
         }
-        if (message.sender !== '') {
+        if (message.sender !== "") {
             writer.uint32(18).string(message.sender)
         }
-        if (message.recipient !== '') {
+        if (message.recipient !== "") {
             writer.uint32(26).string(message.recipient)
         }
         return writer
@@ -1037,17 +1037,17 @@ export const MsgTransferDenom = {
         if (object.id !== undefined && object.id !== null) {
             message.id = String(object.id)
         } else {
-            message.id = ''
+            message.id = ""
         }
         if (object.sender !== undefined && object.sender !== null) {
             message.sender = String(object.sender)
         } else {
-            message.sender = ''
+            message.sender = ""
         }
         if (object.recipient !== undefined && object.recipient !== null) {
             message.recipient = String(object.recipient)
         } else {
-            message.recipient = ''
+            message.recipient = ""
         }
         return message
     },
@@ -1065,17 +1065,17 @@ export const MsgTransferDenom = {
         if (object.id !== undefined && object.id !== null) {
             message.id = object.id
         } else {
-            message.id = ''
+            message.id = ""
         }
         if (object.sender !== undefined && object.sender !== null) {
             message.sender = object.sender
         } else {
-            message.sender = ''
+            message.sender = ""
         }
         if (object.recipient !== undefined && object.recipient !== null) {
             message.recipient = object.recipient
         } else {
-            message.recipient = ''
+            message.recipient = ""
         }
         return message
     }
@@ -1142,37 +1142,37 @@ export class MsgClientImpl implements Msg {
     }
     public IssueDenom(request: MsgIssueDenom): Promise<MsgIssueDenomResponse> {
         const data = MsgIssueDenom.encode(request).finish()
-        const promise = this.rpc.request('metachain.nft.Msg', 'IssueDenom', data)
+        const promise = this.rpc.request("imversed.nft.Msg", "IssueDenom", data)
         return promise.then(data => MsgIssueDenomResponse.decode(new Reader(data)))
     }
 
     public MintNFT(request: MsgMintNFT): Promise<MsgMintNFTResponse> {
         const data = MsgMintNFT.encode(request).finish()
-        const promise = this.rpc.request('metachain.nft.Msg', 'MintNFT', data)
+        const promise = this.rpc.request("imversed.nft.Msg", "MintNFT", data)
         return promise.then(data => MsgMintNFTResponse.decode(new Reader(data)))
     }
 
     public EditNFT(request: MsgEditNFT): Promise<MsgEditNFTResponse> {
         const data = MsgEditNFT.encode(request).finish()
-        const promise = this.rpc.request('metachain.nft.Msg', 'EditNFT', data)
+        const promise = this.rpc.request("imversed.nft.Msg", "EditNFT", data)
         return promise.then(data => MsgEditNFTResponse.decode(new Reader(data)))
     }
 
     public TransferNFT(request: MsgTransferNFT): Promise<MsgTransferNFTResponse> {
         const data = MsgTransferNFT.encode(request).finish()
-        const promise = this.rpc.request('metachain.nft.Msg', 'TransferNFT', data)
+        const promise = this.rpc.request("imversed.nft.Msg", "TransferNFT", data)
         return promise.then(data => MsgTransferNFTResponse.decode(new Reader(data)))
     }
 
     public BurnNFT(request: MsgBurnNFT): Promise<MsgBurnNFTResponse> {
         const data = MsgBurnNFT.encode(request).finish()
-        const promise = this.rpc.request('metachain.nft.Msg', 'BurnNFT', data)
+        const promise = this.rpc.request("imversed.nft.Msg", "BurnNFT", data)
         return promise.then(data => MsgBurnNFTResponse.decode(new Reader(data)))
     }
 
     public TransferDenom(request: MsgTransferDenom): Promise<MsgTransferDenomResponse> {
         const data = MsgTransferDenom.encode(request).finish()
-        const promise = this.rpc.request('metachain.nft.Msg', 'TransferDenom', data)
+        const promise = this.rpc.request("imversed.nft.Msg", "TransferDenom", data)
         return promise.then(data => MsgTransferDenomResponse.decode(new Reader(data)))
     }
 }

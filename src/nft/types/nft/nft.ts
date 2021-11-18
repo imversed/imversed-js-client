@@ -1,7 +1,7 @@
 /* eslint-disable */
-import { Reader, Writer } from 'protobufjs/minimal'
+import { Reader, Writer } from "protobufjs/minimal"
 
-export const protobufPackage = 'metachain.nft'
+export const protobufPackage = "imversed.nft"
 
 /** BaseNFT defines a non-fungible token */
 export interface BaseNFT {
@@ -41,23 +41,23 @@ export interface Collection {
     nfts: BaseNFT[]
 }
 
-const baseBaseNFT: object = { id: '', name: '', uri: '', data: '', owner: '' }
+const baseBaseNFT: object = { id: "", name: "", uri: "", data: "", owner: "" }
 
 export const BaseNFT = {
     encode(message: BaseNFT, writer: Writer = Writer.create()): Writer {
-        if (message.id !== '') {
+        if (message.id !== "") {
             writer.uint32(10).string(message.id)
         }
-        if (message.name !== '') {
+        if (message.name !== "") {
             writer.uint32(18).string(message.name)
         }
-        if (message.uri !== '') {
+        if (message.uri !== "") {
             writer.uint32(26).string(message.uri)
         }
-        if (message.data !== '') {
+        if (message.data !== "") {
             writer.uint32(34).string(message.data)
         }
-        if (message.owner !== '') {
+        if (message.owner !== "") {
             writer.uint32(42).string(message.owner)
         }
         return writer
@@ -98,27 +98,27 @@ export const BaseNFT = {
         if (object.id !== undefined && object.id !== null) {
             message.id = String(object.id)
         } else {
-            message.id = ''
+            message.id = ""
         }
         if (object.name !== undefined && object.name !== null) {
             message.name = String(object.name)
         } else {
-            message.name = ''
+            message.name = ""
         }
         if (object.uri !== undefined && object.uri !== null) {
             message.uri = String(object.uri)
         } else {
-            message.uri = ''
+            message.uri = ""
         }
         if (object.data !== undefined && object.data !== null) {
             message.data = String(object.data)
         } else {
-            message.data = ''
+            message.data = ""
         }
         if (object.owner !== undefined && object.owner !== null) {
             message.owner = String(object.owner)
         } else {
-            message.owner = ''
+            message.owner = ""
         }
         return message
     },
@@ -138,57 +138,57 @@ export const BaseNFT = {
         if (object.id !== undefined && object.id !== null) {
             message.id = object.id
         } else {
-            message.id = ''
+            message.id = ""
         }
         if (object.name !== undefined && object.name !== null) {
             message.name = object.name
         } else {
-            message.name = ''
+            message.name = ""
         }
         if (object.uri !== undefined && object.uri !== null) {
             message.uri = object.uri
         } else {
-            message.uri = ''
+            message.uri = ""
         }
         if (object.data !== undefined && object.data !== null) {
             message.data = object.data
         } else {
-            message.data = ''
+            message.data = ""
         }
         if (object.owner !== undefined && object.owner !== null) {
             message.owner = object.owner
         } else {
-            message.owner = ''
+            message.owner = ""
         }
         return message
     }
 }
 
 const baseDenom: object = {
-    id: '',
-    name: '',
-    schema: '',
-    creator: '',
-    symbol: '',
+    id: "",
+    name: "",
+    schema: "",
+    creator: "",
+    symbol: "",
     mintRestricted: false,
     updateRestricted: false
 }
 
 export const Denom = {
     encode(message: Denom, writer: Writer = Writer.create()): Writer {
-        if (message.id !== '') {
+        if (message.id !== "") {
             writer.uint32(10).string(message.id)
         }
-        if (message.name !== '') {
+        if (message.name !== "") {
             writer.uint32(18).string(message.name)
         }
-        if (message.schema !== '') {
+        if (message.schema !== "") {
             writer.uint32(26).string(message.schema)
         }
-        if (message.creator !== '') {
+        if (message.creator !== "") {
             writer.uint32(34).string(message.creator)
         }
-        if (message.symbol !== '') {
+        if (message.symbol !== "") {
             writer.uint32(42).string(message.symbol)
         }
         if (message.mintRestricted === true) {
@@ -241,27 +241,27 @@ export const Denom = {
         if (object.id !== undefined && object.id !== null) {
             message.id = String(object.id)
         } else {
-            message.id = ''
+            message.id = ""
         }
         if (object.name !== undefined && object.name !== null) {
             message.name = String(object.name)
         } else {
-            message.name = ''
+            message.name = ""
         }
         if (object.schema !== undefined && object.schema !== null) {
             message.schema = String(object.schema)
         } else {
-            message.schema = ''
+            message.schema = ""
         }
         if (object.creator !== undefined && object.creator !== null) {
             message.creator = String(object.creator)
         } else {
-            message.creator = ''
+            message.creator = ""
         }
         if (object.symbol !== undefined && object.symbol !== null) {
             message.symbol = String(object.symbol)
         } else {
-            message.symbol = ''
+            message.symbol = ""
         }
         if (object.mintRestricted !== undefined && object.mintRestricted !== null) {
             message.mintRestricted = Boolean(object.mintRestricted)
@@ -293,27 +293,27 @@ export const Denom = {
         if (object.id !== undefined && object.id !== null) {
             message.id = object.id
         } else {
-            message.id = ''
+            message.id = ""
         }
         if (object.name !== undefined && object.name !== null) {
             message.name = object.name
         } else {
-            message.name = ''
+            message.name = ""
         }
         if (object.schema !== undefined && object.schema !== null) {
             message.schema = object.schema
         } else {
-            message.schema = ''
+            message.schema = ""
         }
         if (object.creator !== undefined && object.creator !== null) {
             message.creator = object.creator
         } else {
-            message.creator = ''
+            message.creator = ""
         }
         if (object.symbol !== undefined && object.symbol !== null) {
             message.symbol = object.symbol
         } else {
-            message.symbol = ''
+            message.symbol = ""
         }
         if (object.mintRestricted !== undefined && object.mintRestricted !== null) {
             message.mintRestricted = object.mintRestricted
@@ -329,11 +329,11 @@ export const Denom = {
     }
 }
 
-const baseIDCollection: object = { denomId: '', tokenIds: '' }
+const baseIDCollection: object = { denomId: "", tokenIds: "" }
 
 export const IDCollection = {
     encode(message: IDCollection, writer: Writer = Writer.create()): Writer {
-        if (message.denomId !== '') {
+        if (message.denomId !== "") {
             writer.uint32(10).string(message.denomId)
         }
         for (const v of message.tokenIds) {
@@ -370,7 +370,7 @@ export const IDCollection = {
         if (object.denomId !== undefined && object.denomId !== null) {
             message.denomId = String(object.denomId)
         } else {
-            message.denomId = ''
+            message.denomId = ""
         }
         if (object.tokenIds !== undefined && object.tokenIds !== null) {
             for (const e of object.tokenIds) {
@@ -397,7 +397,7 @@ export const IDCollection = {
         if (object.denomId !== undefined && object.denomId !== null) {
             message.denomId = object.denomId
         } else {
-            message.denomId = ''
+            message.denomId = ""
         }
         if (object.tokenIds !== undefined && object.tokenIds !== null) {
             for (const e of object.tokenIds) {
@@ -408,11 +408,11 @@ export const IDCollection = {
     }
 }
 
-const baseOwner: object = { address: '' }
+const baseOwner: object = { address: "" }
 
 export const Owner = {
     encode(message: Owner, writer: Writer = Writer.create()): Writer {
-        if (message.address !== '') {
+        if (message.address !== "") {
             writer.uint32(10).string(message.address)
         }
         for (const v of message.idCollections) {
@@ -449,7 +449,7 @@ export const Owner = {
         if (object.address !== undefined && object.address !== null) {
             message.address = String(object.address)
         } else {
-            message.address = ''
+            message.address = ""
         }
         if (object.idCollections !== undefined && object.idCollections !== null) {
             for (const e of object.idCollections) {
@@ -478,7 +478,7 @@ export const Owner = {
         if (object.address !== undefined && object.address !== null) {
             message.address = object.address
         } else {
-            message.address = ''
+            message.address = ""
         }
         if (object.idCollections !== undefined && object.idCollections !== null) {
             for (const e of object.idCollections) {

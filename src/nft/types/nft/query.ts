@@ -1,10 +1,10 @@
 /* eslint-disable */
-import * as Long from 'long'
-import { configure, Reader, util, Writer } from 'protobufjs/minimal'
-import { PageRequest, PageResponse } from '../cosmos/base/query/v1beta1/pagination'
-import { BaseNFT, Collection, Denom, Owner } from '../nft/nft'
+import * as Long from "long"
+import { configure, Reader, util, Writer } from "protobufjs/minimal"
+import { PageRequest, PageResponse } from "../cosmos/base/query/v1beta1/pagination"
+import { BaseNFT, Collection, Denom, Owner } from "../nft/nft"
 
-export const protobufPackage = 'metachain.nft'
+export const protobufPackage = "imversed.nft"
 
 /** QuerySupplyRequest is the request type for the Query/HTLC RPC method */
 export interface QuerySupplyRequest {
@@ -77,14 +77,14 @@ export interface QueryNFTResponse {
     nft: BaseNFT | undefined
 }
 
-const baseQuerySupplyRequest: object = { denomId: '', owner: '' }
+const baseQuerySupplyRequest: object = { denomId: "", owner: "" }
 
 export const QuerySupplyRequest = {
     encode(message: QuerySupplyRequest, writer: Writer = Writer.create()): Writer {
-        if (message.denomId !== '') {
+        if (message.denomId !== "") {
             writer.uint32(10).string(message.denomId)
         }
-        if (message.owner !== '') {
+        if (message.owner !== "") {
             writer.uint32(18).string(message.owner)
         }
         return writer
@@ -116,12 +116,12 @@ export const QuerySupplyRequest = {
         if (object.denomId !== undefined && object.denomId !== null) {
             message.denomId = String(object.denomId)
         } else {
-            message.denomId = ''
+            message.denomId = ""
         }
         if (object.owner !== undefined && object.owner !== null) {
             message.owner = String(object.owner)
         } else {
-            message.owner = ''
+            message.owner = ""
         }
         return message
     },
@@ -138,12 +138,12 @@ export const QuerySupplyRequest = {
         if (object.denomId !== undefined && object.denomId !== null) {
             message.denomId = object.denomId
         } else {
-            message.denomId = ''
+            message.denomId = ""
         }
         if (object.owner !== undefined && object.owner !== null) {
             message.owner = object.owner
         } else {
-            message.owner = ''
+            message.owner = ""
         }
         return message
     }
@@ -204,14 +204,14 @@ export const QuerySupplyResponse = {
     }
 }
 
-const baseQueryOwnerRequest: object = { denomId: '', owner: '' }
+const baseQueryOwnerRequest: object = { denomId: "", owner: "" }
 
 export const QueryOwnerRequest = {
     encode(message: QueryOwnerRequest, writer: Writer = Writer.create()): Writer {
-        if (message.denomId !== '') {
+        if (message.denomId !== "") {
             writer.uint32(10).string(message.denomId)
         }
-        if (message.owner !== '') {
+        if (message.owner !== "") {
             writer.uint32(18).string(message.owner)
         }
         if (message.pagination !== undefined) {
@@ -249,12 +249,12 @@ export const QueryOwnerRequest = {
         if (object.denomId !== undefined && object.denomId !== null) {
             message.denomId = String(object.denomId)
         } else {
-            message.denomId = ''
+            message.denomId = ""
         }
         if (object.owner !== undefined && object.owner !== null) {
             message.owner = String(object.owner)
         } else {
-            message.owner = ''
+            message.owner = ""
         }
         if (object.pagination !== undefined && object.pagination !== null) {
             message.pagination = PageRequest.fromJSON(object.pagination)
@@ -280,12 +280,12 @@ export const QueryOwnerRequest = {
         if (object.denomId !== undefined && object.denomId !== null) {
             message.denomId = object.denomId
         } else {
-            message.denomId = ''
+            message.denomId = ""
         }
         if (object.owner !== undefined && object.owner !== null) {
             message.owner = object.owner
         } else {
-            message.owner = ''
+            message.owner = ""
         }
         if (object.pagination !== undefined && object.pagination !== null) {
             message.pagination = PageRequest.fromPartial(object.pagination)
@@ -372,11 +372,11 @@ export const QueryOwnerResponse = {
     }
 }
 
-const baseQueryCollectionRequest: object = { denomId: '' }
+const baseQueryCollectionRequest: object = { denomId: "" }
 
 export const QueryCollectionRequest = {
     encode(message: QueryCollectionRequest, writer: Writer = Writer.create()): Writer {
-        if (message.denomId !== '') {
+        if (message.denomId !== "") {
             writer.uint32(10).string(message.denomId)
         }
         if (message.pagination !== undefined) {
@@ -411,7 +411,7 @@ export const QueryCollectionRequest = {
         if (object.denomId !== undefined && object.denomId !== null) {
             message.denomId = String(object.denomId)
         } else {
-            message.denomId = ''
+            message.denomId = ""
         }
         if (object.pagination !== undefined && object.pagination !== null) {
             message.pagination = PageRequest.fromJSON(object.pagination)
@@ -436,7 +436,7 @@ export const QueryCollectionRequest = {
         if (object.denomId !== undefined && object.denomId !== null) {
             message.denomId = object.denomId
         } else {
-            message.denomId = ''
+            message.denomId = ""
         }
         if (object.pagination !== undefined && object.pagination !== null) {
             message.pagination = PageRequest.fromPartial(object.pagination)
@@ -525,11 +525,11 @@ export const QueryCollectionResponse = {
     }
 }
 
-const baseQueryDenomRequest: object = { denomId: '' }
+const baseQueryDenomRequest: object = { denomId: "" }
 
 export const QueryDenomRequest = {
     encode(message: QueryDenomRequest, writer: Writer = Writer.create()): Writer {
-        if (message.denomId !== '') {
+        if (message.denomId !== "") {
             writer.uint32(10).string(message.denomId)
         }
         return writer
@@ -558,7 +558,7 @@ export const QueryDenomRequest = {
         if (object.denomId !== undefined && object.denomId !== null) {
             message.denomId = String(object.denomId)
         } else {
-            message.denomId = ''
+            message.denomId = ""
         }
         return message
     },
@@ -574,7 +574,7 @@ export const QueryDenomRequest = {
         if (object.denomId !== undefined && object.denomId !== null) {
             message.denomId = object.denomId
         } else {
-            message.denomId = ''
+            message.denomId = ""
         }
         return message
     }
@@ -776,14 +776,14 @@ export const QueryDenomsResponse = {
     }
 }
 
-const baseQueryNFTRequest: object = { denomId: '', tokenId: '' }
+const baseQueryNFTRequest: object = { denomId: "", tokenId: "" }
 
 export const QueryNFTRequest = {
     encode(message: QueryNFTRequest, writer: Writer = Writer.create()): Writer {
-        if (message.denomId !== '') {
+        if (message.denomId !== "") {
             writer.uint32(10).string(message.denomId)
         }
-        if (message.tokenId !== '') {
+        if (message.tokenId !== "") {
             writer.uint32(18).string(message.tokenId)
         }
         return writer
@@ -815,12 +815,12 @@ export const QueryNFTRequest = {
         if (object.denomId !== undefined && object.denomId !== null) {
             message.denomId = String(object.denomId)
         } else {
-            message.denomId = ''
+            message.denomId = ""
         }
         if (object.tokenId !== undefined && object.tokenId !== null) {
             message.tokenId = String(object.tokenId)
         } else {
-            message.tokenId = ''
+            message.tokenId = ""
         }
         return message
     },
@@ -837,12 +837,12 @@ export const QueryNFTRequest = {
         if (object.denomId !== undefined && object.denomId !== null) {
             message.denomId = object.denomId
         } else {
-            message.denomId = ''
+            message.denomId = ""
         }
         if (object.tokenId !== undefined && object.tokenId !== null) {
             message.tokenId = object.tokenId
         } else {
-            message.tokenId = ''
+            message.tokenId = ""
         }
         return message
     }
@@ -927,37 +927,37 @@ export class QueryClientImpl implements Query {
     }
     public Supply(request: QuerySupplyRequest): Promise<QuerySupplyResponse> {
         const data = QuerySupplyRequest.encode(request).finish()
-        const promise = this.rpc.request('metachain.nft.Query', 'Supply', data)
+        const promise = this.rpc.request("imversed.nft.Query", "Supply", data)
         return promise.then(data => QuerySupplyResponse.decode(new Reader(data)))
     }
 
     public Owner(request: QueryOwnerRequest): Promise<QueryOwnerResponse> {
         const data = QueryOwnerRequest.encode(request).finish()
-        const promise = this.rpc.request('metachain.nft.Query', 'Owner', data)
+        const promise = this.rpc.request("imversed.nft.Query", "Owner", data)
         return promise.then(data => QueryOwnerResponse.decode(new Reader(data)))
     }
 
     public Collection(request: QueryCollectionRequest): Promise<QueryCollectionResponse> {
         const data = QueryCollectionRequest.encode(request).finish()
-        const promise = this.rpc.request('metachain.nft.Query', 'Collection', data)
+        const promise = this.rpc.request("imversed.nft.Query", "Collection", data)
         return promise.then(data => QueryCollectionResponse.decode(new Reader(data)))
     }
 
     public Denom(request: QueryDenomRequest): Promise<QueryDenomResponse> {
         const data = QueryDenomRequest.encode(request).finish()
-        const promise = this.rpc.request('metachain.nft.Query', 'Denom', data)
+        const promise = this.rpc.request("imversed.nft.Query", "Denom", data)
         return promise.then(data => QueryDenomResponse.decode(new Reader(data)))
     }
 
     public Denoms(request: QueryDenomsRequest): Promise<QueryDenomsResponse> {
         const data = QueryDenomsRequest.encode(request).finish()
-        const promise = this.rpc.request('metachain.nft.Query', 'Denoms', data)
+        const promise = this.rpc.request("imversed.nft.Query", "Denoms", data)
         return promise.then(data => QueryDenomsResponse.decode(new Reader(data)))
     }
 
     public Nft(request: QueryNFTRequest): Promise<QueryNFTResponse> {
         const data = QueryNFTRequest.encode(request).finish()
-        const promise = this.rpc.request('metachain.nft.Query', 'Nft', data)
+        const promise = this.rpc.request("imversed.nft.Query", "Nft", data)
         return promise.then(data => QueryNFTResponse.decode(new Reader(data)))
     }
 }
@@ -969,11 +969,11 @@ interface Rpc {
 declare var self: any | undefined
 declare var window: any | undefined
 const globalThis: any = (() => {
-    if (typeof globalThis !== 'undefined') { return globalThis }
-    if (typeof self !== 'undefined') { return self }
-    if (typeof window !== 'undefined') { return window }
-    if (typeof global !== 'undefined') { return global }
-    throw new Error('Unable to locate global object')
+    if (typeof globalThis !== "undefined") { return globalThis }
+    if (typeof self !== "undefined") { return self }
+    if (typeof window !== "undefined") { return window }
+    if (typeof global !== "undefined") { return global }
+    throw new Error("Unable to locate global object")
 })()
 
 type Builtin = Date | Function | Uint8Array | string | number | undefined
@@ -989,7 +989,7 @@ export type DeepPartial<T> = T extends Builtin
 
 function longToNumber(long: Long): number {
     if (long.gt(Number.MAX_SAFE_INTEGER)) {
-        throw new globalThis.Error('Value is larger than Number.MAX_SAFE_INTEGER')
+        throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER")
     }
     return long.toNumber()
 }

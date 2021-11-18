@@ -1,8 +1,8 @@
 /* eslint-disable */
-import { Reader, Writer } from 'protobufjs/minimal'
-import { Collection } from './nft'
+import { Reader, Writer } from "protobufjs/minimal"
+import { Collection } from "./nft"
 
-export const protobufPackage = 'metachain.nft'
+export const protobufPackage = "imversed.nft"
 
 /** GenesisState defines the NFT module's genesis state */
 export interface GenesisState {

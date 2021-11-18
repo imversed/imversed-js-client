@@ -1,7 +1,7 @@
 /* eslint-disable */
-import { Reader, Writer } from 'protobufjs/minimal'
+import { Reader, Writer } from "protobufjs/minimal"
 
-export const protobufPackage = 'google.api'
+export const protobufPackage = "google.api"
 
 /**
  * Defines the HTTP configuration for an API service. It contains a list of
@@ -384,11 +384,11 @@ export const Http = {
     }
 }
 
-const baseHttpRule: object = { selector: '', body: '', responseBody: '' }
+const baseHttpRule: object = { selector: "", body: "", responseBody: "" }
 
 export const HttpRule = {
     encode(message: HttpRule, writer: Writer = Writer.create()): Writer {
-        if (message.selector !== '') {
+        if (message.selector !== "") {
             writer.uint32(10).string(message.selector)
         }
         if (message.get !== undefined) {
@@ -409,10 +409,10 @@ export const HttpRule = {
         if (message.custom !== undefined) {
             CustomHttpPattern.encode(message.custom, writer.uint32(66).fork()).ldelim()
         }
-        if (message.body !== '') {
+        if (message.body !== "") {
             writer.uint32(58).string(message.body)
         }
-        if (message.responseBody !== '') {
+        if (message.responseBody !== "") {
             writer.uint32(98).string(message.responseBody)
         }
         for (const v of message.additionalBindings) {
@@ -473,7 +473,7 @@ export const HttpRule = {
         if (object.selector !== undefined && object.selector !== null) {
             message.selector = String(object.selector)
         } else {
-            message.selector = ''
+            message.selector = ""
         }
         if (object.get !== undefined && object.get !== null) {
             message.get = String(object.get)
@@ -508,12 +508,12 @@ export const HttpRule = {
         if (object.body !== undefined && object.body !== null) {
             message.body = String(object.body)
         } else {
-            message.body = ''
+            message.body = ""
         }
         if (object.responseBody !== undefined && object.responseBody !== null) {
             message.responseBody = String(object.responseBody)
         } else {
-            message.responseBody = ''
+            message.responseBody = ""
         }
         if (object.additionalBindings !== undefined && object.additionalBindings !== null) {
             for (const e of object.additionalBindings) {
@@ -551,7 +551,7 @@ export const HttpRule = {
         if (object.selector !== undefined && object.selector !== null) {
             message.selector = object.selector
         } else {
-            message.selector = ''
+            message.selector = ""
         }
         if (object.get !== undefined && object.get !== null) {
             message.get = object.get
@@ -586,12 +586,12 @@ export const HttpRule = {
         if (object.body !== undefined && object.body !== null) {
             message.body = object.body
         } else {
-            message.body = ''
+            message.body = ""
         }
         if (object.responseBody !== undefined && object.responseBody !== null) {
             message.responseBody = object.responseBody
         } else {
-            message.responseBody = ''
+            message.responseBody = ""
         }
         if (object.additionalBindings !== undefined && object.additionalBindings !== null) {
             for (const e of object.additionalBindings) {
@@ -602,14 +602,14 @@ export const HttpRule = {
     }
 }
 
-const baseCustomHttpPattern: object = { kind: '', path: '' }
+const baseCustomHttpPattern: object = { kind: "", path: "" }
 
 export const CustomHttpPattern = {
     encode(message: CustomHttpPattern, writer: Writer = Writer.create()): Writer {
-        if (message.kind !== '') {
+        if (message.kind !== "") {
             writer.uint32(10).string(message.kind)
         }
-        if (message.path !== '') {
+        if (message.path !== "") {
             writer.uint32(18).string(message.path)
         }
         return writer
@@ -641,12 +641,12 @@ export const CustomHttpPattern = {
         if (object.kind !== undefined && object.kind !== null) {
             message.kind = String(object.kind)
         } else {
-            message.kind = ''
+            message.kind = ""
         }
         if (object.path !== undefined && object.path !== null) {
             message.path = String(object.path)
         } else {
-            message.path = ''
+            message.path = ""
         }
         return message
     },
@@ -663,12 +663,12 @@ export const CustomHttpPattern = {
         if (object.kind !== undefined && object.kind !== null) {
             message.kind = object.kind
         } else {
-            message.kind = ''
+            message.kind = ""
         }
         if (object.path !== undefined && object.path !== null) {
             message.path = object.path
         } else {
-            message.path = ''
+            message.path = ""
         }
         return message
     }

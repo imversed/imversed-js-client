@@ -1,9 +1,9 @@
 // THIS FILE IS GENERATED AUTOMATICALLY. DO NOT MODIFY.
 
-import { StdFee } from '@cosmjs/launchpad'
-import { EncodeObject, OfflineSigner, Registry } from '@cosmjs/proto-signing'
-import { SigningStargateClient } from '@cosmjs/stargate'
-import { Api } from './rest'
+import { StdFee } from "@cosmjs/launchpad"
+import { EncodeObject, OfflineSigner, Registry } from "@cosmjs/proto-signing"
+import { SigningStargateClient } from "@cosmjs/stargate"
+import { Api } from "./rest"
 import {
     MsgBurnNFT,
     MsgEditNFT,
@@ -11,23 +11,23 @@ import {
     MsgMintNFT,
     MsgTransferDenom,
     MsgTransferNFT
-} from './types/nft/tx'
+} from "./types/nft/tx"
 
 const types = [
-    ['/metachain.nft.MsgBurnNFT', MsgBurnNFT],
-    ['/metachain.nft.MsgEditNFT', MsgEditNFT],
-    ['/metachain.nft.MsgTransferDenom', MsgTransferDenom],
-    ['/metachain.nft.MsgIssueDenom', MsgIssueDenom],
-    ['/metachain.nft.MsgTransferNFT', MsgTransferNFT],
-    ['/metachain.nft.MsgMintNFT', MsgMintNFT]
+    ["/imversed.nft.MsgBurnNFT", MsgBurnNFT],
+    ["/imversed.nft.MsgEditNFT", MsgEditNFT],
+    ["/imversed.nft.MsgTransferDenom", MsgTransferDenom],
+    ["/imversed.nft.MsgIssueDenom", MsgIssueDenom],
+    ["/imversed.nft.MsgTransferNFT", MsgTransferNFT],
+    ["/imversed.nft.MsgMintNFT", MsgMintNFT]
 ]
-export const MissingWalletError = new Error('wallet is required')
+export const MissingWalletError = new Error("wallet is required")
 
 const registry = new Registry(types as any)
 
 const defaultFee = {
     amount: [],
-    gas: '200000'
+    gas: "200000"
 }
 
 interface TxClientOptions {
@@ -41,7 +41,7 @@ interface SignAndBroadcastOptions {
 
 const txClient = async (
     wallet: OfflineSigner,
-    { addr: addr }: TxClientOptions = { addr: 'http://localhost:26657' }
+    { addr: addr }: TxClientOptions = { addr: "http://localhost:26657" }
 ) => {
     if (!wallet) { throw MissingWalletError }
 
@@ -53,31 +53,31 @@ const txClient = async (
             msgs: EncodeObject[],
             { fee, memo }: SignAndBroadcastOptions = {
                 fee: defaultFee,
-                memo: ''
+                memo: ""
             }
         ) => client.signAndBroadcast(address, msgs, fee, memo),
         msgBurnNFT: (data: MsgBurnNFT): EncodeObject => ({
-            typeUrl: '/metachain.nft.MsgBurnNFT',
+            typeUrl: "/imversed.nft.MsgBurnNFT",
             value: data
         }),
         msgEditNFT: (data: MsgEditNFT): EncodeObject => ({
-            typeUrl: '/metachain.nft.MsgEditNFT',
+            typeUrl: "/imversed.nft.MsgEditNFT",
             value: data
         }),
         msgTransferDenom: (data: MsgTransferDenom): EncodeObject => ({
-            typeUrl: '/metachain.nft.MsgTransferDenom',
+            typeUrl: "/imversed.nft.MsgTransferDenom",
             value: data
         }),
         msgIssueDenom: (data: MsgIssueDenom): EncodeObject => ({
-            typeUrl: '/metachain.nft.MsgIssueDenom',
+            typeUrl: "/imversed.nft.MsgIssueDenom",
             value: data
         }),
         msgTransferNFT: (data: MsgTransferNFT): EncodeObject => ({
-            typeUrl: '/metachain.nft.MsgTransferNFT',
+            typeUrl: "/imversed.nft.MsgTransferNFT",
             value: data
         }),
         msgMintNFT: (data: MsgMintNFT): EncodeObject => ({
-            typeUrl: '/metachain.nft.MsgMintNFT',
+            typeUrl: "/imversed.nft.MsgMintNFT",
             value: data
         })
     }
@@ -88,7 +88,7 @@ interface QueryClientOptions {
 }
 
 const queryClient = async (
-    { addr: addr }: QueryClientOptions = { addr: 'http://localhost:1317' }
+    { addr: addr }: QueryClientOptions = { addr: "http://localhost:1317" }
 ) => {
     return new Api({ baseUrl: addr })
 }
