@@ -1,6 +1,6 @@
 import { Reader, Writer } from "protobufjs/minimal"
 import { Collection } from "./nft"
-export declare const protobufPackage = "metachain.nft"
+export declare const protobufPackage = "imversed.nft"
 /** GenesisState defines the NFT module's genesis state */
 export interface GenesisState {
     collections: Collection[]

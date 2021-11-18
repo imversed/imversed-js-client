@@ -412,7 +412,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      * @tags Query
      * @name QueryCollection
      * @summary Collection queries the NFTs of the specified denom
-     * @request GET:/metachain/nft/collections/{denomId}
+     * @request GET:/imversed/nft/collections/{denomId}
      */
     queryCollection = (
         denomId: string,
@@ -425,7 +425,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
         params: RequestParams = {}
     ) =>
         this.request<NftQueryCollectionResponse, RpcStatus>({
-            path: `/metachain/nft/collections/${denomId}`,
+            path: `/imversed/nft/collections/${denomId}`,
             method: "GET",
             query: query,
             format: "json",
@@ -438,11 +438,11 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      * @tags Query
      * @name QuerySupply
      * @summary Supply queries the total supply of a given denom or owner
-     * @request GET:/metachain/nft/collections/{denomId}/supply
+     * @request GET:/imversed/nft/collections/{denomId}/supply
      */
     querySupply = (denomId: string, query?: { owner?: string }, params: RequestParams = {}) =>
         this.request<NftQuerySupplyResponse, RpcStatus>({
-            path: `/metachain/nft/collections/${denomId}/supply`,
+            path: `/imversed/nft/collections/${denomId}/supply`,
             method: "GET",
             query: query,
             format: "json",
@@ -455,7 +455,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      * @tags Query
      * @name QueryDenoms
      * @summary Denoms queries all the denoms
-     * @request GET:/metachain/nft/denoms
+     * @request GET:/imversed/nft/denoms
      */
     queryDenoms = (
         query?: {
@@ -467,7 +467,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
         params: RequestParams = {}
     ) =>
         this.request<NftQueryDenomsResponse, RpcStatus>({
-            path: `/metachain/nft/denoms`,
+            path: `/imversed/nft/denoms`,
             method: "GET",
             query: query,
             format: "json",
@@ -480,11 +480,11 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      * @tags Query
      * @name QueryDenom
      * @summary Denom queries the definition of a given denom
-     * @request GET:/metachain/nft/denoms/{denomId}
+     * @request GET:/imversed/nft/denoms/{denomId}
      */
     queryDenom = (denomId: string, params: RequestParams = {}) =>
         this.request<NftQueryDenomResponse, RpcStatus>({
-            path: `/metachain/nft/denoms/${denomId}`,
+            path: `/imversed/nft/denoms/${denomId}`,
             method: "GET",
             format: "json",
             ...params
@@ -496,7 +496,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      * @tags Query
      * @name QueryOwner
      * @summary Owner queries the NFTs of the specified owner
-     * @request GET:/metachain/nft/nfts
+     * @request GET:/imversed/nft/nfts
      */
     queryOwner = (
         query?: {
@@ -510,7 +510,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
         params: RequestParams = {}
     ) =>
         this.request<NftQueryOwnerResponse, RpcStatus>({
-            path: `/metachain/nft/nfts`,
+            path: `/imversed/nft/nfts`,
             method: "GET",
             query: query,
             format: "json",
@@ -523,11 +523,11 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      * @tags Query
      * @name QueryNft
      * @summary NFT queries the NFT for the given denom and token ID
-     * @request GET:/metachain/nft/nfts/{denomId}/{tokenId}
+     * @request GET:/imversed/nft/nfts/{denomId}/{tokenId}
      */
     queryNft = (denomId: string, tokenId: string, params: RequestParams = {}) =>
         this.request<NftQueryNFTResponse, RpcStatus>({
-            path: `/metachain/nft/nfts/${denomId}/${tokenId}`,
+            path: `/imversed/nft/nfts/${denomId}/${tokenId}`,
             method: "GET",
             format: "json",
             ...params
