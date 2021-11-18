@@ -1,7 +1,7 @@
 /* eslint-disable */
 import { Reader, Writer } from 'protobufjs/minimal'
 
-export const protobufPackage = 'metachain.nft'
+export const protobufPackage = 'imversed.nft'
 
 /** MsgIssueDenom defines an SDK message for creating a new denom. */
 export interface MsgIssueDenom {
@@ -1142,37 +1142,37 @@ export class MsgClientImpl implements Msg {
     }
     public IssueDenom(request: MsgIssueDenom): Promise<MsgIssueDenomResponse> {
         const data = MsgIssueDenom.encode(request).finish()
-        const promise = this.rpc.request('metachain.nft.Msg', 'IssueDenom', data)
+        const promise = this.rpc.request('imversed.nft.Msg', 'IssueDenom', data)
         return promise.then(data => MsgIssueDenomResponse.decode(new Reader(data)))
     }
 
     public MintNFT(request: MsgMintNFT): Promise<MsgMintNFTResponse> {
         const data = MsgMintNFT.encode(request).finish()
-        const promise = this.rpc.request('metachain.nft.Msg', 'MintNFT', data)
+        const promise = this.rpc.request('imversed.nft.Msg', 'MintNFT', data)
         return promise.then(data => MsgMintNFTResponse.decode(new Reader(data)))
     }
 
     public EditNFT(request: MsgEditNFT): Promise<MsgEditNFTResponse> {
         const data = MsgEditNFT.encode(request).finish()
-        const promise = this.rpc.request('metachain.nft.Msg', 'EditNFT', data)
+        const promise = this.rpc.request('imversed.nft.Msg', 'EditNFT', data)
         return promise.then(data => MsgEditNFTResponse.decode(new Reader(data)))
     }
 
     public TransferNFT(request: MsgTransferNFT): Promise<MsgTransferNFTResponse> {
         const data = MsgTransferNFT.encode(request).finish()
-        const promise = this.rpc.request('metachain.nft.Msg', 'TransferNFT', data)
+        const promise = this.rpc.request('imversed.nft.Msg', 'TransferNFT', data)
         return promise.then(data => MsgTransferNFTResponse.decode(new Reader(data)))
     }
 
     public BurnNFT(request: MsgBurnNFT): Promise<MsgBurnNFTResponse> {
         const data = MsgBurnNFT.encode(request).finish()
-        const promise = this.rpc.request('metachain.nft.Msg', 'BurnNFT', data)
+        const promise = this.rpc.request('imversed.nft.Msg', 'BurnNFT', data)
         return promise.then(data => MsgBurnNFTResponse.decode(new Reader(data)))
     }
 
     public TransferDenom(request: MsgTransferDenom): Promise<MsgTransferDenomResponse> {
         const data = MsgTransferDenom.encode(request).finish()
-        const promise = this.rpc.request('metachain.nft.Msg', 'TransferDenom', data)
+        const promise = this.rpc.request('imversed.nft.Msg', 'TransferDenom', data)
         return promise.then(data => MsgTransferDenomResponse.decode(new Reader(data)))
     }
 }

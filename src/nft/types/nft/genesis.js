@@ -1,7 +1,7 @@
 /* eslint-disable */
 import { Collection } from "./nft"
 import { Writer, Reader } from "protobufjs/minimal"
-export const protobufPackage = "metachain.nft"
+export const protobufPackage = "imversed.nft"
 const baseGenesisState = {}
 export const GenesisState = {
     encode(message, writer = Writer.create()) {

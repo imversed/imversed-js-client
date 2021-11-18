@@ -1,7 +1,7 @@
 /* eslint-disable */
 import { Reader, Writer } from 'protobufjs/minimal'
 
-export const protobufPackage = 'metachain.nft'
+export const protobufPackage = 'imversed.nft'
 
 /** BaseNFT defines a non-fungible token */
 export interface BaseNFT {

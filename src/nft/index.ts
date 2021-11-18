@@ -14,12 +14,12 @@ import {
 } from './types/nft/tx'
 
 const types = [
-    ['/metachain.nft.MsgBurnNFT', MsgBurnNFT],
-    ['/metachain.nft.MsgEditNFT', MsgEditNFT],
-    ['/metachain.nft.MsgTransferDenom', MsgTransferDenom],
-    ['/metachain.nft.MsgIssueDenom', MsgIssueDenom],
-    ['/metachain.nft.MsgTransferNFT', MsgTransferNFT],
-    ['/metachain.nft.MsgMintNFT', MsgMintNFT]
+    ['/imversed.nft.MsgBurnNFT', MsgBurnNFT],
+    ['/imversed.nft.MsgEditNFT', MsgEditNFT],
+    ['/imversed.nft.MsgTransferDenom', MsgTransferDenom],
+    ['/imversed.nft.MsgIssueDenom', MsgIssueDenom],
+    ['/imversed.nft.MsgTransferNFT', MsgTransferNFT],
+    ['/imversed.nft.MsgMintNFT', MsgMintNFT]
 ]
 export const MissingWalletError = new Error('wallet is required')
 
@@ -57,27 +57,27 @@ const txClient = async (
             }
         ) => client.signAndBroadcast(address, msgs, fee, memo),
         msgBurnNFT: (data: MsgBurnNFT): EncodeObject => ({
-            typeUrl: '/metachain.nft.MsgBurnNFT',
+            typeUrl: '/imversed.nft.MsgBurnNFT',
             value: data
         }),
         msgEditNFT: (data: MsgEditNFT): EncodeObject => ({
-            typeUrl: '/metachain.nft.MsgEditNFT',
+            typeUrl: '/imversed.nft.MsgEditNFT',
             value: data
         }),
         msgTransferDenom: (data: MsgTransferDenom): EncodeObject => ({
-            typeUrl: '/metachain.nft.MsgTransferDenom',
+            typeUrl: '/imversed.nft.MsgTransferDenom',
             value: data
         }),
         msgIssueDenom: (data: MsgIssueDenom): EncodeObject => ({
-            typeUrl: '/metachain.nft.MsgIssueDenom',
+            typeUrl: '/imversed.nft.MsgIssueDenom',
             value: data
         }),
         msgTransferNFT: (data: MsgTransferNFT): EncodeObject => ({
-            typeUrl: '/metachain.nft.MsgTransferNFT',
+            typeUrl: '/imversed.nft.MsgTransferNFT',
             value: data
         }),
         msgMintNFT: (data: MsgMintNFT): EncodeObject => ({
-            typeUrl: '/metachain.nft.MsgMintNFT',
+            typeUrl: '/imversed.nft.MsgMintNFT',
             value: data
         })
     }

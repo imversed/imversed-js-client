@@ -4,7 +4,7 @@ import { configure, Reader, util, Writer } from 'protobufjs/minimal'
 import { PageRequest, PageResponse } from '../cosmos/base/query/v1beta1/pagination'
 import { BaseNFT, Collection, Denom, Owner } from '../nft/nft'
 
-export const protobufPackage = 'metachain.nft'
+export const protobufPackage = 'imversed.nft'
 
 /** QuerySupplyRequest is the request type for the Query/HTLC RPC method */
 export interface QuerySupplyRequest {
@@ -927,37 +927,37 @@ export class QueryClientImpl implements Query {
     }
     public Supply(request: QuerySupplyRequest): Promise<QuerySupplyResponse> {
         const data = QuerySupplyRequest.encode(request).finish()
-        const promise = this.rpc.request('metachain.nft.Query', 'Supply', data)
+        const promise = this.rpc.request('imversed.nft.Query', 'Supply', data)
         return promise.then(data => QuerySupplyResponse.decode(new Reader(data)))
     }
 
     public Owner(request: QueryOwnerRequest): Promise<QueryOwnerResponse> {
         const data = QueryOwnerRequest.encode(request).finish()
-        const promise = this.rpc.request('metachain.nft.Query', 'Owner', data)
+        const promise = this.rpc.request('imversed.nft.Query', 'Owner', data)
         return promise.then(data => QueryOwnerResponse.decode(new Reader(data)))
     }
 
     public Collection(request: QueryCollectionRequest): Promise<QueryCollectionResponse> {
         const data = QueryCollectionRequest.encode(request).finish()
-        const promise = this.rpc.request('metachain.nft.Query', 'Collection', data)
+        const promise = this.rpc.request('imversed.nft.Query', 'Collection', data)
         return promise.then(data => QueryCollectionResponse.decode(new Reader(data)))
     }
 
     public Denom(request: QueryDenomRequest): Promise<QueryDenomResponse> {
         const data = QueryDenomRequest.encode(request).finish()
-        const promise = this.rpc.request('metachain.nft.Query', 'Denom', data)
+        const promise = this.rpc.request('imversed.nft.Query', 'Denom', data)
         return promise.then(data => QueryDenomResponse.decode(new Reader(data)))
     }
 
     public Denoms(request: QueryDenomsRequest): Promise<QueryDenomsResponse> {
         const data = QueryDenomsRequest.encode(request).finish()
-        const promise = this.rpc.request('metachain.nft.Query', 'Denoms', data)
+        const promise = this.rpc.request('imversed.nft.Query', 'Denoms', data)
         return promise.then(data => QueryDenomsResponse.decode(new Reader(data)))
     }
 
     public Nft(request: QueryNFTRequest): Promise<QueryNFTResponse> {
         const data = QueryNFTRequest.encode(request).finish()
-        const promise = this.rpc.request('metachain.nft.Query', 'Nft', data)
+        const promise = this.rpc.request('imversed.nft.Query', 'Nft', data)
         return promise.then(data => QueryNFTResponse.decode(new Reader(data)))
     }
 }
