@@ -14,8 +14,8 @@
     "declaration": true,
     "target": "es6",
     "sourceMap": true,
-    "strict": true,
-    "noUnusedLocals": true,
+    "strict": false,
+    "noUnusedLocals": false,
     "noUnusedParameters": true
   },
   "include": [

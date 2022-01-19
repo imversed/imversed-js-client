@@ -1,9 +1,11 @@
-import { Collection } from "../nft/nft";
+import { Params, Currency } from "../currency/currency";
 import { Writer, Reader } from "protobufjs/minimal";
-export declare const protobufPackage = "imversed.nft";
-/** GenesisState defines the NFT module's genesis state */
+export declare const protobufPackage = "fulldivevr.imversed.currency";
+/** GenesisState defines the currency module's genesis state. */
 export interface GenesisState {
-    collections: Collection[];
+    /** this line is used by starport scaffolding # genesis/proto/state */
+    params: Params | undefined;
+    currencyList: Currency[];
 }
 export declare const GenesisState: {
     encode(message: GenesisState, writer?: Writer): Writer;
