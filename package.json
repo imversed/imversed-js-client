@@ -1,6 +1,6 @@
 {
   "name": "@fulldivevr/imversed-client",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "author": "FullDive team",
   "description": "Fulldive Imversed chain client Library",
   "scripts": {
