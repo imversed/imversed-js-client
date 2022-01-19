@@ -8,6 +8,7 @@
  * ## SOURCE: https://github.com/acacode/swagger-typescript-api ##
  * ---------------------------------------------------------------
  */
+import fetch from "cross-fetch"
 
 export interface CurrencyCurrency {
   denom?: string;
