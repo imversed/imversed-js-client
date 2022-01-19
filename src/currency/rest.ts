@@ -9,131 +9,48 @@
  * ---------------------------------------------------------------
  */
 
-export interface NftBaseNFT {
-  id?: string;
-  name?: string;
-  uri?: string;
-  data?: string;
+export interface CurrencyCurrency {
+  denom?: string;
   owner?: string;
 }
 
-export interface NftCollection {
-  denom?: NftDenom;
-  nfts?: NftBaseNFT[];
-}
+export type CurrencyMsgIssueResponse = object;
 
-export interface NftDenom {
-  id?: string;
-  name?: string;
-  schema?: string;
-  creator?: string;
-  symbol?: string;
-  mintRestricted?: boolean;
-  updateRestricted?: boolean;
-  oracleUrl?: string;
-}
-
-export interface NftIDCollection {
-  denomId?: string;
-  tokenIds?: string[];
-}
+export type CurrencyMsgMintResponse = object;
 
 /**
- * MsgBurnNFTResponse defines the Msg/BurnNFT response type.
+ * Params defines the parameters for the module.
  */
-export type NftMsgBurnNFTResponse = object;
-
-/**
- * MsgEditNFTResponse defines the Msg/EditNFT response type.
- */
-export type NftMsgEditNFTResponse = object;
-
-/**
- * MsgIssueDenomResponse defines the Msg/IssueDenom response type.
- */
-export type NftMsgIssueDenomResponse = object;
-
-/**
- * MsgMintNFTResponse defines the Msg/MintNFT response type.
- */
-export type NftMsgMintNFTResponse = object;
-
-/**
- * MsgTransferDenomResponse defines the Msg/TransferDenom response type.
- */
-export type NftMsgTransferDenomResponse = object;
-
-/**
- * MsgTransferNFTResponse defines the Msg/TransferNFT response type.
- */
-export type NftMsgTransferNFTResponse = object;
-
-/**
- * MsgUpdateDenomResponse defines the Msg/UpdateDenom response type.
- */
-export type NftMsgUpdateDenomResponse = object;
-
-export interface NftOwner {
-  address?: string;
-  idCollections?: NftIDCollection[];
-}
-
-export interface NftQueryCollectionResponse {
-  collection?: NftCollection;
-
-  /**
-   * PageResponse is to be embedded in gRPC response messages where the
-   * corresponding request message has used PageRequest.
-   *
-   *  message SomeResponse {
-   *          repeated Bar results = 1;
-   *          PageResponse page = 2;
-   *  }
-   */
-  pagination?: V1Beta1PageResponse;
-}
-
-export interface NftQueryDenomResponse {
-  denom?: NftDenom;
-}
-
-export interface NftQueryDenomsResponse {
-  denoms?: NftDenom[];
-
-  /**
-   * PageResponse is to be embedded in gRPC response messages where the
-   * corresponding request message has used PageRequest.
-   *
-   *  message SomeResponse {
-   *          repeated Bar results = 1;
-   *          PageResponse page = 2;
-   *  }
-   */
-  pagination?: V1Beta1PageResponse;
-}
-
-export interface NftQueryNFTResponse {
-  nft?: NftBaseNFT;
-}
-
-export interface NftQueryOwnerResponse {
-  owner?: NftOwner;
-
-  /**
-   * PageResponse is to be embedded in gRPC response messages where the
-   * corresponding request message has used PageRequest.
-   *
-   *  message SomeResponse {
-   *          repeated Bar results = 1;
-   *          PageResponse page = 2;
-   *  }
-   */
-  pagination?: V1Beta1PageResponse;
-}
-
-export interface NftQuerySupplyResponse {
+export interface CurrencyParams {
   /** @format uint64 */
-  amount?: string;
+  txMintCurrencyCost?: string;
+}
+
+export interface CurrencyQueryAllCurrencyResponse {
+  currency?: CurrencyCurrency[];
+
+  /**
+   * PageResponse is to be embedded in gRPC response messages where the
+   * corresponding request message has used PageRequest.
+   *
+   *  message SomeResponse {
+   *          repeated Bar results = 1;
+   *          PageResponse page = 2;
+   *  }
+   */
+  pagination?: V1Beta1PageResponse;
+}
+
+export interface CurrencyQueryGetCurrencyResponse {
+  currency?: CurrencyCurrency;
+}
+
+/**
+ * QueryParamsResponse is response type for the Query/Params RPC method.
+ */
+export interface CurrencyQueryParamsResponse {
+  /** params holds all the parameters of this module. */
+  params?: CurrencyParams;
 }
 
 export interface ProtobufAny {
@@ -145,6 +62,17 @@ export interface RpcStatus {
   code?: number;
   message?: string;
   details?: ProtobufAny[];
+}
+
+/**
+* Coin defines a token with a denomination and an amount.
+
+NOTE: The amount field is an Int which implements the custom method
+signatures required by gogoproto.
+*/
+export interface V1Beta1Coin {
+  denom?: string;
+  amount?: string;
 }
 
 /**
@@ -398,7 +326,7 @@ export class HttpClient<SecurityDataType = unknown> {
 }
 
 /**
- * @title nft/genesis.proto
+ * @title currency/currency.proto
  * @version version not set
  */
 export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDataType> {
@@ -406,12 +334,11 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    * No description
    *
    * @tags Query
-   * @name QueryCollection
-   * @summary Collection queries the NFTs of the specified denom
-   * @request GET:/imversed/nft/collections/{denomId}
+   * @name QueryCurrencyAll
+   * @summary Queries a list of currency items.
+   * @request GET:/fulldivevr/imversed/currency/currency
    */
-  queryCollection = (
-    denomId: string,
+  queryCurrencyAll = (
     query?: {
       "pagination.key"?: string;
       "pagination.offset"?: string;
@@ -421,8 +348,8 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
     },
     params: RequestParams = {},
   ) =>
-    this.request<NftQueryCollectionResponse, RpcStatus>({
-      path: `/imversed/nft/collections/${denomId}`,
+    this.request<CurrencyQueryAllCurrencyResponse, RpcStatus>({
+      path: `/fulldivevr/imversed/currency/currency`,
       method: "GET",
       query: query,
       format: "json",
@@ -433,56 +360,13 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    * No description
    *
    * @tags Query
-   * @name QuerySupply
-   * @summary Supply queries the total supply of a given denom or owner
-   * @request GET:/imversed/nft/collections/{denomId}/supply
+   * @name QueryCurrency
+   * @summary Queries a currency by index.
+   * @request GET:/fulldivevr/imversed/currency/currency/{denom}
    */
-  querySupply = (denomId: string, query?: { owner?: string }, params: RequestParams = {}) =>
-    this.request<NftQuerySupplyResponse, RpcStatus>({
-      path: `/imversed/nft/collections/${denomId}/supply`,
-      method: "GET",
-      query: query,
-      format: "json",
-      ...params,
-    });
-
-  /**
-   * No description
-   *
-   * @tags Query
-   * @name QueryDenoms
-   * @summary Denoms queries all the denoms
-   * @request GET:/imversed/nft/denoms
-   */
-  queryDenoms = (
-    query?: {
-      "pagination.key"?: string;
-      "pagination.offset"?: string;
-      "pagination.limit"?: string;
-      "pagination.countTotal"?: boolean;
-      "pagination.reverse"?: boolean;
-    },
-    params: RequestParams = {},
-  ) =>
-    this.request<NftQueryDenomsResponse, RpcStatus>({
-      path: `/imversed/nft/denoms`,
-      method: "GET",
-      query: query,
-      format: "json",
-      ...params,
-    });
-
-  /**
-   * No description
-   *
-   * @tags Query
-   * @name QueryDenom
-   * @summary Denom queries the definition of a given denom
-   * @request GET:/imversed/nft/denoms/{denomId}
-   */
-  queryDenom = (denomId: string, params: RequestParams = {}) =>
-    this.request<NftQueryDenomResponse, RpcStatus>({
-      path: `/imversed/nft/denoms/${denomId}`,
+  queryCurrency = (denom: string, params: RequestParams = {}) =>
+    this.request<CurrencyQueryGetCurrencyResponse, RpcStatus>({
+      path: `/fulldivevr/imversed/currency/currency/${denom}`,
       method: "GET",
       format: "json",
       ...params,
@@ -492,41 +376,13 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    * No description
    *
    * @tags Query
-   * @name QueryOwner
-   * @summary Owner queries the NFTs of the specified owner
-   * @request GET:/imversed/nft/nfts
+   * @name QueryParams
+   * @summary Parameters queries the parameters of the module.
+   * @request GET:/fulldivevr/imversed/currency/params
    */
-  queryOwner = (
-    query?: {
-      denomId?: string;
-      owner?: string;
-      "pagination.key"?: string;
-      "pagination.offset"?: string;
-      "pagination.limit"?: string;
-      "pagination.countTotal"?: boolean;
-      "pagination.reverse"?: boolean;
-    },
-    params: RequestParams = {},
-  ) =>
-    this.request<NftQueryOwnerResponse, RpcStatus>({
-      path: `/imversed/nft/nfts`,
-      method: "GET",
-      query: query,
-      format: "json",
-      ...params,
-    });
-
-  /**
-   * No description
-   *
-   * @tags Query
-   * @name QueryNft
-   * @summary NFT queries the NFT for the given denom and token ID
-   * @request GET:/imversed/nft/nfts/{denomId}/{tokenId}
-   */
-  queryNft = (denomId: string, tokenId: string, params: RequestParams = {}) =>
-    this.request<NftQueryNFTResponse, RpcStatus>({
-      path: `/imversed/nft/nfts/${denomId}/${tokenId}`,
+  queryParams = (params: RequestParams = {}) =>
+    this.request<CurrencyQueryParamsResponse, RpcStatus>({
+      path: `/fulldivevr/imversed/currency/params`,
       method: "GET",
       format: "json",
       ...params,

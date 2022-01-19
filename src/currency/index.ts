@@ -4,21 +4,13 @@ import { StdFee } from "@cosmjs/launchpad";
 import { SigningStargateClient } from "@cosmjs/stargate";
 import { Registry, OfflineSigner, EncodeObject, DirectSecp256k1HdWallet } from "@cosmjs/proto-signing";
 import { Api } from "./rest";
-import { MsgTransferNFT } from "./types/nft/tx";
-import { MsgTransferDenom } from "./types/nft/tx";
-import { MsgMintNFT } from "./types/nft/tx";
-import { MsgEditNFT } from "./types/nft/tx";
-import { MsgIssueDenom } from "./types/nft/tx";
-import { MsgBurnNFT } from "./types/nft/tx";
+import { MsgIssue } from "./types/currency/tx";
+import { MsgMint } from "./types/currency/tx";
 
 
 const types = [
-  ["/imversed.nft.MsgTransferNFT", MsgTransferNFT],
-  ["/imversed.nft.MsgTransferDenom", MsgTransferDenom],
-  ["/imversed.nft.MsgMintNFT", MsgMintNFT],
-  ["/imversed.nft.MsgEditNFT", MsgEditNFT],
-  ["/imversed.nft.MsgIssueDenom", MsgIssueDenom],
-  ["/imversed.nft.MsgBurnNFT", MsgBurnNFT],
+  ["/fulldivevr.imversed.currency.MsgIssue", MsgIssue],
+  ["/fulldivevr.imversed.currency.MsgMint", MsgMint],
   
 ];
 export const MissingWalletError = new Error("wallet is required");
@@ -51,12 +43,8 @@ const txClient = async (wallet: OfflineSigner, { addr: addr }: TxClientOptions =
 
   return {
     signAndBroadcast: (msgs: EncodeObject[], { fee, memo }: SignAndBroadcastOptions = {fee: defaultFee, memo: ""}) => client.signAndBroadcast(address, msgs, fee,memo),
-    msgTransferNFT: (data: MsgTransferNFT): EncodeObject => ({ typeUrl: "/imversed.nft.MsgTransferNFT", value: MsgTransferNFT.fromPartial( data ) }),
-    msgTransferDenom: (data: MsgTransferDenom): EncodeObject => ({ typeUrl: "/imversed.nft.MsgTransferDenom", value: MsgTransferDenom.fromPartial( data ) }),
-    msgMintNFT: (data: MsgMintNFT): EncodeObject => ({ typeUrl: "/imversed.nft.MsgMintNFT", value: MsgMintNFT.fromPartial( data ) }),
-    msgEditNFT: (data: MsgEditNFT): EncodeObject => ({ typeUrl: "/imversed.nft.MsgEditNFT", value: MsgEditNFT.fromPartial( data ) }),
-    msgIssueDenom: (data: MsgIssueDenom): EncodeObject => ({ typeUrl: "/imversed.nft.MsgIssueDenom", value: MsgIssueDenom.fromPartial( data ) }),
-    msgBurnNFT: (data: MsgBurnNFT): EncodeObject => ({ typeUrl: "/imversed.nft.MsgBurnNFT", value: MsgBurnNFT.fromPartial( data ) }),
+    msgIssue: (data: MsgIssue): EncodeObject => ({ typeUrl: "/fulldivevr.imversed.currency.MsgIssue", value: MsgIssue.fromPartial( data ) }),
+    msgMint: (data: MsgMint): EncodeObject => ({ typeUrl: "/fulldivevr.imversed.currency.MsgMint", value: MsgMint.fromPartial( data ) }),
     
   };
 };
