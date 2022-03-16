@@ -1,8 +1,8 @@
 {
-  "name": "@fulldivevr/imversed-client",
+  "name": "@imversed/js-client",
   "version": "0.0.8",
-  "author": "FullDive team",
-  "description": "Fulldive Imversed chain client Library",
+  "author": "Imversed team",
+  "description": "Imversed chain client Library",
   "scripts": {
     "build": "rm -rf lib/* && tsc --build ./tsconfig.json",
     "test": "yarn build && yarn lint",
