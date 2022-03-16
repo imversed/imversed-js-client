@@ -13,7 +13,6 @@ jobs:
         with:
           node-version: '14.x'
           registry-url: 'https://registry.npmjs.org'
-        scope: '@imversed'
       - run: yarn
       - run: yarn publish
         env:
