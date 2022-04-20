@@ -1,6 +1,7 @@
 /* eslint-disable */
-import { Reader, util, configure, Writer } from "protobufjs/minimal";
+// @ts-nocheck
 import * as Long from "long";
+import { Reader, util, configure, Writer } from "protobufjs/minimal";
 import { Any } from "../../google/protobuf/any";
 import {
   PageRequest,
@@ -1779,8 +1780,4 @@ function longToNumber(long: Long): number {
   return long.toNumber();
 }
 
-// @ts-ignore
-if (util.Long !== Long) {
-  util.Long = Long as any;
-  configure();
-}
+

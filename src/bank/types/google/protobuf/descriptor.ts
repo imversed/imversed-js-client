@@ -1,5 +1,6 @@
 /* eslint-disable */
 /* tslint:disable */
+// @ts-nocheck
 import * as Long from "long"
 import { util, configure, Writer, Reader } from "protobufjs/minimal"
 
@@ -4638,10 +4639,4 @@ function longToNumber(long: Long): number {
     throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER")
   }
   return long.toNumber()
-}
-
-// @ts-ignore
-if (util.Long !== Long) {
-  util.Long = Long as any
-  configure()
 }

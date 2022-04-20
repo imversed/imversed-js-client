@@ -1,6 +1,7 @@
 /* eslint-disable */
-import { Timestamp } from "../../google/protobuf/timestamp";
+// @ts-nocheck
 import * as Long from "long";
+import { Timestamp } from "../../google/protobuf/timestamp";
 import { util, configure, Writer, Reader } from "protobufjs/minimal";
 import { Coin } from "../../cosmos/base/v1beta1/coin";
 import { Duration } from "../../google/protobuf/duration";
@@ -679,8 +680,4 @@ function longToNumber(long: Long): number {
   return long.toNumber();
 }
 
-// @ts-ignore
-if (util.Long !== Long) {
-  util.Long = Long as any;
-  configure();
-}
+
