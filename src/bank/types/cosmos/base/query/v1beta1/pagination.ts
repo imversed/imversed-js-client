@@ -258,6 +258,7 @@ export const PageResponse = {
 declare var self: any | undefined
 declare var window: any | undefined
 const globalThis: any = (() => {
+  // @ts-ignore
   if (typeof globalThis !== "undefined") { return globalThis }
   if (typeof self !== "undefined") { return self }
   if (typeof window !== "undefined") { return window }

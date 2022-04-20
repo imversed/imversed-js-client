@@ -14,7 +14,6 @@ import { MsgExitSwapExternAmountOut } from "./types/pools/v1beta1/tx";
 import { MsgExitPool } from "./types/pools/v1beta1/tx";
 import { MsgExitSwapShareAmountIn } from "./types/pools/v1beta1/tx";
 
-
 const types = [
   ["/imversed.pools.v1beta1.MsgSwapExactAmountOut", MsgSwapExactAmountOut],
   ["/imversed.pools.v1beta1.MsgSwapExactAmountIn", MsgSwapExactAmountIn],

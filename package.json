@@ -5,7 +5,7 @@
   "description": "Imversed chain client Library",
   "scripts": {
     "build": "rm -rf lib/* && tsc --build ./tsconfig.json",
-    "test": "yarn build && yarn lint",
+    "test": "yarn build && yarn mocha test/**/*.ts",
     "prepare": "yarn build",
     "lint": "tslint --project .",
     "lint:fix": "tslint --fix --project ."
@@ -23,18 +23,22 @@
   },
   "license": "UNLICENSED",
   "devDependencies": {
+    "@types/chai": "^4.3.1",
     "@types/config": "^0.0.36",
+    "@types/mocha": "^9.1.0",
     "@types/node": "^12.7.12",
+    "chai": "^4.3.6",
     "lint-staged": "^8.1.5",
+    "mocha": "^9.2.2",
     "nodemon": "^1.19.4",
     "organize-imports-cli": "^0.7.0",
     "prettier": "^1.18.2",
     "prettier-tslint": "^0.4.2",
-    "ts-node": "^8.4.1",
+    "ts-node": "^10.7.0",
     "tslint": "^5.20.0",
     "tslint-config-prettier": "^1.18.0",
     "tslint-plugin-prettier": "^2.0.1",
-    "typescript": "^3.6.3"
+    "typescript": "^4.6.3"
   },
   "lint-staged": {
     "*.{js,json,yml,yaml}": [
