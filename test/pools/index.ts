@@ -26,8 +26,8 @@ describe('pools module', () => {
             const msg = tx.msgCreatePool({
                 sender: account.address,
                 poolParams: {
-                    swapFee: '0.01',
-                    exitFee: '0.01',
+                    swapFee: '1',
+                    exitFee: '1',
                     smoothWeightChangeParams: undefined
                 },
                 poolAssets: [
