@@ -1,6 +1,7 @@
-import { txClient } from '../../lib/nft'
-import { loadWallet } from '../../lib'
+import { loadWallet, nft } from '../../lib'
 import { expect } from 'chai'
+
+const { txClient, queryClient } = nft
 
 const txAddr = process.env.IMVERSED_TX_ADDR || 'https://tx-endpoint-test.imversed.com:443'
 const qAddr = process.env.IMVERSED_QUERY_ADDR || 'https://query-endpoint-test.imversed.com'

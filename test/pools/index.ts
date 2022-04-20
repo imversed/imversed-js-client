@@ -1,6 +1,7 @@
 import { expect } from 'chai'
-import { queryClient, txClient } from '../../lib/pools'
-import { loadWallet } from '../../lib'
+import { loadWallet, pools } from '../../lib'
+
+const { queryClient, txClient } = pools
 
 const txAddr = process.env.IMVERSED_TX_ADDR || 'https://tx-endpoint-test.imversed.com:443'
 const qAddr = process.env.IMVERSED_QUERY_ADDR || 'https://query-endpoint-test.imversed.com'

@@ -9,3 +9,4 @@ tsfy.js
 node_modules
 fulldivevr-metachain-client-*tgz
 fulldivevr-imversed-client-*tgz
+.env
