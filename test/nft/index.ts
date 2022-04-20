@@ -1,5 +1,6 @@
 import { loadWallet, nft } from '../../lib'
 import { expect } from 'chai'
+import { assertTx } from '../utils'
 
 const { txClient, queryClient } = nft
 
@@ -35,7 +36,7 @@ describe('NFT module',() => {
                 }
             })
 
-            expect(res.transactionHash).to.not.be.empty
+            assertTx(res)
         })
     })
 })

@@ -1,5 +1,6 @@
 import { expect } from 'chai'
 import { loadWallet, pools } from '../../lib'
+import { assertTx } from '../utils'
 
 const { queryClient, txClient } = pools
 
@@ -60,7 +61,7 @@ describe('pools module', () => {
                 }
             })
 
-            // expect(res.transactionHash).to.be.empty
+            assertTx(res)
         })
     })
 })
