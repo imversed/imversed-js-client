@@ -25,11 +25,14 @@ describe('pools module', () => {
             const [account] = await wallet.getAccounts()
             const tx = await txClient(wallet, { addr: txAddr })
 
+            const swapFee = 0.001
+            const exitFee = 0.001
+
             const msg = tx.msgCreatePool({
                 sender: account.address,
                 poolParams: {
-                    swapFee: '1',
-                    exitFee: '1',
+                    swapFee: Math.floor(swapFee * 10**18).toString(),
+                    exitFee: Math.floor(exitFee * 10**18).toString(),
                     smoothWeightChangeParams: undefined
                 },
                 poolAssets: [
@@ -54,7 +57,7 @@ describe('pools module', () => {
             const res = await tx.signAndBroadcast([msg], {
                 fee: {
                     amount: [{
-                        amount: '200',
+                        amount: '20000',
                         denom: 'nimv'
                     }],
                     gas: '200000'

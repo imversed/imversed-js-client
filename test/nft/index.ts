@@ -29,7 +29,7 @@ describe('NFT module',() => {
             const res = await tx.signAndBroadcast([msg], {
                 fee: {
                     amount: [{
-                        amount: '200',
+                        amount: '20000',
                         denom: 'nimv'
                     }],
                     gas: '200000'
