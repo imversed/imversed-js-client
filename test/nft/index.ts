@@ -1,6 +1,7 @@
 import { loadWallet, nft } from '../../lib'
 import { expect } from 'chai'
 import { assertTx } from '../utils'
+import * as faker from 'faker'
 
 const { txClient, queryClient } = nft
 
@@ -16,7 +17,7 @@ describe('NFT module',() => {
             const tx = await txClient(wallet, { addr: txAddr })
 
             const msg = tx.msgIssueDenom({
-                id: 'test123',
+                id: faker.random.alpha({count: 3, upcase: false}) + faker.random.alphaNumeric(7),
                 name: 'Test Denom',
                 schema: '',
                 sender: account.address,
