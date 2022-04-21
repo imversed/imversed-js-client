@@ -9,7 +9,7 @@ Add package with preffered package manager. For example:
     yarn add @fulldivevr/imversed-js-client
 
 Use queries for retrieving data from imversed:
-```
+```ts
 import { nft } from '@fulldivevr/imversed-js-client'
 import { NftBaseNFT } from '@fulldivevr/imversed-js-client/lib/nft/rest'
 
@@ -26,7 +26,7 @@ async function getNft(denomId: string, nftId: string): Promise<NftBaseNFT> {
 
 Use transactions (TXs) to put some data in Inmversed:
 
-```
+```ts
 import { loadWallet, nft } from '@fulldivevr/imversed-js-client'
 
 const { txClient } = nft
