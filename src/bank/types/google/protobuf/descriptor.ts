@@ -1,5 +1,6 @@
 /* eslint-disable */
 /* tslint:disable */
+// @ts-nocheck
 import * as Long from "long"
 import { util, configure, Writer, Reader } from "protobufjs/minimal"
 
@@ -4595,6 +4596,7 @@ export const GeneratedCodeInfo_Annotation = {
 declare var self: any | undefined
 declare var window: any | undefined
 const globalThis: any = (() => {
+  // @ts-ignore
   if (typeof globalThis !== "undefined") { return globalThis }
   if (typeof self !== "undefined") { return self }
   if (typeof window !== "undefined") { return window }
@@ -4637,10 +4639,4 @@ function longToNumber(long: Long): number {
     throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER")
   }
   return long.toNumber()
-}
-
-// @ts-ignore
-if (util.Long !== Long) {
-  util.Long = Long as any
-  configure()
 }
