@@ -1,15 +1,26 @@
 import { makeCosmoshubPath } from "@cosmjs/amino"
-import { DirectSecp256k1HdWallet } from "@cosmjs/proto-signing"
+import { DirectSecp256k1HdWallet, OfflineDirectSigner } from "@cosmjs/proto-signing"
 
 const prefix = 'imv'
 
-export async function loadWallet(mnemonic: string) {
+export async function loadWallet(mnemonic: string): Promise<IWallet> {
     const hdPath = makeCosmoshubPath(0)
     return DirectSecp256k1HdWallet.fromMnemonic(mnemonic, {
         hdPaths: [hdPath],
         prefix: prefix
     })
 }
+
+export async function createWallet(password?: string): Promise<IWallet> {
+    const hdPath = await makeCosmoshubPath(0)
+    return DirectSecp256k1HdWallet.generate(24, {
+        bip39Password: password,
+        hdPaths: [hdPath],
+        prefix
+    })
+}
+
+export interface IWallet extends OfflineDirectSigner {}
 
 import * as auth from './auth'
 import * as bank from './bank'
