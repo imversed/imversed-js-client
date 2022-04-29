@@ -20,6 +20,10 @@ export async function createWallet(password?: string): Promise<IWallet> {
     })
 }
 
+export async function restoreWallet(serializedWallet: string, password?: string): Promise<IWallet> {
+    return DirectSecp256k1HdWallet.deserialize(serializedWallet, password)
+}
+
 export interface IWallet extends OfflineDirectSigner {}
 
 import * as auth from './auth'
