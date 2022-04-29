@@ -24,7 +24,7 @@ export async function restoreWallet(serializedWallet: string, password?: string)
     return DirectSecp256k1HdWallet.deserialize(serializedWallet, password)
 }
 
-export interface IWallet extends OfflineDirectSigner {}
+export class IWallet extends DirectSecp256k1HdWallet {}
 
 import * as auth from './auth'
 import * as bank from './bank'
