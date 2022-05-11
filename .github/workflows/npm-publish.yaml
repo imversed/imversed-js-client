@@ -15,6 +15,6 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
           scope: '@imversed'
       - run: yarn
-      - run: yarn publish --access restricted
+      - run: yarn publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
