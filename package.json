@@ -1,5 +1,5 @@
 {
-  "name": "@fulldivevr/imversed-js-client",
+  "name": "@imversed/js-client",
   "version": "0.1.1",
   "author": "Imversed team",
   "description": "Imversed chain client Library",

@@ -4,14 +4,14 @@ Javascript and Typescript client library for [Inversed](https://imversed.com).
 
 # Usage
 
-Add package with preffered package manager. For example:
+Add package with a preferred package manager. For example:
 
-    yarn add @fulldivevr/imversed-js-client
+    yarn add @imversed/js-client
 
 Use queries for retrieving data from imversed:
 ```ts
-import { nft } from '@fulldivevr/imversed-js-client'
-import { NftBaseNFT } from '@fulldivevr/imversed-js-client/lib/nft/rest'
+import { nft } from '@imversed/js-client'
+import { NftBaseNFT } from '@imversed/js-client/lib/nft/rest'
 
 const { queryClient } = nft
 
@@ -27,7 +27,7 @@ async function getNft(denomId: string, nftId: string): Promise<NftBaseNFT> {
 Use transactions (TXs) to put some data in Inmversed:
 
 ```ts
-import { loadWallet, nft } from '@fulldivevr/imversed-js-client'
+import { loadWallet, nft } from '@imversed/js-client'
 
 const { txClient } = nft
 

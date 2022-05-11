@@ -13,7 +13,7 @@ jobs:
         with:
           node-version: '14.x'
           registry-url: 'https://registry.npmjs.org'
-          scope: '@fulldivevr'
+          scope: '@imversed'
       - run: yarn
       - run: yarn publish --access restricted
         env:
