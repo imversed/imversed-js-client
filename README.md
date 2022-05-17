@@ -16,7 +16,7 @@ import { NftBaseNFT } from '@imversed/js-client/lib/nft/rest'
 const { queryClient } = nft
 
 async function getNft(denomId: string, nftId: string): Promise<NftBaseNFT> {
-    const q = await queryClient({ addr: 'https://query-endpoint-test.imversed.com '})
+    const q = await queryClient({ addr: 'https://query-endpoint-test.imversed.com'})
 
     const res = await q.queryNft(denomId, nftId)
 
