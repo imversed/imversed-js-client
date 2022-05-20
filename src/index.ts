@@ -1,10 +1,18 @@
 import { makeCosmoshubPath } from "@cosmjs/amino"
+import { HdPath, Slip10RawIndex } from "@cosmjs/crypto"
 import { DirectSecp256k1HdWallet, OfflineDirectSigner } from "@cosmjs/proto-signing"
 
 const prefix = 'imv'
 
+const hdPath: HdPath = [
+    Slip10RawIndex.hardened(44),
+    Slip10RawIndex.hardened(60),
+    Slip10RawIndex.hardened(0),
+    Slip10RawIndex.normal(0),
+    Slip10RawIndex.normal(0)
+]
+
 export async function loadWallet(mnemonic: string): Promise<IWallet> {
-    const hdPath = makeCosmoshubPath(0)
     return DirectSecp256k1HdWallet.fromMnemonic(mnemonic, {
         hdPaths: [hdPath],
         prefix: prefix
@@ -12,7 +20,6 @@ export async function loadWallet(mnemonic: string): Promise<IWallet> {
 }
 
 export async function createWallet(password?: string): Promise<IWallet> {
-    const hdPath = await makeCosmoshubPath(0)
     return DirectSecp256k1HdWallet.generate(24, {
         bip39Password: password,
         hdPaths: [hdPath],

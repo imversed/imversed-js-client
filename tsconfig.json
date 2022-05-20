@@ -16,7 +16,8 @@
     "sourceMap": true,
     "strict": false,
     "noUnusedLocals": false,
-    "noUnusedParameters": true
+    "noUnusedParameters": true,
+    "preserveSymlinks": true
   },
   "include": [
     "src"

@@ -4,8 +4,9 @@
   "author": "Imversed team",
   "description": "Imversed chain client Library",
   "scripts": {
-    "build": "rm -rf lib/* && tsc --build ./tsconfig.json",
-    "test": "yarn build && yarn mocha -r dotenv/config test/**/*.ts",
+    "build": "rm -rf lib && tsc --build ./tsconfig.json",
+    "test": "yarn build && yarn test:path test/**/*.ts",
+    "test:path": "yarn mocha -n preserve-symlinks=true -r dotenv/config",
     "prepare": "yarn build",
     "lint": "tslint --project .",
     "lint:fix": "tslint --fix --project ."
@@ -17,9 +18,11 @@
   ],
   "dependencies": {
     "@cosmjs/launchpad": "^0.26.0",
+    "@cosmjs/proto-signing": "^0.28.4",
     "@cosmjs/stargate": "^0.26.0",
     "cross-fetch": "^3.1.4",
-    "protobufjs": "^6.11.2"
+    "prettier-tslint": "^0.4.2",
+    "protobufjs": "^6.10.2"
   },
   "license": "UNLICENSED",
   "devDependencies": {
@@ -36,7 +39,6 @@
     "nodemon": "^1.19.4",
     "organize-imports-cli": "^0.7.0",
     "prettier": "^1.18.2",
-    "prettier-tslint": "^0.4.2",
     "ts-node": "^10.7.0",
     "tslint": "^5.20.0",
     "tslint-config-prettier": "^1.18.0",
@@ -52,5 +54,23 @@
       "tslint --fix",
       "prettier --write"
     ]
+  },
+  "resolutions": {
+    "@cosmjs/amino": "portal:/Users/mikhailmenshenin/develop/cosmos/cosmjs_forks/vincentysc/cosmjs/packages/amino",
+    "@cosmjs/cli": "portal:/Users/mikhailmenshenin/develop/cosmos/cosmjs_forks/vincentysc/cosmjs/packages/cli",
+    "@cosmjs/cosmwasm-stargate": "portal:/Users/mikhailmenshenin/develop/cosmos/cosmjs_forks/vincentysc/cosmjs/packages/cosmwasm-stargate",
+    "@cosmjs/crypto": "portal:/Users/mikhailmenshenin/develop/cosmos/cosmjs_forks/vincentysc/cosmjs/packages/crypto",
+    "@cosmjs/encoding": "portal:/Users/mikhailmenshenin/develop/cosmos/cosmjs_forks/vincentysc/cosmjs/packages/encoding",
+    "@cosmjs/faucet": "portal:/Users/mikhailmenshenin/develop/cosmos/cosmjs_forks/vincentysc/cosmjs/packages/faucet",
+    "@cosmjs/faucet-client": "portal:/Users/mikhailmenshenin/develop/cosmos/cosmjs_forks/vincentysc/cosmjs/packages/faucet-client",
+    "@cosmjs/json-rpc": "portal:/Users/mikhailmenshenin/develop/cosmos/cosmjs_forks/vincentysc/cosmjs/packages/json-rpc",
+    "@cosmjs/ledger-amino": "portal:/Users/mikhailmenshenin/develop/cosmos/cosmjs_forks/vincentysc/cosmjs/packages/ledger-amino",
+    "@cosmjs/math": "portal:/Users/mikhailmenshenin/develop/cosmos/cosmjs_forks/vincentysc/cosmjs/packages/math",
+    "@cosmjs/proto-signing": "portal:/Users/mikhailmenshenin/develop/cosmos/cosmjs_forks/vincentysc/cosmjs/packages/proto-signing",
+    "@cosmjs/socket": "portal:/Users/mikhailmenshenin/develop/cosmos/cosmjs_forks/vincentysc/cosmjs/packages/socket",
+    "@cosmjs/stargate": "portal:/Users/mikhailmenshenin/develop/cosmos/cosmjs_forks/vincentysc/cosmjs/packages/stargate",
+    "@cosmjs/stream": "portal:/Users/mikhailmenshenin/develop/cosmos/cosmjs_forks/vincentysc/cosmjs/packages/stream",
+    "@cosmjs/tendermint-rpc": "portal:/Users/mikhailmenshenin/develop/cosmos/cosmjs_forks/vincentysc/cosmjs/packages/tendermint-rpc",
+    "@cosmjs/utils": "portal:/Users/mikhailmenshenin/develop/cosmos/cosmjs_forks/vincentysc/cosmjs/packages/utils"
   }
 }
