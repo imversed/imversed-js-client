@@ -2,7 +2,7 @@ import { expect } from "chai"
 import { loadWallet } from "../../src/"
 import { pubKey, mnemonic, address as addressExpected } from '../lib/env'
 
-import { toBase64 } from "@cosmjs/encoding"
+import { toBase64 } from "@imversed/encoding"
 
 describe('Wallet', () => {
     it('can be recovered from mnemonic', async () => {
