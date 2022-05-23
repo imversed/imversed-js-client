@@ -51,9 +51,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cosmjs/amino@portal:/Users/mikhailmenshenin/develop/cosmos/cosmjs_forks/vincentysc/cosmjs/packages/amino::locator=%40imversed%2Fjs-client%40workspace%3A.":
+"@cosmjs/amino@portal:/Users/marina/projects/cosmjs/packages/amino::locator=%40imversed%2Fjs-client%40workspace%3A.":
   version: 0.0.0-use.local
-  resolution: "@cosmjs/amino@portal:/Users/mikhailmenshenin/develop/cosmos/cosmjs_forks/vincentysc/cosmjs/packages/amino::locator=%40imversed%2Fjs-client%40workspace%3A."
+  resolution: "@cosmjs/amino@portal:/Users/marina/projects/cosmjs/packages/amino::locator=%40imversed%2Fjs-client%40workspace%3A."
   dependencies:
     "@cosmjs/crypto": "workspace:packages/crypto"
     "@cosmjs/encoding": "workspace:packages/encoding"
@@ -62,9 +62,9 @@ __metadata:
   languageName: node
   linkType: soft
 
-"@cosmjs/crypto@portal:/Users/mikhailmenshenin/develop/cosmos/cosmjs_forks/vincentysc/cosmjs/packages/crypto::locator=%40imversed%2Fjs-client%40workspace%3A.":
+"@cosmjs/crypto@portal:/Users/marina/projects/cosmjs/packages/crypto::locator=%40imversed%2Fjs-client%40workspace%3A.":
   version: 0.0.0-use.local
-  resolution: "@cosmjs/crypto@portal:/Users/mikhailmenshenin/develop/cosmos/cosmjs_forks/vincentysc/cosmjs/packages/crypto::locator=%40imversed%2Fjs-client%40workspace%3A."
+  resolution: "@cosmjs/crypto@portal:/Users/marina/projects/cosmjs/packages/crypto::locator=%40imversed%2Fjs-client%40workspace%3A."
   dependencies:
     "@cosmjs/encoding": "workspace:packages/encoding"
     "@cosmjs/math": "workspace:packages/math"
@@ -76,9 +76,9 @@ __metadata:
   languageName: node
   linkType: soft
 
-"@cosmjs/encoding@portal:/Users/mikhailmenshenin/develop/cosmos/cosmjs_forks/vincentysc/cosmjs/packages/encoding::locator=%40imversed%2Fjs-client%40workspace%3A.":
+"@cosmjs/encoding@portal:/Users/marina/projects/cosmjs/packages/encoding::locator=%40imversed%2Fjs-client%40workspace%3A.":
   version: 0.0.0-use.local
-  resolution: "@cosmjs/encoding@portal:/Users/mikhailmenshenin/develop/cosmos/cosmjs_forks/vincentysc/cosmjs/packages/encoding::locator=%40imversed%2Fjs-client%40workspace%3A."
+  resolution: "@cosmjs/encoding@portal:/Users/marina/projects/cosmjs/packages/encoding::locator=%40imversed%2Fjs-client%40workspace%3A."
   dependencies:
     base64-js: ^1.3.0
     bech32: ^1.1.4
@@ -86,9 +86,9 @@ __metadata:
   languageName: node
   linkType: soft
 
-"@cosmjs/json-rpc@portal:/Users/mikhailmenshenin/develop/cosmos/cosmjs_forks/vincentysc/cosmjs/packages/json-rpc::locator=%40imversed%2Fjs-client%40workspace%3A.":
+"@cosmjs/json-rpc@portal:/Users/marina/projects/cosmjs/packages/json-rpc::locator=%40imversed%2Fjs-client%40workspace%3A.":
   version: 0.0.0-use.local
-  resolution: "@cosmjs/json-rpc@portal:/Users/mikhailmenshenin/develop/cosmos/cosmjs_forks/vincentysc/cosmjs/packages/json-rpc::locator=%40imversed%2Fjs-client%40workspace%3A."
+  resolution: "@cosmjs/json-rpc@portal:/Users/marina/projects/cosmjs/packages/json-rpc::locator=%40imversed%2Fjs-client%40workspace%3A."
   dependencies:
     "@cosmjs/stream": "workspace:packages/stream"
     xstream: ^11.14.0
@@ -110,17 +110,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cosmjs/math@portal:/Users/mikhailmenshenin/develop/cosmos/cosmjs_forks/vincentysc/cosmjs/packages/math::locator=%40imversed%2Fjs-client%40workspace%3A.":
+"@cosmjs/math@portal:/Users/marina/projects/cosmjs/packages/math::locator=%40imversed%2Fjs-client%40workspace%3A.":
   version: 0.0.0-use.local
-  resolution: "@cosmjs/math@portal:/Users/mikhailmenshenin/develop/cosmos/cosmjs_forks/vincentysc/cosmjs/packages/math::locator=%40imversed%2Fjs-client%40workspace%3A."
+  resolution: "@cosmjs/math@portal:/Users/marina/projects/cosmjs/packages/math::locator=%40imversed%2Fjs-client%40workspace%3A."
   dependencies:
     bn.js: ^5.2.0
   languageName: node
   linkType: soft
 
-"@cosmjs/proto-signing@portal:/Users/mikhailmenshenin/develop/cosmos/cosmjs_forks/vincentysc/cosmjs/packages/proto-signing::locator=%40imversed%2Fjs-client%40workspace%3A.":
+"@cosmjs/proto-signing@portal:/Users/marina/projects/cosmjs/packages/proto-signing::locator=%40imversed%2Fjs-client%40workspace%3A.":
   version: 0.0.0-use.local
-  resolution: "@cosmjs/proto-signing@portal:/Users/mikhailmenshenin/develop/cosmos/cosmjs_forks/vincentysc/cosmjs/packages/proto-signing::locator=%40imversed%2Fjs-client%40workspace%3A."
+  resolution: "@cosmjs/proto-signing@portal:/Users/marina/projects/cosmjs/packages/proto-signing::locator=%40imversed%2Fjs-client%40workspace%3A."
   dependencies:
     "@cosmjs/amino": "workspace:packages/amino"
     "@cosmjs/crypto": "workspace:packages/crypto"
@@ -129,13 +129,13 @@ __metadata:
     "@cosmjs/utils": "workspace:packages/utils"
     cosmjs-types: ^0.4.0
     long: ^4.0.0
-    protobufjs: ^6.11.2
+    protobufjs: ~6.11.2
   languageName: node
   linkType: soft
 
-"@cosmjs/socket@portal:/Users/mikhailmenshenin/develop/cosmos/cosmjs_forks/vincentysc/cosmjs/packages/socket::locator=%40imversed%2Fjs-client%40workspace%3A.":
+"@cosmjs/socket@portal:/Users/marina/projects/cosmjs/packages/socket::locator=%40imversed%2Fjs-client%40workspace%3A.":
   version: 0.0.0-use.local
-  resolution: "@cosmjs/socket@portal:/Users/mikhailmenshenin/develop/cosmos/cosmjs_forks/vincentysc/cosmjs/packages/socket::locator=%40imversed%2Fjs-client%40workspace%3A."
+  resolution: "@cosmjs/socket@portal:/Users/marina/projects/cosmjs/packages/socket::locator=%40imversed%2Fjs-client%40workspace%3A."
   dependencies:
     "@cosmjs/stream": "workspace:packages/stream"
     isomorphic-ws: ^4.0.1
@@ -144,9 +144,9 @@ __metadata:
   languageName: node
   linkType: soft
 
-"@cosmjs/stargate@portal:/Users/mikhailmenshenin/develop/cosmos/cosmjs_forks/vincentysc/cosmjs/packages/stargate::locator=%40imversed%2Fjs-client%40workspace%3A.":
+"@cosmjs/stargate@portal:/Users/marina/projects/cosmjs/packages/stargate::locator=%40imversed%2Fjs-client%40workspace%3A.":
   version: 0.0.0-use.local
-  resolution: "@cosmjs/stargate@portal:/Users/mikhailmenshenin/develop/cosmos/cosmjs_forks/vincentysc/cosmjs/packages/stargate::locator=%40imversed%2Fjs-client%40workspace%3A."
+  resolution: "@cosmjs/stargate@portal:/Users/marina/projects/cosmjs/packages/stargate::locator=%40imversed%2Fjs-client%40workspace%3A."
   dependencies:
     "@confio/ics23": ^0.6.8
     "@cosmjs/amino": "workspace:packages/amino"
@@ -158,22 +158,22 @@ __metadata:
     "@cosmjs/utils": "workspace:packages/utils"
     cosmjs-types: ^0.4.0
     long: ^4.0.0
-    protobufjs: ^6.11.2
+    protobufjs: ~6.11.2
     xstream: ^11.14.0
   languageName: node
   linkType: soft
 
-"@cosmjs/stream@portal:/Users/mikhailmenshenin/develop/cosmos/cosmjs_forks/vincentysc/cosmjs/packages/stream::locator=%40imversed%2Fjs-client%40workspace%3A.":
+"@cosmjs/stream@portal:/Users/marina/projects/cosmjs/packages/stream::locator=%40imversed%2Fjs-client%40workspace%3A.":
   version: 0.0.0-use.local
-  resolution: "@cosmjs/stream@portal:/Users/mikhailmenshenin/develop/cosmos/cosmjs_forks/vincentysc/cosmjs/packages/stream::locator=%40imversed%2Fjs-client%40workspace%3A."
+  resolution: "@cosmjs/stream@portal:/Users/marina/projects/cosmjs/packages/stream::locator=%40imversed%2Fjs-client%40workspace%3A."
   dependencies:
     xstream: ^11.14.0
   languageName: node
   linkType: soft
 
-"@cosmjs/tendermint-rpc@portal:/Users/mikhailmenshenin/develop/cosmos/cosmjs_forks/vincentysc/cosmjs/packages/tendermint-rpc::locator=%40imversed%2Fjs-client%40workspace%3A.":
+"@cosmjs/tendermint-rpc@portal:/Users/marina/projects/cosmjs/packages/tendermint-rpc::locator=%40imversed%2Fjs-client%40workspace%3A.":
   version: 0.0.0-use.local
-  resolution: "@cosmjs/tendermint-rpc@portal:/Users/mikhailmenshenin/develop/cosmos/cosmjs_forks/vincentysc/cosmjs/packages/tendermint-rpc::locator=%40imversed%2Fjs-client%40workspace%3A."
+  resolution: "@cosmjs/tendermint-rpc@portal:/Users/marina/projects/cosmjs/packages/tendermint-rpc::locator=%40imversed%2Fjs-client%40workspace%3A."
   dependencies:
     "@cosmjs/crypto": "workspace:packages/crypto"
     "@cosmjs/encoding": "workspace:packages/encoding"
@@ -188,9 +188,9 @@ __metadata:
   languageName: node
   linkType: soft
 
-"@cosmjs/utils@portal:/Users/mikhailmenshenin/develop/cosmos/cosmjs_forks/vincentysc/cosmjs/packages/utils::locator=%40imversed%2Fjs-client%40workspace%3A.":
+"@cosmjs/utils@portal:/Users/marina/projects/cosmjs/packages/utils::locator=%40imversed%2Fjs-client%40workspace%3A.":
   version: 0.0.0-use.local
-  resolution: "@cosmjs/utils@portal:/Users/mikhailmenshenin/develop/cosmos/cosmjs_forks/vincentysc/cosmjs/packages/utils::locator=%40imversed%2Fjs-client%40workspace%3A."
+  resolution: "@cosmjs/utils@portal:/Users/marina/projects/cosmjs/packages/utils::locator=%40imversed%2Fjs-client%40workspace%3A."
   languageName: node
   linkType: soft
 
@@ -4379,7 +4379,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"protobufjs@npm:^6.10.2, protobufjs@npm:^6.11.2, protobufjs@npm:^6.8.8, protobufjs@npm:~6.11.2":
+"protobufjs@npm:^6.10.2, protobufjs@npm:^6.8.8, protobufjs@npm:~6.11.2":
   version: 6.11.2
   resolution: "protobufjs@npm:6.11.2"
   dependencies:

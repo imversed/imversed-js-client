@@ -56,21 +56,21 @@
     ]
   },
   "resolutions": {
-    "@cosmjs/amino": "portal:/Users/mikhailmenshenin/develop/cosmos/cosmjs_forks/vincentysc/cosmjs/packages/amino",
-    "@cosmjs/cli": "portal:/Users/mikhailmenshenin/develop/cosmos/cosmjs_forks/vincentysc/cosmjs/packages/cli",
-    "@cosmjs/cosmwasm-stargate": "portal:/Users/mikhailmenshenin/develop/cosmos/cosmjs_forks/vincentysc/cosmjs/packages/cosmwasm-stargate",
-    "@cosmjs/crypto": "portal:/Users/mikhailmenshenin/develop/cosmos/cosmjs_forks/vincentysc/cosmjs/packages/crypto",
-    "@cosmjs/encoding": "portal:/Users/mikhailmenshenin/develop/cosmos/cosmjs_forks/vincentysc/cosmjs/packages/encoding",
-    "@cosmjs/faucet": "portal:/Users/mikhailmenshenin/develop/cosmos/cosmjs_forks/vincentysc/cosmjs/packages/faucet",
-    "@cosmjs/faucet-client": "portal:/Users/mikhailmenshenin/develop/cosmos/cosmjs_forks/vincentysc/cosmjs/packages/faucet-client",
-    "@cosmjs/json-rpc": "portal:/Users/mikhailmenshenin/develop/cosmos/cosmjs_forks/vincentysc/cosmjs/packages/json-rpc",
-    "@cosmjs/ledger-amino": "portal:/Users/mikhailmenshenin/develop/cosmos/cosmjs_forks/vincentysc/cosmjs/packages/ledger-amino",
-    "@cosmjs/math": "portal:/Users/mikhailmenshenin/develop/cosmos/cosmjs_forks/vincentysc/cosmjs/packages/math",
-    "@cosmjs/proto-signing": "portal:/Users/mikhailmenshenin/develop/cosmos/cosmjs_forks/vincentysc/cosmjs/packages/proto-signing",
-    "@cosmjs/socket": "portal:/Users/mikhailmenshenin/develop/cosmos/cosmjs_forks/vincentysc/cosmjs/packages/socket",
-    "@cosmjs/stargate": "portal:/Users/mikhailmenshenin/develop/cosmos/cosmjs_forks/vincentysc/cosmjs/packages/stargate",
-    "@cosmjs/stream": "portal:/Users/mikhailmenshenin/develop/cosmos/cosmjs_forks/vincentysc/cosmjs/packages/stream",
-    "@cosmjs/tendermint-rpc": "portal:/Users/mikhailmenshenin/develop/cosmos/cosmjs_forks/vincentysc/cosmjs/packages/tendermint-rpc",
-    "@cosmjs/utils": "portal:/Users/mikhailmenshenin/develop/cosmos/cosmjs_forks/vincentysc/cosmjs/packages/utils"
+    "@cosmjs/amino": "portal:/Users/marina/projects/cosmjs/packages/amino",
+    "@cosmjs/cli": "portal:/Users/marina/projects/cosmjs/packages/cli",
+    "@cosmjs/cosmwasm-stargate": "portal:/Users/marina/projects/cosmjs/packages/cosmwasm-stargate",
+    "@cosmjs/crypto": "portal:/Users/marina/projects/cosmjs/packages/crypto",
+    "@cosmjs/encoding": "portal:/Users/marina/projects/cosmjs/packages/encoding",
+    "@cosmjs/faucet": "portal:/Users/marina/projects/cosmjs/packages/faucet",
+    "@cosmjs/faucet-client": "portal:/Users/marina/projects/cosmjs/packages/faucet-client",
+    "@cosmjs/json-rpc": "portal:/Users/marina/projects/cosmjs/packages/json-rpc",
+    "@cosmjs/ledger-amino": "portal:/Users/marina/projects/cosmjs/packages/ledger-amino",
+    "@cosmjs/math": "portal:/Users/marina/projects/cosmjs/packages/math",
+    "@cosmjs/proto-signing": "portal:/Users/marina/projects/cosmjs/packages/proto-signing",
+    "@cosmjs/socket": "portal:/Users/marina/projects/cosmjs/packages/socket",
+    "@cosmjs/stargate": "portal:/Users/marina/projects/cosmjs/packages/stargate",
+    "@cosmjs/stream": "portal:/Users/marina/projects/cosmjs/packages/stream",
+    "@cosmjs/tendermint-rpc": "portal:/Users/marina/projects/cosmjs/packages/tendermint-rpc",
+    "@cosmjs/utils": "portal:/Users/marina/projects/cosmjs/packages/utils"
   }
 }
