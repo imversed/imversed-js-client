@@ -30,7 +30,7 @@ describe("Bank", () => {
       }
     })
 
-    console.log(response)
+    expect(response.code).to.be.eq(0)
   })
 
   // it("can query balances", async () => {
