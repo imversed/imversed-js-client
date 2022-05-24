@@ -51,149 +51,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cosmjs/amino@portal:/Users/marina/projects/cosmjs/packages/amino::locator=%40imversed%2Fjs-client%40workspace%3A.":
-  version: 0.0.0-use.local
-  resolution: "@cosmjs/amino@portal:/Users/marina/projects/cosmjs/packages/amino::locator=%40imversed%2Fjs-client%40workspace%3A."
-  dependencies:
-    "@cosmjs/crypto": "workspace:packages/crypto"
-    "@cosmjs/encoding": "workspace:packages/encoding"
-    "@cosmjs/math": "workspace:packages/math"
-    "@cosmjs/utils": "workspace:packages/utils"
-  languageName: node
-  linkType: soft
-
-"@cosmjs/crypto@portal:/Users/marina/projects/cosmjs/packages/crypto::locator=%40imversed%2Fjs-client%40workspace%3A.":
-  version: 0.0.0-use.local
-  resolution: "@cosmjs/crypto@portal:/Users/marina/projects/cosmjs/packages/crypto::locator=%40imversed%2Fjs-client%40workspace%3A."
-  dependencies:
-    "@cosmjs/encoding": "workspace:packages/encoding"
-    "@cosmjs/math": "workspace:packages/math"
-    "@cosmjs/utils": "workspace:packages/utils"
-    "@noble/hashes": ^1
-    bn.js: ^5.2.0
-    elliptic: ^6.5.3
-    libsodium-wrappers: ^0.7.6
-  languageName: node
-  linkType: soft
-
-"@cosmjs/encoding@portal:/Users/marina/projects/cosmjs/packages/encoding::locator=%40imversed%2Fjs-client%40workspace%3A.":
-  version: 0.0.0-use.local
-  resolution: "@cosmjs/encoding@portal:/Users/marina/projects/cosmjs/packages/encoding::locator=%40imversed%2Fjs-client%40workspace%3A."
-  dependencies:
-    base64-js: ^1.3.0
-    bech32: ^1.1.4
-    readonly-date: ^1.0.0
-  languageName: node
-  linkType: soft
-
-"@cosmjs/json-rpc@portal:/Users/marina/projects/cosmjs/packages/json-rpc::locator=%40imversed%2Fjs-client%40workspace%3A.":
-  version: 0.0.0-use.local
-  resolution: "@cosmjs/json-rpc@portal:/Users/marina/projects/cosmjs/packages/json-rpc::locator=%40imversed%2Fjs-client%40workspace%3A."
-  dependencies:
-    "@cosmjs/stream": "workspace:packages/stream"
-    xstream: ^11.14.0
-  languageName: node
-  linkType: soft
-
-"@cosmjs/launchpad@npm:^0.26.0":
-  version: 0.26.0
-  resolution: "@cosmjs/launchpad@npm:0.26.0"
-  dependencies:
-    "@cosmjs/amino": 0.26.0
-    "@cosmjs/crypto": 0.26.0
-    "@cosmjs/encoding": 0.26.0
-    "@cosmjs/math": 0.26.0
-    "@cosmjs/utils": 0.26.0
-    axios: ^0.21.1
-    fast-deep-equal: ^3.1.3
-  checksum: 1d86efa52d8cc417f646d876cba9967cf8401be9d8ed31961713b5f8b27fcc5c13ef4dcc01b9d553335d07e7b645704540701814b2bb44a1e92bb0b3ec726859
-  languageName: node
-  linkType: hard
-
-"@cosmjs/math@portal:/Users/marina/projects/cosmjs/packages/math::locator=%40imversed%2Fjs-client%40workspace%3A.":
-  version: 0.0.0-use.local
-  resolution: "@cosmjs/math@portal:/Users/marina/projects/cosmjs/packages/math::locator=%40imversed%2Fjs-client%40workspace%3A."
-  dependencies:
-    bn.js: ^5.2.0
-  languageName: node
-  linkType: soft
-
-"@cosmjs/proto-signing@portal:/Users/marina/projects/cosmjs/packages/proto-signing::locator=%40imversed%2Fjs-client%40workspace%3A.":
-  version: 0.0.0-use.local
-  resolution: "@cosmjs/proto-signing@portal:/Users/marina/projects/cosmjs/packages/proto-signing::locator=%40imversed%2Fjs-client%40workspace%3A."
-  dependencies:
-    "@cosmjs/amino": "workspace:packages/amino"
-    "@cosmjs/crypto": "workspace:packages/crypto"
-    "@cosmjs/encoding": "workspace:packages/encoding"
-    "@cosmjs/math": "workspace:packages/math"
-    "@cosmjs/utils": "workspace:packages/utils"
-    cosmjs-types: ^0.4.0
-    long: ^4.0.0
-    protobufjs: ~6.11.2
-  languageName: node
-  linkType: soft
-
-"@cosmjs/socket@portal:/Users/marina/projects/cosmjs/packages/socket::locator=%40imversed%2Fjs-client%40workspace%3A.":
-  version: 0.0.0-use.local
-  resolution: "@cosmjs/socket@portal:/Users/marina/projects/cosmjs/packages/socket::locator=%40imversed%2Fjs-client%40workspace%3A."
-  dependencies:
-    "@cosmjs/stream": "workspace:packages/stream"
-    isomorphic-ws: ^4.0.1
-    ws: ^7
-    xstream: ^11.14.0
-  languageName: node
-  linkType: soft
-
-"@cosmjs/stargate@portal:/Users/marina/projects/cosmjs/packages/stargate::locator=%40imversed%2Fjs-client%40workspace%3A.":
-  version: 0.0.0-use.local
-  resolution: "@cosmjs/stargate@portal:/Users/marina/projects/cosmjs/packages/stargate::locator=%40imversed%2Fjs-client%40workspace%3A."
-  dependencies:
-    "@confio/ics23": ^0.6.8
-    "@cosmjs/amino": "workspace:packages/amino"
-    "@cosmjs/encoding": "workspace:packages/encoding"
-    "@cosmjs/math": "workspace:packages/math"
-    "@cosmjs/proto-signing": "workspace:packages/proto-signing"
-    "@cosmjs/stream": "workspace:packages/stream"
-    "@cosmjs/tendermint-rpc": "workspace:packages/tendermint-rpc"
-    "@cosmjs/utils": "workspace:packages/utils"
-    cosmjs-types: ^0.4.0
-    long: ^4.0.0
-    protobufjs: ~6.11.2
-    xstream: ^11.14.0
-  languageName: node
-  linkType: soft
-
-"@cosmjs/stream@portal:/Users/marina/projects/cosmjs/packages/stream::locator=%40imversed%2Fjs-client%40workspace%3A.":
-  version: 0.0.0-use.local
-  resolution: "@cosmjs/stream@portal:/Users/marina/projects/cosmjs/packages/stream::locator=%40imversed%2Fjs-client%40workspace%3A."
-  dependencies:
-    xstream: ^11.14.0
-  languageName: node
-  linkType: soft
-
-"@cosmjs/tendermint-rpc@portal:/Users/marina/projects/cosmjs/packages/tendermint-rpc::locator=%40imversed%2Fjs-client%40workspace%3A.":
-  version: 0.0.0-use.local
-  resolution: "@cosmjs/tendermint-rpc@portal:/Users/marina/projects/cosmjs/packages/tendermint-rpc::locator=%40imversed%2Fjs-client%40workspace%3A."
-  dependencies:
-    "@cosmjs/crypto": "workspace:packages/crypto"
-    "@cosmjs/encoding": "workspace:packages/encoding"
-    "@cosmjs/json-rpc": "workspace:packages/json-rpc"
-    "@cosmjs/math": "workspace:packages/math"
-    "@cosmjs/socket": "workspace:packages/socket"
-    "@cosmjs/stream": "workspace:packages/stream"
-    "@cosmjs/utils": "workspace:packages/utils"
-    axios: ^0.21.2
-    readonly-date: ^1.0.0
-    xstream: ^11.14.0
-  languageName: node
-  linkType: soft
-
-"@cosmjs/utils@portal:/Users/marina/projects/cosmjs/packages/utils::locator=%40imversed%2Fjs-client%40workspace%3A.":
-  version: 0.0.0-use.local
-  resolution: "@cosmjs/utils@portal:/Users/marina/projects/cosmjs/packages/utils::locator=%40imversed%2Fjs-client%40workspace%3A."
-  languageName: node
-  linkType: soft
-
 "@cspotcode/source-map-consumer@npm:0.8.0":
   version: 0.8.0
   resolution: "@cspotcode/source-map-consumer@npm:0.8.0"
@@ -227,13 +84,50 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@imversed/amino@npm:0.28.4":
+  version: 0.28.4
+  resolution: "@imversed/amino@npm:0.28.4"
+  dependencies:
+    "@imversed/crypto": 0.28.4
+    "@imversed/encoding": 0.28.4
+    "@imversed/math": 0.28.4
+    "@imversed/utils": 0.28.4
+  checksum: 8f3cc45971686896f84067715722b8411348d4f0dad985992f3833330431c6505de591e542b034b2951193c498a9aae079f326c8d92f8d3ebca955502dce18a7
+  languageName: node
+  linkType: hard
+
+"@imversed/crypto@npm:0.28.4":
+  version: 0.28.4
+  resolution: "@imversed/crypto@npm:0.28.4"
+  dependencies:
+    "@imversed/encoding": 0.28.4
+    "@imversed/math": 0.28.4
+    "@imversed/utils": 0.28.4
+    "@noble/hashes": ^1
+    bn.js: ^5.2.0
+    elliptic: ^6.5.3
+    libsodium-wrappers: ^0.7.6
+  checksum: 69a9739edd64d72e3ee4bfc070e8293f99a33f2b4d928701f823996b213f149942f3f64871f1b751039fb42606e0986ffbf1668e1e20f910326c2144bcd68b29
+  languageName: node
+  linkType: hard
+
+"@imversed/encoding@npm:0.28.4":
+  version: 0.28.4
+  resolution: "@imversed/encoding@npm:0.28.4"
+  dependencies:
+    base64-js: ^1.3.0
+    bech32: ^1.1.4
+    readonly-date: ^1.0.0
+  checksum: 028f8a2f1df82c184cbb5f2f424d41b8bacf304f960079f5df8e477584b658f7c9b98fba43ee19be8fbd0341224e4d4342f647edd3dda2b076dbcd0484c2c697
+  languageName: node
+  linkType: hard
+
 "@imversed/js-client@workspace:.":
   version: 0.0.0-use.local
   resolution: "@imversed/js-client@workspace:."
   dependencies:
-    "@cosmjs/launchpad": ^0.26.0
-    "@cosmjs/proto-signing": ^0.28.4
-    "@cosmjs/stargate": ^0.26.0
+    "@imversed/proto-signing": ^0.28.4
+    "@imversed/stargate": ^0.28.4
     "@types/chai": ^4.3.1
     "@types/config": ^0.0.36
     "@types/faker": 5.5.3
@@ -257,6 +151,107 @@ __metadata:
     typescript: ^4.6.3
   languageName: unknown
   linkType: soft
+
+"@imversed/json-rpc@npm:0.28.4":
+  version: 0.28.4
+  resolution: "@imversed/json-rpc@npm:0.28.4"
+  dependencies:
+    "@imversed/stream": 0.28.4
+    xstream: ^11.14.0
+  checksum: 5bd68912e7fd8568e66f482b11a5b9c663ad27fb94f204136150dea4fd2b79e2dfc2b7011b736efdb9681873a8dbc946834299f5bc39e9966421dd23ee0fa655
+  languageName: node
+  linkType: hard
+
+"@imversed/math@npm:0.28.4":
+  version: 0.28.4
+  resolution: "@imversed/math@npm:0.28.4"
+  dependencies:
+    bn.js: ^5.2.0
+  checksum: a4b777c0144276e6b9ced182caa33e10931e906f4f6d4d228ecfbe7c6e2d603b2952d77289fd32ef85bda2bb53bc622fc77045a3e3e1c57ff215619b3dbc9ff0
+  languageName: node
+  linkType: hard
+
+"@imversed/proto-signing@npm:0.28.4, @imversed/proto-signing@npm:^0.28.4":
+  version: 0.28.4
+  resolution: "@imversed/proto-signing@npm:0.28.4"
+  dependencies:
+    "@imversed/amino": 0.28.4
+    "@imversed/crypto": 0.28.4
+    "@imversed/encoding": 0.28.4
+    "@imversed/math": 0.28.4
+    "@imversed/utils": 0.28.4
+    cosmjs-types: ^0.4.0
+    long: ^4.0.0
+    protobufjs: ~6.11.2
+  checksum: 3defa15efe928df0385f1720bd19d138d69dc9851dffcf8a92d17dda6a78cd59c5bda314a9814b53370d120e7d2f7e54d0bd8045f46509deff93899acf0f5117
+  languageName: node
+  linkType: hard
+
+"@imversed/socket@npm:0.28.4":
+  version: 0.28.4
+  resolution: "@imversed/socket@npm:0.28.4"
+  dependencies:
+    "@imversed/stream": 0.28.4
+    isomorphic-ws: ^4.0.1
+    ws: ^7
+    xstream: ^11.14.0
+  checksum: a21f41db489ecc4461d301619f9d31fab0f016d7fad947652c01b9c65739b3f5d32631df309cfd9dfff53a769c26020fecc44615f6bbfcf43a1801992b68d272
+  languageName: node
+  linkType: hard
+
+"@imversed/stargate@npm:^0.28.4":
+  version: 0.28.4
+  resolution: "@imversed/stargate@npm:0.28.4"
+  dependencies:
+    "@confio/ics23": ^0.6.8
+    "@imversed/amino": 0.28.4
+    "@imversed/encoding": 0.28.4
+    "@imversed/math": 0.28.4
+    "@imversed/proto-signing": 0.28.4
+    "@imversed/stream": 0.28.4
+    "@imversed/tendermint-rpc": 0.28.4
+    "@imversed/utils": 0.28.4
+    cosmjs-types: ^0.4.0
+    long: ^4.0.0
+    protobufjs: ~6.11.2
+    xstream: ^11.14.0
+  checksum: fa39a27e38156b8da525dd9cb4a90a872e562d080e36309257b62072761f50bbbb3cf29ea498547bd8154739a469d4f481b23ecdd15af2857a3a2088f30b2fe3
+  languageName: node
+  linkType: hard
+
+"@imversed/stream@npm:0.28.4":
+  version: 0.28.4
+  resolution: "@imversed/stream@npm:0.28.4"
+  dependencies:
+    xstream: ^11.14.0
+  checksum: bc753becaec3e9d5dba76da1f1c37e0ca41afd9b719604599d022d5f0a6679a16116996e4c8b73202664a07af6a6a38ed2c8f79c70b2e65ce0e176e9238dbd1f
+  languageName: node
+  linkType: hard
+
+"@imversed/tendermint-rpc@npm:0.28.4":
+  version: 0.28.4
+  resolution: "@imversed/tendermint-rpc@npm:0.28.4"
+  dependencies:
+    "@imversed/crypto": 0.28.4
+    "@imversed/encoding": 0.28.4
+    "@imversed/json-rpc": 0.28.4
+    "@imversed/math": 0.28.4
+    "@imversed/socket": 0.28.4
+    "@imversed/stream": 0.28.4
+    "@imversed/utils": 0.28.4
+    axios: ^0.21.2
+    readonly-date: ^1.0.0
+    xstream: ^11.14.0
+  checksum: 013dff94d9dfd5f01e39d87c64e49587a8db64362e3019485daa2294035266eac290df8853d8838690504b59cafccef35849c9ceb06737bced61f1af33a939a9
+  languageName: node
+  linkType: hard
+
+"@imversed/utils@npm:0.28.4":
+  version: 0.28.4
+  resolution: "@imversed/utils@npm:0.28.4"
+  checksum: 37ce5d910ef9c978be32b769f95b277ce3873f64c53f75120dbc1fc012942de914ede401e21d50f0fd9545e85ae21319818547c8463d71209fe6f3450ab5f834
+  languageName: node
+  linkType: hard
 
 "@mrmlnc/readdir-enhanced@npm:^2.2.1":
   version: 2.2.1
@@ -862,7 +857,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:^0.21.1, axios@npm:^0.21.2":
+"axios@npm:^0.21.2":
   version: 0.21.4
   resolution: "axios@npm:0.21.4"
   dependencies:
@@ -1947,13 +1942,6 @@ __metadata:
   version: 5.5.3
   resolution: "faker@npm:5.5.3"
   checksum: 684fd64c8d3897e54248f95b4f6319f75d97691b8500cd13adf4af2c28f9204f766c1d1aaa6b41338f0beaaa87256c3132f8708a1a8f189d122b92f6b98081c3
-  languageName: node
-  linkType: hard
-
-"fast-deep-equal@npm:^3.1.3":
-  version: 3.1.3
-  resolution: "fast-deep-equal@npm:3.1.3"
-  checksum: e21a9d8d84f53493b6aa15efc9cfd53dd5b714a1f23f67fb5dc8f574af80df889b3bce25dc081887c6d25457cce704e636395333abad896ccdec03abaf1f3f9d
   languageName: node
   linkType: hard
 

@@ -1,8 +1,8 @@
 // THIS FILE IS GENERATED AUTOMATICALLY. DO NOT MODIFY.
 
-import { StdFee } from "@cosmjs/launchpad"
-import { SigningStargateClient } from "@cosmjs/stargate"
-import { Registry, OfflineSigner, EncodeObject } from "@cosmjs/proto-signing"
+import { StdFee } from "@imversed/stargate"
+import { SigningStargateClient } from "@imversed/stargate"
+import { Registry, OfflineSigner, EncodeObject } from "@imversed/proto-signing"
 import { Api } from "./rest"
 import { MsgMultiSend } from "./types/cosmos/bank/v1beta1/tx"
 import { MsgSend } from "./types/cosmos/bank/v1beta1/tx"

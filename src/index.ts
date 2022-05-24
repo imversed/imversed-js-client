@@ -1,6 +1,5 @@
-import { makeCosmoshubPath } from "@cosmjs/amino"
-import { HdPath, Slip10RawIndex } from "@cosmjs/crypto"
-import { DirectSecp256k1HdWallet, OfflineDirectSigner } from "@cosmjs/proto-signing"
+import { HdPath, Slip10RawIndex } from "@imversed/crypto"
+import { DirectSecp256k1HdWallet, OfflineDirectSigner } from "@imversed/proto-signing"
 
 const prefix = 'imv'
 
