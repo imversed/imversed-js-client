@@ -24,7 +24,7 @@ async function getNft(denomId: string, nftId: string): Promise<NftBaseNFT> {
 }
 ```
 
-Use transactions (TXs) to put some data in Inmversed:
+Use transactions (TXs) to put some data in Imversed:
 
 ```ts
 import { loadWallet, nft } from '@imversed/js-client'
