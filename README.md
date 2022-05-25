@@ -1,6 +1,6 @@
 # imversed-js-client
 
-Javascript and Typescript client library for [Inversed](https://imversed.com).
+Javascript and Typescript client library for [Imversed](https://imversed.com).
 
 # Usage
 
