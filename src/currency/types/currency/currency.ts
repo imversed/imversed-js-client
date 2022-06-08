@@ -1,5 +1,4 @@
 /* eslint-disable */
-// @ts-nocheck
 import * as Long from "long";
 import { util, configure, Writer, Reader } from "protobufjs/minimal";
 
@@ -8,14 +7,15 @@ export const protobufPackage = "fulldivevr.imversed.currency";
 export interface Currency {
   denom: string;
   owner: string;
+  icon: string;
 }
 
 /** Params defines the parameters for the module. */
 export interface Params {
-  txMintCurrencyCost: number;
+  tx_mint_currency_cost: number;
 }
 
-const baseCurrency: object = { denom: "", owner: "" };
+const baseCurrency: object = { denom: "", owner: "", icon: "" };
 
 export const Currency = {
   encode(message: Currency, writer: Writer = Writer.create()): Writer {
@@ -24,6 +24,9 @@ export const Currency = {
     }
     if (message.owner !== "") {
       writer.uint32(18).string(message.owner);
+    }
+    if (message.icon !== "") {
+      writer.uint32(26).string(message.icon);
     }
     return writer;
   },
@@ -40,6 +43,9 @@ export const Currency = {
           break;
         case 2:
           message.owner = reader.string();
+          break;
+        case 3:
+          message.icon = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -61,6 +67,11 @@ export const Currency = {
     } else {
       message.owner = "";
     }
+    if (object.icon !== undefined && object.icon !== null) {
+      message.icon = String(object.icon);
+    } else {
+      message.icon = "";
+    }
     return message;
   },
 
@@ -68,6 +79,7 @@ export const Currency = {
     const obj: any = {};
     message.denom !== undefined && (obj.denom = message.denom);
     message.owner !== undefined && (obj.owner = message.owner);
+    message.icon !== undefined && (obj.icon = message.icon);
     return obj;
   },
 
@@ -83,16 +95,21 @@ export const Currency = {
     } else {
       message.owner = "";
     }
+    if (object.icon !== undefined && object.icon !== null) {
+      message.icon = object.icon;
+    } else {
+      message.icon = "";
+    }
     return message;
   },
 };
 
-const baseParams: object = { txMintCurrencyCost: 0 };
+const baseParams: object = { tx_mint_currency_cost: 0 };
 
 export const Params = {
   encode(message: Params, writer: Writer = Writer.create()): Writer {
-    if (message.txMintCurrencyCost !== 0) {
-      writer.uint32(8).uint64(message.txMintCurrencyCost);
+    if (message.tx_mint_currency_cost !== 0) {
+      writer.uint32(8).uint64(message.tx_mint_currency_cost);
     }
     return writer;
   },
@@ -105,7 +122,7 @@ export const Params = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.txMintCurrencyCost = longToNumber(reader.uint64() as Long);
+          message.tx_mint_currency_cost = longToNumber(reader.uint64() as Long);
           break;
         default:
           reader.skipType(tag & 7);
@@ -118,32 +135,32 @@ export const Params = {
   fromJSON(object: any): Params {
     const message = { ...baseParams } as Params;
     if (
-      object.txMintCurrencyCost !== undefined &&
-      object.txMintCurrencyCost !== null
+      object.tx_mint_currency_cost !== undefined &&
+      object.tx_mint_currency_cost !== null
     ) {
-      message.txMintCurrencyCost = Number(object.txMintCurrencyCost);
+      message.tx_mint_currency_cost = Number(object.tx_mint_currency_cost);
     } else {
-      message.txMintCurrencyCost = 0;
+      message.tx_mint_currency_cost = 0;
     }
     return message;
   },
 
   toJSON(message: Params): unknown {
     const obj: any = {};
-    message.txMintCurrencyCost !== undefined &&
-      (obj.txMintCurrencyCost = message.txMintCurrencyCost);
+    message.tx_mint_currency_cost !== undefined &&
+      (obj.tx_mint_currency_cost = message.tx_mint_currency_cost);
     return obj;
   },
 
   fromPartial(object: DeepPartial<Params>): Params {
     const message = { ...baseParams } as Params;
     if (
-      object.txMintCurrencyCost !== undefined &&
-      object.txMintCurrencyCost !== null
+      object.tx_mint_currency_cost !== undefined &&
+      object.tx_mint_currency_cost !== null
     ) {
-      message.txMintCurrencyCost = object.txMintCurrencyCost;
+      message.tx_mint_currency_cost = object.tx_mint_currency_cost;
     } else {
-      message.txMintCurrencyCost = 0;
+      message.tx_mint_currency_cost = 0;
     }
     return message;
   },
@@ -177,4 +194,7 @@ function longToNumber(long: Long): number {
   return long.toNumber();
 }
 
-
+if (util.Long !== Long) {
+  util.Long = Long as any;
+  configure();
+}

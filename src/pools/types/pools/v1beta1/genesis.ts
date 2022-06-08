@@ -1,5 +1,4 @@
 /* eslint-disable */
-// @ts-nocheck
 import * as Long from "long";
 import { util, configure, Writer, Reader } from "protobufjs/minimal";
 import { Coin } from "../../cosmos/base/v1beta1/coin";
@@ -9,13 +8,13 @@ export const protobufPackage = "imversed.pools.v1beta1";
 
 /** Params holds parameters for the incentives module */
 export interface Params {
-  poolCreationFee: Coin[];
+  pool_creation_fee: Coin[];
 }
 
 /** GenesisState defines the pools module's genesis state. */
 export interface GenesisState {
   pools: Any[];
-  nextPoolNumber: number;
+  next_pool_number: number;
   params: Params | undefined;
 }
 
@@ -23,7 +22,7 @@ const baseParams: object = {};
 
 export const Params = {
   encode(message: Params, writer: Writer = Writer.create()): Writer {
-    for (const v of message.poolCreationFee) {
+    for (const v of message.pool_creation_fee) {
       Coin.encode(v!, writer.uint32(10).fork()).ldelim();
     }
     return writer;
@@ -33,12 +32,12 @@ export const Params = {
     const reader = input instanceof Uint8Array ? new Reader(input) : input;
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = { ...baseParams } as Params;
-    message.poolCreationFee = [];
+    message.pool_creation_fee = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.poolCreationFee.push(Coin.decode(reader, reader.uint32()));
+          message.pool_creation_fee.push(Coin.decode(reader, reader.uint32()));
           break;
         default:
           reader.skipType(tag & 7);
@@ -50,13 +49,13 @@ export const Params = {
 
   fromJSON(object: any): Params {
     const message = { ...baseParams } as Params;
-    message.poolCreationFee = [];
+    message.pool_creation_fee = [];
     if (
-      object.poolCreationFee !== undefined &&
-      object.poolCreationFee !== null
+      object.pool_creation_fee !== undefined &&
+      object.pool_creation_fee !== null
     ) {
-      for (const e of object.poolCreationFee) {
-        message.poolCreationFee.push(Coin.fromJSON(e));
+      for (const e of object.pool_creation_fee) {
+        message.pool_creation_fee.push(Coin.fromJSON(e));
       }
     }
     return message;
@@ -64,40 +63,40 @@ export const Params = {
 
   toJSON(message: Params): unknown {
     const obj: any = {};
-    if (message.poolCreationFee) {
-      obj.poolCreationFee = message.poolCreationFee.map((e) =>
+    if (message.pool_creation_fee) {
+      obj.pool_creation_fee = message.pool_creation_fee.map((e) =>
         e ? Coin.toJSON(e) : undefined
       );
     } else {
-      obj.poolCreationFee = [];
+      obj.pool_creation_fee = [];
     }
     return obj;
   },
 
   fromPartial(object: DeepPartial<Params>): Params {
     const message = { ...baseParams } as Params;
-    message.poolCreationFee = [];
+    message.pool_creation_fee = [];
     if (
-      object.poolCreationFee !== undefined &&
-      object.poolCreationFee !== null
+      object.pool_creation_fee !== undefined &&
+      object.pool_creation_fee !== null
     ) {
-      for (const e of object.poolCreationFee) {
-        message.poolCreationFee.push(Coin.fromPartial(e));
+      for (const e of object.pool_creation_fee) {
+        message.pool_creation_fee.push(Coin.fromPartial(e));
       }
     }
     return message;
   },
 };
 
-const baseGenesisState: object = { nextPoolNumber: 0 };
+const baseGenesisState: object = { next_pool_number: 0 };
 
 export const GenesisState = {
   encode(message: GenesisState, writer: Writer = Writer.create()): Writer {
     for (const v of message.pools) {
       Any.encode(v!, writer.uint32(10).fork()).ldelim();
     }
-    if (message.nextPoolNumber !== 0) {
-      writer.uint32(16).uint64(message.nextPoolNumber);
+    if (message.next_pool_number !== 0) {
+      writer.uint32(16).uint64(message.next_pool_number);
     }
     if (message.params !== undefined) {
       Params.encode(message.params, writer.uint32(26).fork()).ldelim();
@@ -117,7 +116,7 @@ export const GenesisState = {
           message.pools.push(Any.decode(reader, reader.uint32()));
           break;
         case 2:
-          message.nextPoolNumber = longToNumber(reader.uint64() as Long);
+          message.next_pool_number = longToNumber(reader.uint64() as Long);
           break;
         case 3:
           message.params = Params.decode(reader, reader.uint32());
@@ -138,10 +137,13 @@ export const GenesisState = {
         message.pools.push(Any.fromJSON(e));
       }
     }
-    if (object.nextPoolNumber !== undefined && object.nextPoolNumber !== null) {
-      message.nextPoolNumber = Number(object.nextPoolNumber);
+    if (
+      object.next_pool_number !== undefined &&
+      object.next_pool_number !== null
+    ) {
+      message.next_pool_number = Number(object.next_pool_number);
     } else {
-      message.nextPoolNumber = 0;
+      message.next_pool_number = 0;
     }
     if (object.params !== undefined && object.params !== null) {
       message.params = Params.fromJSON(object.params);
@@ -158,8 +160,8 @@ export const GenesisState = {
     } else {
       obj.pools = [];
     }
-    message.nextPoolNumber !== undefined &&
-      (obj.nextPoolNumber = message.nextPoolNumber);
+    message.next_pool_number !== undefined &&
+      (obj.next_pool_number = message.next_pool_number);
     message.params !== undefined &&
       (obj.params = message.params ? Params.toJSON(message.params) : undefined);
     return obj;
@@ -173,10 +175,13 @@ export const GenesisState = {
         message.pools.push(Any.fromPartial(e));
       }
     }
-    if (object.nextPoolNumber !== undefined && object.nextPoolNumber !== null) {
-      message.nextPoolNumber = object.nextPoolNumber;
+    if (
+      object.next_pool_number !== undefined &&
+      object.next_pool_number !== null
+    ) {
+      message.next_pool_number = object.next_pool_number;
     } else {
-      message.nextPoolNumber = 0;
+      message.next_pool_number = 0;
     }
     if (object.params !== undefined && object.params !== null) {
       message.params = Params.fromPartial(object.params);
@@ -215,4 +220,7 @@ function longToNumber(long: Long): number {
   return long.toNumber();
 }
 
-
+if (util.Long !== Long) {
+  util.Long = Long as any;
+  configure();
+}

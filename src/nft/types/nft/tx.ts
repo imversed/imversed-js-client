@@ -10,9 +10,9 @@ export interface MsgIssueDenom {
   schema: string;
   sender: string;
   symbol: string;
-  mintRestricted: boolean;
-  updateRestricted: boolean;
-  oracleUrl: string;
+  mint_restricted: boolean;
+  update_restricted: boolean;
+  oracle_url: string;
 }
 
 /** MsgUpdateDenom defines an SDK message for updating denom */
@@ -21,9 +21,9 @@ export interface MsgUpdateDenom {
   name: string;
   schema: string;
   sender: string;
-  mintRestricted: boolean;
-  updateRestricted: boolean;
-  oracleUrl: string;
+  mint_restricted: boolean;
+  update_restricted: boolean;
+  oracle_url: string;
 }
 
 /** MsgIssueDenomResponse defines the Msg/IssueDenom response type. */
@@ -35,7 +35,7 @@ export interface MsgUpdateDenomResponse {}
 /** MsgTransferNFT defines an SDK message for transferring an NFT to recipient. */
 export interface MsgTransferNFT {
   id: string;
-  denomId: string;
+  denom_id: string;
   name: string;
   uri: string;
   data: string;
@@ -49,7 +49,7 @@ export interface MsgTransferNFTResponse {}
 /** MsgEditNFT defines an SDK message for editing a nft. */
 export interface MsgEditNFT {
   id: string;
-  denomId: string;
+  denom_id: string;
   name: string;
   uri: string;
   data: string;
@@ -62,7 +62,7 @@ export interface MsgEditNFTResponse {}
 /** MsgMintNFT defines an SDK message for creating a new NFT. */
 export interface MsgMintNFT {
   id: string;
-  denomId: string;
+  denom_id: string;
   name: string;
   uri: string;
   data: string;
@@ -76,7 +76,7 @@ export interface MsgMintNFTResponse {}
 /** MsgBurnNFT defines an SDK message for burning a NFT. */
 export interface MsgBurnNFT {
   id: string;
-  denomId: string;
+  denom_id: string;
   sender: string;
 }
 
@@ -99,9 +99,9 @@ const baseMsgIssueDenom: object = {
   schema: "",
   sender: "",
   symbol: "",
-  mintRestricted: false,
-  updateRestricted: false,
-  oracleUrl: "",
+  mint_restricted: false,
+  update_restricted: false,
+  oracle_url: "",
 };
 
 export const MsgIssueDenom = {
@@ -121,14 +121,14 @@ export const MsgIssueDenom = {
     if (message.symbol !== "") {
       writer.uint32(42).string(message.symbol);
     }
-    if (message.mintRestricted === true) {
-      writer.uint32(48).bool(message.mintRestricted);
+    if (message.mint_restricted === true) {
+      writer.uint32(48).bool(message.mint_restricted);
     }
-    if (message.updateRestricted === true) {
-      writer.uint32(56).bool(message.updateRestricted);
+    if (message.update_restricted === true) {
+      writer.uint32(56).bool(message.update_restricted);
     }
-    if (message.oracleUrl !== "") {
-      writer.uint32(66).string(message.oracleUrl);
+    if (message.oracle_url !== "") {
+      writer.uint32(66).string(message.oracle_url);
     }
     return writer;
   },
@@ -156,13 +156,13 @@ export const MsgIssueDenom = {
           message.symbol = reader.string();
           break;
         case 6:
-          message.mintRestricted = reader.bool();
+          message.mint_restricted = reader.bool();
           break;
         case 7:
-          message.updateRestricted = reader.bool();
+          message.update_restricted = reader.bool();
           break;
         case 8:
-          message.oracleUrl = reader.string();
+          message.oracle_url = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -199,23 +199,26 @@ export const MsgIssueDenom = {
     } else {
       message.symbol = "";
     }
-    if (object.mintRestricted !== undefined && object.mintRestricted !== null) {
-      message.mintRestricted = Boolean(object.mintRestricted);
+    if (
+      object.mint_restricted !== undefined &&
+      object.mint_restricted !== null
+    ) {
+      message.mint_restricted = Boolean(object.mint_restricted);
     } else {
-      message.mintRestricted = false;
+      message.mint_restricted = false;
     }
     if (
-      object.updateRestricted !== undefined &&
-      object.updateRestricted !== null
+      object.update_restricted !== undefined &&
+      object.update_restricted !== null
     ) {
-      message.updateRestricted = Boolean(object.updateRestricted);
+      message.update_restricted = Boolean(object.update_restricted);
     } else {
-      message.updateRestricted = false;
+      message.update_restricted = false;
     }
-    if (object.oracleUrl !== undefined && object.oracleUrl !== null) {
-      message.oracleUrl = String(object.oracleUrl);
+    if (object.oracle_url !== undefined && object.oracle_url !== null) {
+      message.oracle_url = String(object.oracle_url);
     } else {
-      message.oracleUrl = "";
+      message.oracle_url = "";
     }
     return message;
   },
@@ -227,11 +230,11 @@ export const MsgIssueDenom = {
     message.schema !== undefined && (obj.schema = message.schema);
     message.sender !== undefined && (obj.sender = message.sender);
     message.symbol !== undefined && (obj.symbol = message.symbol);
-    message.mintRestricted !== undefined &&
-      (obj.mintRestricted = message.mintRestricted);
-    message.updateRestricted !== undefined &&
-      (obj.updateRestricted = message.updateRestricted);
-    message.oracleUrl !== undefined && (obj.oracleUrl = message.oracleUrl);
+    message.mint_restricted !== undefined &&
+      (obj.mint_restricted = message.mint_restricted);
+    message.update_restricted !== undefined &&
+      (obj.update_restricted = message.update_restricted);
+    message.oracle_url !== undefined && (obj.oracle_url = message.oracle_url);
     return obj;
   },
 
@@ -262,23 +265,26 @@ export const MsgIssueDenom = {
     } else {
       message.symbol = "";
     }
-    if (object.mintRestricted !== undefined && object.mintRestricted !== null) {
-      message.mintRestricted = object.mintRestricted;
+    if (
+      object.mint_restricted !== undefined &&
+      object.mint_restricted !== null
+    ) {
+      message.mint_restricted = object.mint_restricted;
     } else {
-      message.mintRestricted = false;
+      message.mint_restricted = false;
     }
     if (
-      object.updateRestricted !== undefined &&
-      object.updateRestricted !== null
+      object.update_restricted !== undefined &&
+      object.update_restricted !== null
     ) {
-      message.updateRestricted = object.updateRestricted;
+      message.update_restricted = object.update_restricted;
     } else {
-      message.updateRestricted = false;
+      message.update_restricted = false;
     }
-    if (object.oracleUrl !== undefined && object.oracleUrl !== null) {
-      message.oracleUrl = object.oracleUrl;
+    if (object.oracle_url !== undefined && object.oracle_url !== null) {
+      message.oracle_url = object.oracle_url;
     } else {
-      message.oracleUrl = "";
+      message.oracle_url = "";
     }
     return message;
   },
@@ -289,9 +295,9 @@ const baseMsgUpdateDenom: object = {
   name: "",
   schema: "",
   sender: "",
-  mintRestricted: false,
-  updateRestricted: false,
-  oracleUrl: "",
+  mint_restricted: false,
+  update_restricted: false,
+  oracle_url: "",
 };
 
 export const MsgUpdateDenom = {
@@ -308,14 +314,14 @@ export const MsgUpdateDenom = {
     if (message.sender !== "") {
       writer.uint32(34).string(message.sender);
     }
-    if (message.mintRestricted === true) {
-      writer.uint32(40).bool(message.mintRestricted);
+    if (message.mint_restricted === true) {
+      writer.uint32(40).bool(message.mint_restricted);
     }
-    if (message.updateRestricted === true) {
-      writer.uint32(48).bool(message.updateRestricted);
+    if (message.update_restricted === true) {
+      writer.uint32(48).bool(message.update_restricted);
     }
-    if (message.oracleUrl !== "") {
-      writer.uint32(58).string(message.oracleUrl);
+    if (message.oracle_url !== "") {
+      writer.uint32(58).string(message.oracle_url);
     }
     return writer;
   },
@@ -340,13 +346,13 @@ export const MsgUpdateDenom = {
           message.sender = reader.string();
           break;
         case 5:
-          message.mintRestricted = reader.bool();
+          message.mint_restricted = reader.bool();
           break;
         case 6:
-          message.updateRestricted = reader.bool();
+          message.update_restricted = reader.bool();
           break;
         case 7:
-          message.oracleUrl = reader.string();
+          message.oracle_url = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -378,23 +384,26 @@ export const MsgUpdateDenom = {
     } else {
       message.sender = "";
     }
-    if (object.mintRestricted !== undefined && object.mintRestricted !== null) {
-      message.mintRestricted = Boolean(object.mintRestricted);
+    if (
+      object.mint_restricted !== undefined &&
+      object.mint_restricted !== null
+    ) {
+      message.mint_restricted = Boolean(object.mint_restricted);
     } else {
-      message.mintRestricted = false;
+      message.mint_restricted = false;
     }
     if (
-      object.updateRestricted !== undefined &&
-      object.updateRestricted !== null
+      object.update_restricted !== undefined &&
+      object.update_restricted !== null
     ) {
-      message.updateRestricted = Boolean(object.updateRestricted);
+      message.update_restricted = Boolean(object.update_restricted);
     } else {
-      message.updateRestricted = false;
+      message.update_restricted = false;
     }
-    if (object.oracleUrl !== undefined && object.oracleUrl !== null) {
-      message.oracleUrl = String(object.oracleUrl);
+    if (object.oracle_url !== undefined && object.oracle_url !== null) {
+      message.oracle_url = String(object.oracle_url);
     } else {
-      message.oracleUrl = "";
+      message.oracle_url = "";
     }
     return message;
   },
@@ -405,11 +414,11 @@ export const MsgUpdateDenom = {
     message.name !== undefined && (obj.name = message.name);
     message.schema !== undefined && (obj.schema = message.schema);
     message.sender !== undefined && (obj.sender = message.sender);
-    message.mintRestricted !== undefined &&
-      (obj.mintRestricted = message.mintRestricted);
-    message.updateRestricted !== undefined &&
-      (obj.updateRestricted = message.updateRestricted);
-    message.oracleUrl !== undefined && (obj.oracleUrl = message.oracleUrl);
+    message.mint_restricted !== undefined &&
+      (obj.mint_restricted = message.mint_restricted);
+    message.update_restricted !== undefined &&
+      (obj.update_restricted = message.update_restricted);
+    message.oracle_url !== undefined && (obj.oracle_url = message.oracle_url);
     return obj;
   },
 
@@ -435,23 +444,26 @@ export const MsgUpdateDenom = {
     } else {
       message.sender = "";
     }
-    if (object.mintRestricted !== undefined && object.mintRestricted !== null) {
-      message.mintRestricted = object.mintRestricted;
+    if (
+      object.mint_restricted !== undefined &&
+      object.mint_restricted !== null
+    ) {
+      message.mint_restricted = object.mint_restricted;
     } else {
-      message.mintRestricted = false;
+      message.mint_restricted = false;
     }
     if (
-      object.updateRestricted !== undefined &&
-      object.updateRestricted !== null
+      object.update_restricted !== undefined &&
+      object.update_restricted !== null
     ) {
-      message.updateRestricted = object.updateRestricted;
+      message.update_restricted = object.update_restricted;
     } else {
-      message.updateRestricted = false;
+      message.update_restricted = false;
     }
-    if (object.oracleUrl !== undefined && object.oracleUrl !== null) {
-      message.oracleUrl = object.oracleUrl;
+    if (object.oracle_url !== undefined && object.oracle_url !== null) {
+      message.oracle_url = object.oracle_url;
     } else {
-      message.oracleUrl = "";
+      message.oracle_url = "";
     }
     return message;
   },
@@ -535,7 +547,7 @@ export const MsgUpdateDenomResponse = {
 
 const baseMsgTransferNFT: object = {
   id: "",
-  denomId: "",
+  denom_id: "",
   name: "",
   uri: "",
   data: "",
@@ -548,8 +560,8 @@ export const MsgTransferNFT = {
     if (message.id !== "") {
       writer.uint32(10).string(message.id);
     }
-    if (message.denomId !== "") {
-      writer.uint32(18).string(message.denomId);
+    if (message.denom_id !== "") {
+      writer.uint32(18).string(message.denom_id);
     }
     if (message.name !== "") {
       writer.uint32(26).string(message.name);
@@ -580,7 +592,7 @@ export const MsgTransferNFT = {
           message.id = reader.string();
           break;
         case 2:
-          message.denomId = reader.string();
+          message.denom_id = reader.string();
           break;
         case 3:
           message.name = reader.string();
@@ -612,10 +624,10 @@ export const MsgTransferNFT = {
     } else {
       message.id = "";
     }
-    if (object.denomId !== undefined && object.denomId !== null) {
-      message.denomId = String(object.denomId);
+    if (object.denom_id !== undefined && object.denom_id !== null) {
+      message.denom_id = String(object.denom_id);
     } else {
-      message.denomId = "";
+      message.denom_id = "";
     }
     if (object.name !== undefined && object.name !== null) {
       message.name = String(object.name);
@@ -648,7 +660,7 @@ export const MsgTransferNFT = {
   toJSON(message: MsgTransferNFT): unknown {
     const obj: any = {};
     message.id !== undefined && (obj.id = message.id);
-    message.denomId !== undefined && (obj.denomId = message.denomId);
+    message.denom_id !== undefined && (obj.denom_id = message.denom_id);
     message.name !== undefined && (obj.name = message.name);
     message.uri !== undefined && (obj.uri = message.uri);
     message.data !== undefined && (obj.data = message.data);
@@ -664,10 +676,10 @@ export const MsgTransferNFT = {
     } else {
       message.id = "";
     }
-    if (object.denomId !== undefined && object.denomId !== null) {
-      message.denomId = object.denomId;
+    if (object.denom_id !== undefined && object.denom_id !== null) {
+      message.denom_id = object.denom_id;
     } else {
-      message.denomId = "";
+      message.denom_id = "";
     }
     if (object.name !== undefined && object.name !== null) {
       message.name = object.name;
@@ -738,7 +750,7 @@ export const MsgTransferNFTResponse = {
 
 const baseMsgEditNFT: object = {
   id: "",
-  denomId: "",
+  denom_id: "",
   name: "",
   uri: "",
   data: "",
@@ -750,8 +762,8 @@ export const MsgEditNFT = {
     if (message.id !== "") {
       writer.uint32(10).string(message.id);
     }
-    if (message.denomId !== "") {
-      writer.uint32(18).string(message.denomId);
+    if (message.denom_id !== "") {
+      writer.uint32(18).string(message.denom_id);
     }
     if (message.name !== "") {
       writer.uint32(26).string(message.name);
@@ -779,7 +791,7 @@ export const MsgEditNFT = {
           message.id = reader.string();
           break;
         case 2:
-          message.denomId = reader.string();
+          message.denom_id = reader.string();
           break;
         case 3:
           message.name = reader.string();
@@ -808,10 +820,10 @@ export const MsgEditNFT = {
     } else {
       message.id = "";
     }
-    if (object.denomId !== undefined && object.denomId !== null) {
-      message.denomId = String(object.denomId);
+    if (object.denom_id !== undefined && object.denom_id !== null) {
+      message.denom_id = String(object.denom_id);
     } else {
-      message.denomId = "";
+      message.denom_id = "";
     }
     if (object.name !== undefined && object.name !== null) {
       message.name = String(object.name);
@@ -839,7 +851,7 @@ export const MsgEditNFT = {
   toJSON(message: MsgEditNFT): unknown {
     const obj: any = {};
     message.id !== undefined && (obj.id = message.id);
-    message.denomId !== undefined && (obj.denomId = message.denomId);
+    message.denom_id !== undefined && (obj.denom_id = message.denom_id);
     message.name !== undefined && (obj.name = message.name);
     message.uri !== undefined && (obj.uri = message.uri);
     message.data !== undefined && (obj.data = message.data);
@@ -854,10 +866,10 @@ export const MsgEditNFT = {
     } else {
       message.id = "";
     }
-    if (object.denomId !== undefined && object.denomId !== null) {
-      message.denomId = object.denomId;
+    if (object.denom_id !== undefined && object.denom_id !== null) {
+      message.denom_id = object.denom_id;
     } else {
-      message.denomId = "";
+      message.denom_id = "";
     }
     if (object.name !== undefined && object.name !== null) {
       message.name = object.name;
@@ -923,7 +935,7 @@ export const MsgEditNFTResponse = {
 
 const baseMsgMintNFT: object = {
   id: "",
-  denomId: "",
+  denom_id: "",
   name: "",
   uri: "",
   data: "",
@@ -936,8 +948,8 @@ export const MsgMintNFT = {
     if (message.id !== "") {
       writer.uint32(10).string(message.id);
     }
-    if (message.denomId !== "") {
-      writer.uint32(18).string(message.denomId);
+    if (message.denom_id !== "") {
+      writer.uint32(18).string(message.denom_id);
     }
     if (message.name !== "") {
       writer.uint32(26).string(message.name);
@@ -968,7 +980,7 @@ export const MsgMintNFT = {
           message.id = reader.string();
           break;
         case 2:
-          message.denomId = reader.string();
+          message.denom_id = reader.string();
           break;
         case 3:
           message.name = reader.string();
@@ -1000,10 +1012,10 @@ export const MsgMintNFT = {
     } else {
       message.id = "";
     }
-    if (object.denomId !== undefined && object.denomId !== null) {
-      message.denomId = String(object.denomId);
+    if (object.denom_id !== undefined && object.denom_id !== null) {
+      message.denom_id = String(object.denom_id);
     } else {
-      message.denomId = "";
+      message.denom_id = "";
     }
     if (object.name !== undefined && object.name !== null) {
       message.name = String(object.name);
@@ -1036,7 +1048,7 @@ export const MsgMintNFT = {
   toJSON(message: MsgMintNFT): unknown {
     const obj: any = {};
     message.id !== undefined && (obj.id = message.id);
-    message.denomId !== undefined && (obj.denomId = message.denomId);
+    message.denom_id !== undefined && (obj.denom_id = message.denom_id);
     message.name !== undefined && (obj.name = message.name);
     message.uri !== undefined && (obj.uri = message.uri);
     message.data !== undefined && (obj.data = message.data);
@@ -1052,10 +1064,10 @@ export const MsgMintNFT = {
     } else {
       message.id = "";
     }
-    if (object.denomId !== undefined && object.denomId !== null) {
-      message.denomId = object.denomId;
+    if (object.denom_id !== undefined && object.denom_id !== null) {
+      message.denom_id = object.denom_id;
     } else {
-      message.denomId = "";
+      message.denom_id = "";
     }
     if (object.name !== undefined && object.name !== null) {
       message.name = object.name;
@@ -1124,15 +1136,15 @@ export const MsgMintNFTResponse = {
   },
 };
 
-const baseMsgBurnNFT: object = { id: "", denomId: "", sender: "" };
+const baseMsgBurnNFT: object = { id: "", denom_id: "", sender: "" };
 
 export const MsgBurnNFT = {
   encode(message: MsgBurnNFT, writer: Writer = Writer.create()): Writer {
     if (message.id !== "") {
       writer.uint32(10).string(message.id);
     }
-    if (message.denomId !== "") {
-      writer.uint32(18).string(message.denomId);
+    if (message.denom_id !== "") {
+      writer.uint32(18).string(message.denom_id);
     }
     if (message.sender !== "") {
       writer.uint32(26).string(message.sender);
@@ -1151,7 +1163,7 @@ export const MsgBurnNFT = {
           message.id = reader.string();
           break;
         case 2:
-          message.denomId = reader.string();
+          message.denom_id = reader.string();
           break;
         case 3:
           message.sender = reader.string();
@@ -1171,10 +1183,10 @@ export const MsgBurnNFT = {
     } else {
       message.id = "";
     }
-    if (object.denomId !== undefined && object.denomId !== null) {
-      message.denomId = String(object.denomId);
+    if (object.denom_id !== undefined && object.denom_id !== null) {
+      message.denom_id = String(object.denom_id);
     } else {
-      message.denomId = "";
+      message.denom_id = "";
     }
     if (object.sender !== undefined && object.sender !== null) {
       message.sender = String(object.sender);
@@ -1187,7 +1199,7 @@ export const MsgBurnNFT = {
   toJSON(message: MsgBurnNFT): unknown {
     const obj: any = {};
     message.id !== undefined && (obj.id = message.id);
-    message.denomId !== undefined && (obj.denomId = message.denomId);
+    message.denom_id !== undefined && (obj.denom_id = message.denom_id);
     message.sender !== undefined && (obj.sender = message.sender);
     return obj;
   },
@@ -1199,10 +1211,10 @@ export const MsgBurnNFT = {
     } else {
       message.id = "";
     }
-    if (object.denomId !== undefined && object.denomId !== null) {
-      message.denomId = object.denomId;
+    if (object.denom_id !== undefined && object.denom_id !== null) {
+      message.denom_id = object.denom_id;
     } else {
-      message.denomId = "";
+      message.denom_id = "";
     }
     if (object.sender !== undefined && object.sender !== null) {
       message.sender = object.sender;

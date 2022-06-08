@@ -1,17 +1,19 @@
 // THIS FILE IS GENERATED AUTOMATICALLY. DO NOT MODIFY.
 
-import { SigningStargateClient, StdFee } from "@imversed/stargate";
-import { Registry, OfflineSigner, EncodeObject } from "@imversed/proto-signing";
+import { StdFee } from "@cosmjs/launchpad";
+import { SigningStargateClient } from "@cosmjs/stargate";
+import { Registry, OfflineSigner, EncodeObject, DirectSecp256k1HdWallet } from "@cosmjs/proto-signing";
 import { Api } from "./rest";
 import { MsgCreateVestingAccount } from "./types/cosmos/vesting/v1beta1/tx";
 
+
 const types = [
   ["/cosmos.vesting.v1beta1.MsgCreateVestingAccount", MsgCreateVestingAccount],
-
+  
 ];
 export const MissingWalletError = new Error("wallet is required");
 
-export const registry = new Registry(types as any);
+export const registry = new Registry(<any>types);
 
 const defaultFee = {
   amount: [],
@@ -28,19 +30,19 @@ interface SignAndBroadcastOptions {
 }
 
 const txClient = async (wallet: OfflineSigner, { addr: addr }: TxClientOptions = { addr: "http://localhost:26657" }) => {
-  if (!wallet) { throw MissingWalletError; }
+  if (!wallet) throw MissingWalletError;
   let client;
   if (addr) {
     client = await SigningStargateClient.connectWithSigner(addr, wallet, { registry });
-  } else {
+  }else{
     client = await SigningStargateClient.offline( wallet, { registry });
   }
   const { address } = (await wallet.getAccounts())[0];
 
   return {
-    signAndBroadcast: (msgs: EncodeObject[], { fee, memo }: SignAndBroadcastOptions = {fee: defaultFee, memo: ""}) => client.signAndBroadcast(address, msgs, fee, memo),
+    signAndBroadcast: (msgs: EncodeObject[], { fee, memo }: SignAndBroadcastOptions = {fee: defaultFee, memo: ""}) => client.signAndBroadcast(address, msgs, fee,memo),
     msgCreateVestingAccount: (data: MsgCreateVestingAccount): EncodeObject => ({ typeUrl: "/cosmos.vesting.v1beta1.MsgCreateVestingAccount", value: MsgCreateVestingAccount.fromPartial( data ) }),
-
+    
   };
 };
 

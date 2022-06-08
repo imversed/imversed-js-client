@@ -1,5 +1,4 @@
 /* eslint-disable */
-// @ts-nocheck
 import { Reader, util, configure, Writer } from "protobufjs/minimal";
 import * as Long from "long";
 import {
@@ -12,7 +11,7 @@ export const protobufPackage = "imversed.nft";
 
 /** QuerySupplyRequest is the request type for the Query/HTLC RPC method */
 export interface QuerySupplyRequest {
-  denomId: string;
+  denom_id: string;
   owner: string;
 }
 
@@ -23,7 +22,7 @@ export interface QuerySupplyResponse {
 
 /** QueryOwnerRequest is the request type for the Query/Owner RPC method */
 export interface QueryOwnerRequest {
-  denomId: string;
+  denom_id: string;
   owner: string;
   /** pagination defines an optional pagination for the request. */
   pagination: PageRequest | undefined;
@@ -37,7 +36,7 @@ export interface QueryOwnerResponse {
 
 /** QueryCollectionRequest is the request type for the Query/Collection RPC method */
 export interface QueryCollectionRequest {
-  denomId: string;
+  denom_id: string;
   /** pagination defines an optional pagination for the request. */
   pagination: PageRequest | undefined;
 }
@@ -50,7 +49,7 @@ export interface QueryCollectionResponse {
 
 /** QueryDenomRequest is the request type for the Query/Denom RPC method */
 export interface QueryDenomRequest {
-  denomId: string;
+  denom_id: string;
 }
 
 /** QueryDenomResponse is the response type for the Query/Denom RPC method */
@@ -72,8 +71,8 @@ export interface QueryDenomsResponse {
 
 /** QueryNFTRequest is the request type for the Query/NFT RPC method */
 export interface QueryNFTRequest {
-  denomId: string;
-  tokenId: string;
+  denom_id: string;
+  token_id: string;
 }
 
 /** QueryNFTResponse is the response type for the Query/NFT RPC method */
@@ -81,15 +80,15 @@ export interface QueryNFTResponse {
   nft: BaseNFT | undefined;
 }
 
-const baseQuerySupplyRequest: object = { denomId: "", owner: "" };
+const baseQuerySupplyRequest: object = { denom_id: "", owner: "" };
 
 export const QuerySupplyRequest = {
   encode(
     message: QuerySupplyRequest,
     writer: Writer = Writer.create()
   ): Writer {
-    if (message.denomId !== "") {
-      writer.uint32(10).string(message.denomId);
+    if (message.denom_id !== "") {
+      writer.uint32(10).string(message.denom_id);
     }
     if (message.owner !== "") {
       writer.uint32(18).string(message.owner);
@@ -105,7 +104,7 @@ export const QuerySupplyRequest = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.denomId = reader.string();
+          message.denom_id = reader.string();
           break;
         case 2:
           message.owner = reader.string();
@@ -120,10 +119,10 @@ export const QuerySupplyRequest = {
 
   fromJSON(object: any): QuerySupplyRequest {
     const message = { ...baseQuerySupplyRequest } as QuerySupplyRequest;
-    if (object.denomId !== undefined && object.denomId !== null) {
-      message.denomId = String(object.denomId);
+    if (object.denom_id !== undefined && object.denom_id !== null) {
+      message.denom_id = String(object.denom_id);
     } else {
-      message.denomId = "";
+      message.denom_id = "";
     }
     if (object.owner !== undefined && object.owner !== null) {
       message.owner = String(object.owner);
@@ -135,17 +134,17 @@ export const QuerySupplyRequest = {
 
   toJSON(message: QuerySupplyRequest): unknown {
     const obj: any = {};
-    message.denomId !== undefined && (obj.denomId = message.denomId);
+    message.denom_id !== undefined && (obj.denom_id = message.denom_id);
     message.owner !== undefined && (obj.owner = message.owner);
     return obj;
   },
 
   fromPartial(object: DeepPartial<QuerySupplyRequest>): QuerySupplyRequest {
     const message = { ...baseQuerySupplyRequest } as QuerySupplyRequest;
-    if (object.denomId !== undefined && object.denomId !== null) {
-      message.denomId = object.denomId;
+    if (object.denom_id !== undefined && object.denom_id !== null) {
+      message.denom_id = object.denom_id;
     } else {
-      message.denomId = "";
+      message.denom_id = "";
     }
     if (object.owner !== undefined && object.owner !== null) {
       message.owner = object.owner;
@@ -214,12 +213,12 @@ export const QuerySupplyResponse = {
   },
 };
 
-const baseQueryOwnerRequest: object = { denomId: "", owner: "" };
+const baseQueryOwnerRequest: object = { denom_id: "", owner: "" };
 
 export const QueryOwnerRequest = {
   encode(message: QueryOwnerRequest, writer: Writer = Writer.create()): Writer {
-    if (message.denomId !== "") {
-      writer.uint32(10).string(message.denomId);
+    if (message.denom_id !== "") {
+      writer.uint32(10).string(message.denom_id);
     }
     if (message.owner !== "") {
       writer.uint32(18).string(message.owner);
@@ -238,7 +237,7 @@ export const QueryOwnerRequest = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.denomId = reader.string();
+          message.denom_id = reader.string();
           break;
         case 2:
           message.owner = reader.string();
@@ -256,10 +255,10 @@ export const QueryOwnerRequest = {
 
   fromJSON(object: any): QueryOwnerRequest {
     const message = { ...baseQueryOwnerRequest } as QueryOwnerRequest;
-    if (object.denomId !== undefined && object.denomId !== null) {
-      message.denomId = String(object.denomId);
+    if (object.denom_id !== undefined && object.denom_id !== null) {
+      message.denom_id = String(object.denom_id);
     } else {
-      message.denomId = "";
+      message.denom_id = "";
     }
     if (object.owner !== undefined && object.owner !== null) {
       message.owner = String(object.owner);
@@ -276,7 +275,7 @@ export const QueryOwnerRequest = {
 
   toJSON(message: QueryOwnerRequest): unknown {
     const obj: any = {};
-    message.denomId !== undefined && (obj.denomId = message.denomId);
+    message.denom_id !== undefined && (obj.denom_id = message.denom_id);
     message.owner !== undefined && (obj.owner = message.owner);
     message.pagination !== undefined &&
       (obj.pagination = message.pagination
@@ -287,10 +286,10 @@ export const QueryOwnerRequest = {
 
   fromPartial(object: DeepPartial<QueryOwnerRequest>): QueryOwnerRequest {
     const message = { ...baseQueryOwnerRequest } as QueryOwnerRequest;
-    if (object.denomId !== undefined && object.denomId !== null) {
-      message.denomId = object.denomId;
+    if (object.denom_id !== undefined && object.denom_id !== null) {
+      message.denom_id = object.denom_id;
     } else {
-      message.denomId = "";
+      message.denom_id = "";
     }
     if (object.owner !== undefined && object.owner !== null) {
       message.owner = object.owner;
@@ -388,15 +387,15 @@ export const QueryOwnerResponse = {
   },
 };
 
-const baseQueryCollectionRequest: object = { denomId: "" };
+const baseQueryCollectionRequest: object = { denom_id: "" };
 
 export const QueryCollectionRequest = {
   encode(
     message: QueryCollectionRequest,
     writer: Writer = Writer.create()
   ): Writer {
-    if (message.denomId !== "") {
-      writer.uint32(10).string(message.denomId);
+    if (message.denom_id !== "") {
+      writer.uint32(10).string(message.denom_id);
     }
     if (message.pagination !== undefined) {
       PageRequest.encode(message.pagination, writer.uint32(18).fork()).ldelim();
@@ -412,7 +411,7 @@ export const QueryCollectionRequest = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.denomId = reader.string();
+          message.denom_id = reader.string();
           break;
         case 2:
           message.pagination = PageRequest.decode(reader, reader.uint32());
@@ -427,10 +426,10 @@ export const QueryCollectionRequest = {
 
   fromJSON(object: any): QueryCollectionRequest {
     const message = { ...baseQueryCollectionRequest } as QueryCollectionRequest;
-    if (object.denomId !== undefined && object.denomId !== null) {
-      message.denomId = String(object.denomId);
+    if (object.denom_id !== undefined && object.denom_id !== null) {
+      message.denom_id = String(object.denom_id);
     } else {
-      message.denomId = "";
+      message.denom_id = "";
     }
     if (object.pagination !== undefined && object.pagination !== null) {
       message.pagination = PageRequest.fromJSON(object.pagination);
@@ -442,7 +441,7 @@ export const QueryCollectionRequest = {
 
   toJSON(message: QueryCollectionRequest): unknown {
     const obj: any = {};
-    message.denomId !== undefined && (obj.denomId = message.denomId);
+    message.denom_id !== undefined && (obj.denom_id = message.denom_id);
     message.pagination !== undefined &&
       (obj.pagination = message.pagination
         ? PageRequest.toJSON(message.pagination)
@@ -454,10 +453,10 @@ export const QueryCollectionRequest = {
     object: DeepPartial<QueryCollectionRequest>
   ): QueryCollectionRequest {
     const message = { ...baseQueryCollectionRequest } as QueryCollectionRequest;
-    if (object.denomId !== undefined && object.denomId !== null) {
-      message.denomId = object.denomId;
+    if (object.denom_id !== undefined && object.denom_id !== null) {
+      message.denom_id = object.denom_id;
     } else {
-      message.denomId = "";
+      message.denom_id = "";
     }
     if (object.pagination !== undefined && object.pagination !== null) {
       message.pagination = PageRequest.fromPartial(object.pagination);
@@ -560,12 +559,12 @@ export const QueryCollectionResponse = {
   },
 };
 
-const baseQueryDenomRequest: object = { denomId: "" };
+const baseQueryDenomRequest: object = { denom_id: "" };
 
 export const QueryDenomRequest = {
   encode(message: QueryDenomRequest, writer: Writer = Writer.create()): Writer {
-    if (message.denomId !== "") {
-      writer.uint32(10).string(message.denomId);
+    if (message.denom_id !== "") {
+      writer.uint32(10).string(message.denom_id);
     }
     return writer;
   },
@@ -578,7 +577,7 @@ export const QueryDenomRequest = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.denomId = reader.string();
+          message.denom_id = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -590,26 +589,26 @@ export const QueryDenomRequest = {
 
   fromJSON(object: any): QueryDenomRequest {
     const message = { ...baseQueryDenomRequest } as QueryDenomRequest;
-    if (object.denomId !== undefined && object.denomId !== null) {
-      message.denomId = String(object.denomId);
+    if (object.denom_id !== undefined && object.denom_id !== null) {
+      message.denom_id = String(object.denom_id);
     } else {
-      message.denomId = "";
+      message.denom_id = "";
     }
     return message;
   },
 
   toJSON(message: QueryDenomRequest): unknown {
     const obj: any = {};
-    message.denomId !== undefined && (obj.denomId = message.denomId);
+    message.denom_id !== undefined && (obj.denom_id = message.denom_id);
     return obj;
   },
 
   fromPartial(object: DeepPartial<QueryDenomRequest>): QueryDenomRequest {
     const message = { ...baseQueryDenomRequest } as QueryDenomRequest;
-    if (object.denomId !== undefined && object.denomId !== null) {
-      message.denomId = object.denomId;
+    if (object.denom_id !== undefined && object.denom_id !== null) {
+      message.denom_id = object.denom_id;
     } else {
-      message.denomId = "";
+      message.denom_id = "";
     }
     return message;
   },
@@ -823,15 +822,15 @@ export const QueryDenomsResponse = {
   },
 };
 
-const baseQueryNFTRequest: object = { denomId: "", tokenId: "" };
+const baseQueryNFTRequest: object = { denom_id: "", token_id: "" };
 
 export const QueryNFTRequest = {
   encode(message: QueryNFTRequest, writer: Writer = Writer.create()): Writer {
-    if (message.denomId !== "") {
-      writer.uint32(10).string(message.denomId);
+    if (message.denom_id !== "") {
+      writer.uint32(10).string(message.denom_id);
     }
-    if (message.tokenId !== "") {
-      writer.uint32(18).string(message.tokenId);
+    if (message.token_id !== "") {
+      writer.uint32(18).string(message.token_id);
     }
     return writer;
   },
@@ -844,10 +843,10 @@ export const QueryNFTRequest = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.denomId = reader.string();
+          message.denom_id = reader.string();
           break;
         case 2:
-          message.tokenId = reader.string();
+          message.token_id = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -859,37 +858,37 @@ export const QueryNFTRequest = {
 
   fromJSON(object: any): QueryNFTRequest {
     const message = { ...baseQueryNFTRequest } as QueryNFTRequest;
-    if (object.denomId !== undefined && object.denomId !== null) {
-      message.denomId = String(object.denomId);
+    if (object.denom_id !== undefined && object.denom_id !== null) {
+      message.denom_id = String(object.denom_id);
     } else {
-      message.denomId = "";
+      message.denom_id = "";
     }
-    if (object.tokenId !== undefined && object.tokenId !== null) {
-      message.tokenId = String(object.tokenId);
+    if (object.token_id !== undefined && object.token_id !== null) {
+      message.token_id = String(object.token_id);
     } else {
-      message.tokenId = "";
+      message.token_id = "";
     }
     return message;
   },
 
   toJSON(message: QueryNFTRequest): unknown {
     const obj: any = {};
-    message.denomId !== undefined && (obj.denomId = message.denomId);
-    message.tokenId !== undefined && (obj.tokenId = message.tokenId);
+    message.denom_id !== undefined && (obj.denom_id = message.denom_id);
+    message.token_id !== undefined && (obj.token_id = message.token_id);
     return obj;
   },
 
   fromPartial(object: DeepPartial<QueryNFTRequest>): QueryNFTRequest {
     const message = { ...baseQueryNFTRequest } as QueryNFTRequest;
-    if (object.denomId !== undefined && object.denomId !== null) {
-      message.denomId = object.denomId;
+    if (object.denom_id !== undefined && object.denom_id !== null) {
+      message.denom_id = object.denom_id;
     } else {
-      message.denomId = "";
+      message.denom_id = "";
     }
-    if (object.tokenId !== undefined && object.tokenId !== null) {
-      message.tokenId = object.tokenId;
+    if (object.token_id !== undefined && object.token_id !== null) {
+      message.token_id = object.token_id;
     } else {
-      message.tokenId = "";
+      message.token_id = "";
     }
     return message;
   },
@@ -1049,4 +1048,7 @@ function longToNumber(long: Long): number {
   return long.toNumber();
 }
 
-
+if (util.Long !== Long) {
+  util.Long = Long as any;
+  configure();
+}

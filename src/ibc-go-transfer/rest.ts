@@ -15,20 +15,18 @@ NOTE: To prevent a single token from being transferred, set the
 TransfersEnabled parameter to true and then set the bank module's SendEnabled
 parameter for the denomination to false.
 */
-import fetch from "cross-fetch"
-
 export interface Applicationstransferv1Params {
   /**
    * send_enabled enables or disables all cross-chain token transfers from this
    * chain.
    */
-  sendEnabled?: boolean;
+  send_enabled?: boolean;
 
   /**
    * receive_enabled enables or disables all cross-chain token transfers to this
    * chain.
    */
-  receiveEnabled?: boolean;
+  receive_enabled?: boolean;
 }
 
 /**
@@ -167,7 +165,7 @@ export interface V1DenomTrace {
   path?: string;
 
   /** base denomination of the relayed fungible token. */
-  baseDenom?: string;
+  base_denom?: string;
 }
 
 /**
@@ -180,10 +178,10 @@ gets reset
 */
 export interface V1Height {
   /** @format uint64 */
-  revisionNumber?: string;
+  revision_number?: string;
 
   /** @format uint64 */
-  revisionHeight?: string;
+  revision_height?: string;
 }
 
 /**
@@ -192,12 +190,21 @@ export interface V1Height {
 export type V1MsgTransferResponse = object;
 
 /**
+* QueryDenomHashResponse is the response type for the Query/DenomHash RPC
+method.
+*/
+export interface V1QueryDenomHashResponse {
+  /** hash (in hex format) of the denomination trace information. */
+  hash?: string;
+}
+
+/**
 * QueryDenomTraceResponse is the response type for the Query/DenomTrace RPC
 method.
 */
 export interface V1QueryDenomTraceResponse {
   /** denom_trace returns the requested denomination trace information. */
-  denomTrace?: V1DenomTrace;
+  denom_trace?: V1DenomTrace;
 }
 
 /**
@@ -206,7 +213,7 @@ method.
 */
 export interface V1QueryDenomTracesResponse {
   /** denom_traces returns all denominations trace information. */
-  denomTraces?: V1DenomTrace[];
+  denom_traces?: V1DenomTrace[];
 
   /** pagination defines the pagination in the response. */
   pagination?: V1Beta1PageResponse;
@@ -267,7 +274,7 @@ export interface V1Beta1PageRequest {
    * count_total is only respected when offset is used. It is ignored when key
    * is set.
    */
-  countTotal?: boolean;
+  count_total?: boolean;
 }
 
 /**
@@ -281,7 +288,7 @@ corresponding request message has used PageRequest.
 */
 export interface V1Beta1PageResponse {
   /** @format byte */
-  nextKey?: string;
+  next_key?: string;
 
   /** @format uint64 */
   total?: string;
@@ -487,6 +494,22 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    * No description
    *
    * @tags Query
+   * @name QueryDenomHash
+   * @summary DenomHash queries a denomination hash information.
+   * @request GET:/ibc/apps/transfer/v1/denom_hashes/{trace}
+   */
+  queryDenomHash = (trace: string, params: RequestParams = {}) =>
+    this.request<V1QueryDenomHashResponse, RpcStatus>({
+      path: `/ibc/apps/transfer/v1/denom_hashes/${trace}`,
+      method: "GET",
+      format: "json",
+      ...params,
+    });
+
+  /**
+   * No description
+   *
+   * @tags Query
    * @name QueryDenomTraces
    * @summary DenomTraces queries all denomination traces.
    * @request GET:/ibc/apps/transfer/v1/denom_traces
@@ -496,7 +519,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
       "pagination.key"?: string;
       "pagination.offset"?: string;
       "pagination.limit"?: string;
-      "pagination.countTotal"?: boolean;
+      "pagination.count_total"?: boolean;
     },
     params: RequestParams = {},
   ) =>

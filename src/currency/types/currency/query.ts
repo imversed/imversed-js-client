@@ -1,5 +1,4 @@
 /* eslint-disable */
-// @ts-nocheck
 import { Reader, Writer } from "protobufjs/minimal";
 import { Currency, Params } from "../currency/currency";
 import {

@@ -7,6 +7,7 @@ export const protobufPackage = "fulldivevr.imversed.currency";
 export interface MsgIssue {
   sender: string;
   denom: string;
+  icon: string;
 }
 
 export interface MsgIssueResponse {}
@@ -18,7 +19,7 @@ export interface MsgMint {
 
 export interface MsgMintResponse {}
 
-const baseMsgIssue: object = { sender: "", denom: "" };
+const baseMsgIssue: object = { sender: "", denom: "", icon: "" };
 
 export const MsgIssue = {
   encode(message: MsgIssue, writer: Writer = Writer.create()): Writer {
@@ -27,6 +28,9 @@ export const MsgIssue = {
     }
     if (message.denom !== "") {
       writer.uint32(18).string(message.denom);
+    }
+    if (message.icon !== "") {
+      writer.uint32(26).string(message.icon);
     }
     return writer;
   },
@@ -43,6 +47,9 @@ export const MsgIssue = {
           break;
         case 2:
           message.denom = reader.string();
+          break;
+        case 3:
+          message.icon = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -64,6 +71,11 @@ export const MsgIssue = {
     } else {
       message.denom = "";
     }
+    if (object.icon !== undefined && object.icon !== null) {
+      message.icon = String(object.icon);
+    } else {
+      message.icon = "";
+    }
     return message;
   },
 
@@ -71,6 +83,7 @@ export const MsgIssue = {
     const obj: any = {};
     message.sender !== undefined && (obj.sender = message.sender);
     message.denom !== undefined && (obj.denom = message.denom);
+    message.icon !== undefined && (obj.icon = message.icon);
     return obj;
   },
 
@@ -85,6 +98,11 @@ export const MsgIssue = {
       message.denom = object.denom;
     } else {
       message.denom = "";
+    }
+    if (object.icon !== undefined && object.icon !== null) {
+      message.icon = object.icon;
+    } else {
+      message.icon = "";
     }
     return message;
   },
