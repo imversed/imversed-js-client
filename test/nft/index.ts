@@ -22,16 +22,16 @@ describe('NFT module',() => {
                 schema: '',
                 sender: account.address,
                 symbol: 'TST123',
-                mintRestricted: false,
-                updateRestricted: true,
-                oracleUrl: '',
+                mint_restricted: false,
+                update_restricted: true,
+                oracle_url: '',
             })
 
             const res = await tx.signAndBroadcast([msg], {
                 fee: {
                     amount: [{
                         amount: '20000',
-                        denom: 'nimv'
+                        denom: 'aimv'
                     }],
                     gas: '200000'
                 }

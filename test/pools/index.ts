@@ -38,7 +38,7 @@ describe('pools module', () => {
                 poolAssets: [
                     {
                         token: {
-                            denom: 'nimv',
+                            denom: 'aimv',
                             amount: '1000000'
                         },
                         weight: '1'
@@ -58,7 +58,7 @@ describe('pools module', () => {
                 fee: {
                     amount: [{
                         amount: '20000',
-                        denom: 'nimv'
+                        denom: 'aimv'
                     }],
                     gas: '200000'
                 }

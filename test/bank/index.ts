@@ -16,8 +16,8 @@ describe("Bank", () => {
         amount: "1000",
         denom
       }],
-      to_address: "imv1j7q2njaxtf92e7dnksaa3za9wan2teanqmu07l",
-      from_address: account.address
+      toAddress: "imv1j7q2njaxtf92e7dnksaa3za9wan2teanqmu07l",
+      fromAddress: account.address
     })
 
     const response = await tx.signAndBroadcast([msg], {
