@@ -1,187 +1,171 @@
 /* eslint-disable */
-import * as Long from "long";
-import { util, configure, Writer, Reader } from "protobufjs/minimal";
+import * as Long from 'long'
+import { util, configure, Writer, Reader } from 'protobufjs/minimal'
 
-export const protobufPackage = "ethermint.feemarket.v1";
+export const protobufPackage = 'ethermint.feemarket.v1'
 
 /** Params defines the EVM module parameters */
 export interface Params {
   /** no base fee forces the EIP-1559 base fee to 0 (needed for 0 price calls) */
-  no_base_fee: boolean;
+  noBaseFee: boolean
   /**
    * base fee change denominator bounds the amount the base fee can change
    * between blocks.
    */
-  base_fee_change_denominator: number;
+  baseFeeChangeDenominator: number
   /**
    * elasticity multiplier bounds the maximum gas limit an EIP-1559 block may
    * have.
    */
-  elasticity_multiplier: number;
+  elasticityMultiplier: number
   /** height at which the base fee calculation is enabled. */
-  enable_height: number;
+  enableHeight: number
   /** base fee for EIP-1559 blocks. */
-  base_fee: string;
+  baseFee: string
 }
 
 const baseParams: object = {
-  no_base_fee: false,
-  base_fee_change_denominator: 0,
-  elasticity_multiplier: 0,
-  enable_height: 0,
-  base_fee: "",
-};
+  noBaseFee: false,
+  baseFeeChangeDenominator: 0,
+  elasticityMultiplier: 0,
+  enableHeight: 0,
+  baseFee: ''
+}
 
 export const Params = {
   encode(message: Params, writer: Writer = Writer.create()): Writer {
-    if (message.no_base_fee === true) {
-      writer.uint32(8).bool(message.no_base_fee);
+    if (message.noBaseFee === true) {
+      writer.uint32(8).bool(message.noBaseFee)
     }
-    if (message.base_fee_change_denominator !== 0) {
-      writer.uint32(16).uint32(message.base_fee_change_denominator);
+    if (message.baseFeeChangeDenominator !== 0) {
+      writer.uint32(16).uint32(message.baseFeeChangeDenominator)
     }
-    if (message.elasticity_multiplier !== 0) {
-      writer.uint32(24).uint32(message.elasticity_multiplier);
+    if (message.elasticityMultiplier !== 0) {
+      writer.uint32(24).uint32(message.elasticityMultiplier)
     }
-    if (message.enable_height !== 0) {
-      writer.uint32(40).int64(message.enable_height);
+    if (message.enableHeight !== 0) {
+      writer.uint32(40).int64(message.enableHeight)
     }
-    if (message.base_fee !== "") {
-      writer.uint32(50).string(message.base_fee);
+    if (message.baseFee !== '') {
+      writer.uint32(50).string(message.baseFee)
     }
-    return writer;
+    return writer
   },
 
   decode(input: Reader | Uint8Array, length?: number): Params {
-    const reader = input instanceof Uint8Array ? new Reader(input) : input;
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = { ...baseParams } as Params;
+    const reader = input instanceof Uint8Array ? new Reader(input) : input
+    let end = length === undefined ? reader.len : reader.pos + length
+    const message = { ...baseParams } as Params
     while (reader.pos < end) {
-      const tag = reader.uint32();
+      const tag = reader.uint32()
       switch (tag >>> 3) {
         case 1:
-          message.no_base_fee = reader.bool();
-          break;
+          message.noBaseFee = reader.bool()
+          break
         case 2:
-          message.base_fee_change_denominator = reader.uint32();
-          break;
+          message.baseFeeChangeDenominator = reader.uint32()
+          break
         case 3:
-          message.elasticity_multiplier = reader.uint32();
-          break;
+          message.elasticityMultiplier = reader.uint32()
+          break
         case 5:
-          message.enable_height = longToNumber(reader.int64() as Long);
-          break;
+          message.enableHeight = longToNumber(reader.int64() as Long)
+          break
         case 6:
-          message.base_fee = reader.string();
-          break;
+          message.baseFee = reader.string()
+          break
         default:
-          reader.skipType(tag & 7);
-          break;
+          reader.skipType(tag & 7)
+          break
       }
     }
-    return message;
+    return message
   },
 
   fromJSON(object: any): Params {
-    const message = { ...baseParams } as Params;
-    if (object.no_base_fee !== undefined && object.no_base_fee !== null) {
-      message.no_base_fee = Boolean(object.no_base_fee);
+    const message = { ...baseParams } as Params
+    if (object.noBaseFee !== undefined && object.noBaseFee !== null) {
+      message.noBaseFee = Boolean(object.noBaseFee)
     } else {
-      message.no_base_fee = false;
+      message.noBaseFee = false
     }
-    if (
-      object.base_fee_change_denominator !== undefined &&
-      object.base_fee_change_denominator !== null
-    ) {
-      message.base_fee_change_denominator = Number(
-        object.base_fee_change_denominator
-      );
+    if (object.baseFeeChangeDenominator !== undefined && object.baseFeeChangeDenominator !== null) {
+      message.baseFeeChangeDenominator = Number(object.baseFeeChangeDenominator)
     } else {
-      message.base_fee_change_denominator = 0;
+      message.baseFeeChangeDenominator = 0
     }
-    if (
-      object.elasticity_multiplier !== undefined &&
-      object.elasticity_multiplier !== null
-    ) {
-      message.elasticity_multiplier = Number(object.elasticity_multiplier);
+    if (object.elasticityMultiplier !== undefined && object.elasticityMultiplier !== null) {
+      message.elasticityMultiplier = Number(object.elasticityMultiplier)
     } else {
-      message.elasticity_multiplier = 0;
+      message.elasticityMultiplier = 0
     }
-    if (object.enable_height !== undefined && object.enable_height !== null) {
-      message.enable_height = Number(object.enable_height);
+    if (object.enableHeight !== undefined && object.enableHeight !== null) {
+      message.enableHeight = Number(object.enableHeight)
     } else {
-      message.enable_height = 0;
+      message.enableHeight = 0
     }
-    if (object.base_fee !== undefined && object.base_fee !== null) {
-      message.base_fee = String(object.base_fee);
+    if (object.baseFee !== undefined && object.baseFee !== null) {
+      message.baseFee = String(object.baseFee)
     } else {
-      message.base_fee = "";
+      message.baseFee = ''
     }
-    return message;
+    return message
   },
 
   toJSON(message: Params): unknown {
-    const obj: any = {};
-    message.no_base_fee !== undefined &&
-      (obj.no_base_fee = message.no_base_fee);
-    message.base_fee_change_denominator !== undefined &&
-      (obj.base_fee_change_denominator = message.base_fee_change_denominator);
-    message.elasticity_multiplier !== undefined &&
-      (obj.elasticity_multiplier = message.elasticity_multiplier);
-    message.enable_height !== undefined &&
-      (obj.enable_height = message.enable_height);
-    message.base_fee !== undefined && (obj.base_fee = message.base_fee);
-    return obj;
+    const obj: any = {}
+    message.noBaseFee !== undefined && (obj.noBaseFee = message.noBaseFee)
+    message.baseFeeChangeDenominator !== undefined &&
+      (obj.baseFeeChangeDenominator = message.baseFeeChangeDenominator)
+    message.elasticityMultiplier !== undefined &&
+      (obj.elasticityMultiplier = message.elasticityMultiplier)
+    message.enableHeight !== undefined && (obj.enableHeight = message.enableHeight)
+    message.baseFee !== undefined && (obj.baseFee = message.baseFee)
+    return obj
   },
 
   fromPartial(object: DeepPartial<Params>): Params {
-    const message = { ...baseParams } as Params;
-    if (object.no_base_fee !== undefined && object.no_base_fee !== null) {
-      message.no_base_fee = object.no_base_fee;
+    const message = { ...baseParams } as Params
+    if (object.noBaseFee !== undefined && object.noBaseFee !== null) {
+      message.noBaseFee = object.noBaseFee
     } else {
-      message.no_base_fee = false;
+      message.noBaseFee = false
     }
-    if (
-      object.base_fee_change_denominator !== undefined &&
-      object.base_fee_change_denominator !== null
-    ) {
-      message.base_fee_change_denominator = object.base_fee_change_denominator;
+    if (object.baseFeeChangeDenominator !== undefined && object.baseFeeChangeDenominator !== null) {
+      message.baseFeeChangeDenominator = object.baseFeeChangeDenominator
     } else {
-      message.base_fee_change_denominator = 0;
+      message.baseFeeChangeDenominator = 0
     }
-    if (
-      object.elasticity_multiplier !== undefined &&
-      object.elasticity_multiplier !== null
-    ) {
-      message.elasticity_multiplier = object.elasticity_multiplier;
+    if (object.elasticityMultiplier !== undefined && object.elasticityMultiplier !== null) {
+      message.elasticityMultiplier = object.elasticityMultiplier
     } else {
-      message.elasticity_multiplier = 0;
+      message.elasticityMultiplier = 0
     }
-    if (object.enable_height !== undefined && object.enable_height !== null) {
-      message.enable_height = object.enable_height;
+    if (object.enableHeight !== undefined && object.enableHeight !== null) {
+      message.enableHeight = object.enableHeight
     } else {
-      message.enable_height = 0;
+      message.enableHeight = 0
     }
-    if (object.base_fee !== undefined && object.base_fee !== null) {
-      message.base_fee = object.base_fee;
+    if (object.baseFee !== undefined && object.baseFee !== null) {
+      message.baseFee = object.baseFee
     } else {
-      message.base_fee = "";
+      message.baseFee = ''
     }
-    return message;
-  },
-};
+    return message
+  }
+}
 
-declare var self: any | undefined;
-declare var window: any | undefined;
+declare var self: any | undefined
+declare var window: any | undefined
 var globalThis: any = (() => {
-  if (typeof globalThis !== "undefined") return globalThis;
-  if (typeof self !== "undefined") return self;
-  if (typeof window !== "undefined") return window;
-  if (typeof global !== "undefined") return global;
-  throw "Unable to locate global object";
-})();
+  if (typeof globalThis !== 'undefined') return globalThis
+  if (typeof self !== 'undefined') return self
+  if (typeof window !== 'undefined') return window
+  if (typeof global !== 'undefined') return global
+  throw 'Unable to locate global object'
+})()
 
-type Builtin = Date | Function | Uint8Array | string | number | undefined;
+type Builtin = Date | Function | Uint8Array | string | number | undefined
 export type DeepPartial<T> = T extends Builtin
   ? T
   : T extends Array<infer U>
@@ -190,16 +174,16 @@ export type DeepPartial<T> = T extends Builtin
   ? ReadonlyArray<DeepPartial<U>>
   : T extends {}
   ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
+  : Partial<T>
 
 function longToNumber(long: Long): number {
   if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+    throw new globalThis.Error('Value is larger than Number.MAX_SAFE_INTEGER')
   }
-  return long.toNumber();
+  return long.toNumber()
 }
-// @ts-ignore
+
 if (util.Long !== Long) {
-  util.Long = Long as any;
-  configure();
+  util.Long = Long as any
+  configure()
 }

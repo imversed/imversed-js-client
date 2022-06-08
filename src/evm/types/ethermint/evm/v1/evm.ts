@@ -1,8 +1,8 @@
 /* eslint-disable */
-import * as Long from "long";
-import { util, configure, Writer, Reader } from "protobufjs/minimal";
+import * as Long from 'long'
+import { util, configure, Writer, Reader } from 'protobufjs/minimal'
 
-export const protobufPackage = "ethermint.evm.v1";
+export const protobufPackage = 'ethermint.evm.v1'
 
 /** Params defines the EVM module parameters */
 export interface Params {
@@ -10,15 +10,15 @@ export interface Params {
    * evm denom represents the token denomination used to run the EVM state
    * transitions.
    */
-  evm_denom: string;
+  evmDenom: string
   /** enable create toggles state transitions that use the vm.Create function */
-  enable_create: boolean;
+  enableCreate: boolean
   /** enable call toggles state transitions that use the vm.Call function */
-  enable_call: boolean;
+  enableCall: boolean
   /** extra eips defines the additional EIPs for the vm.Config */
-  extra_eips: number[];
+  extraEips: number[]
   /** chain config defines the EVM chain configuration parameters */
-  chain_config: ChainConfig | undefined;
+  chainConfig: ChainConfig | undefined
 }
 
 /**
@@ -27,46 +27,46 @@ export interface Params {
  */
 export interface ChainConfig {
   /** Homestead switch block (nil no fork, 0 = already homestead) */
-  homestead_block: string;
+  homesteadBlock: string
   /** TheDAO hard-fork switch block (nil no fork) */
-  dao_fork_block: string;
+  daoForkBlock: string
   /** Whether the nodes supports or opposes the DAO hard-fork */
-  dao_fork_support: boolean;
+  daoForkSupport: boolean
   /**
    * EIP150 implements the Gas price changes
    * (https://github.com/ethereum/EIPs/issues/150) EIP150 HF block (nil no fork)
    */
-  eip150_block: string;
+  eip150Block: string
   /** EIP150 HF hash (needed for header only clients as only gas pricing changed) */
-  eip150_hash: string;
+  eip150Hash: string
   /** EIP155Block HF block */
-  eip155_block: string;
+  eip155Block: string
   /** EIP158 HF block */
-  eip158_block: string;
+  eip158Block: string
   /** Byzantium switch block (nil no fork, 0 = already on byzantium) */
-  byzantium_block: string;
+  byzantiumBlock: string
   /** Constantinople switch block (nil no fork, 0 = already activated) */
-  constantinople_block: string;
+  constantinopleBlock: string
   /** Petersburg switch block (nil same as Constantinople) */
-  petersburg_block: string;
+  petersburgBlock: string
   /** Istanbul switch block (nil no fork, 0 = already on istanbul) */
-  istanbul_block: string;
+  istanbulBlock: string
   /** Eip-2384 (bomb delay) switch block (nil no fork, 0 = already activated) */
-  muir_glacier_block: string;
+  muirGlacierBlock: string
   /** Berlin switch block (nil = no fork, 0 = already on berlin) */
-  berlin_block: string;
+  berlinBlock: string
   /** London switch block (nil = no fork, 0 = already on london) */
-  london_block: string;
+  londonBlock: string
   /** Eip-4345 (bomb delay) switch block (nil = no fork, 0 = already activated) */
-  arrow_glacier_block: string;
+  arrowGlacierBlock: string
   /** EIP-3675 (TheMerge) switch block (nil = no fork, 0 = already in merge proceedings) */
-  merge_fork_block: string;
+  mergeForkBlock: string
 }
 
 /** State represents a single Storage key value pair item. */
 export interface State {
-  key: string;
-  value: string;
+  key: string
+  value: string
 }
 
 /**
@@ -75,8 +75,8 @@ export interface State {
  * persisted on blockchain state after an upgrade.
  */
 export interface TransactionLogs {
-  hash: string;
-  logs: Log[];
+  hash: string
+  logs: Log[]
 }
 
 /**
@@ -86,27 +86,27 @@ export interface TransactionLogs {
  */
 export interface Log {
   /** address of the contract that generated the event */
-  address: string;
+  address: string
   /** list of topics provided by the contract. */
-  topics: string[];
+  topics: string[]
   /** supplied by the contract, usually ABI-encoded */
-  data: Uint8Array;
+  data: Uint8Array
   /** block in which the transaction was included */
-  block_number: number;
+  blockNumber: number
   /** hash of the transaction */
-  tx_hash: string;
+  txHash: string
   /** index of the transaction in the block */
-  tx_index: number;
+  txIndex: number
   /** hash of the block in which the transaction was included */
-  block_hash: string;
+  blockHash: string
   /** index of the log in the block */
-  index: number;
+  index: number
   /**
    * The Removed field is true if this log was reverted due to a chain
    * reorganisation. You must pay attention to this field if you receive logs
    * through a filter query.
    */
-  removed: boolean;
+  removed: boolean
 }
 
 /** TxResult stores results of Tx execution. */
@@ -116,1469 +116,1351 @@ export interface TxResult {
    * any). If the state transition is an evm.Call, the contract address will be
    * empty.
    */
-  contract_address: string;
+  contractAddress: string
   /** bloom represents the bloom filter bytes */
-  bloom: Uint8Array;
+  bloom: Uint8Array
   /**
    * tx_logs contains the transaction hash and the proto-compatible ethereum
    * logs.
    */
-  tx_logs: TransactionLogs | undefined;
+  txLogs: TransactionLogs | undefined
   /** ret defines the bytes from the execution. */
-  ret: Uint8Array;
+  ret: Uint8Array
   /** reverted flag is set to true when the call has been reverted */
-  reverted: boolean;
+  reverted: boolean
   /** gas_used notes the amount of gas consumed while execution */
-  gas_used: number;
+  gasUsed: number
 }
 
 /** AccessTuple is the element type of an access list. */
 export interface AccessTuple {
   /** hex formatted ethereum address */
-  address: string;
+  address: string
   /** hex formatted hashes of the storage keys */
-  storage_keys: string[];
+  storageKeys: string[]
 }
 
 /** TraceConfig holds extra parameters to trace functions. */
 export interface TraceConfig {
   /** custom javascript tracer */
-  tracer: string;
+  tracer: string
   /**
    * overrides the default timeout of 5 seconds for JavaScript-based tracing
    * calls
    */
-  timeout: string;
+  timeout: string
   /** number of blocks the tracer is willing to go back */
-  reexec: number;
+  reexec: number
   /** disable stack capture */
-  disable_stack: boolean;
+  disableStack: boolean
   /** disable storage capture */
-  disable_storage: boolean;
+  disableStorage: boolean
   /** print output during capture end */
-  debug: boolean;
+  debug: boolean
   /** maximum length of output, but zero means unlimited */
-  limit: number;
+  limit: number
   /** Chain overrides, can be used to execute a trace using future fork rules */
-  overrides: ChainConfig | undefined;
+  overrides: ChainConfig | undefined
   /** enable memory capture */
-  enable_memory: boolean;
+  enableMemory: boolean
   /** enable return data capture */
-  enable_return_data: boolean;
+  enableReturnData: boolean
 }
 
-const baseParams: object = {
-  evm_denom: "",
-  enable_create: false,
-  enable_call: false,
-  extra_eips: 0,
-};
+const baseParams: object = { evmDenom: '', enableCreate: false, enableCall: false, extraEips: 0 }
 
 export const Params = {
   encode(message: Params, writer: Writer = Writer.create()): Writer {
-    if (message.evm_denom !== "") {
-      writer.uint32(10).string(message.evm_denom);
+    if (message.evmDenom !== '') {
+      writer.uint32(10).string(message.evmDenom)
     }
-    if (message.enable_create === true) {
-      writer.uint32(16).bool(message.enable_create);
+    if (message.enableCreate === true) {
+      writer.uint32(16).bool(message.enableCreate)
     }
-    if (message.enable_call === true) {
-      writer.uint32(24).bool(message.enable_call);
+    if (message.enableCall === true) {
+      writer.uint32(24).bool(message.enableCall)
     }
-    writer.uint32(34).fork();
-    for (const v of message.extra_eips) {
-      writer.int64(v);
+    writer.uint32(34).fork()
+    for (const v of message.extraEips) {
+      writer.int64(v)
     }
-    writer.ldelim();
-    if (message.chain_config !== undefined) {
-      ChainConfig.encode(
-        message.chain_config,
-        writer.uint32(42).fork()
-      ).ldelim();
+    writer.ldelim()
+    if (message.chainConfig !== undefined) {
+      ChainConfig.encode(message.chainConfig, writer.uint32(42).fork()).ldelim()
     }
-    return writer;
+    return writer
   },
 
   decode(input: Reader | Uint8Array, length?: number): Params {
-    const reader = input instanceof Uint8Array ? new Reader(input) : input;
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = { ...baseParams } as Params;
-    message.extra_eips = [];
+    const reader = input instanceof Uint8Array ? new Reader(input) : input
+    let end = length === undefined ? reader.len : reader.pos + length
+    const message = { ...baseParams } as Params
+    message.extraEips = []
     while (reader.pos < end) {
-      const tag = reader.uint32();
+      const tag = reader.uint32()
       switch (tag >>> 3) {
         case 1:
-          message.evm_denom = reader.string();
-          break;
+          message.evmDenom = reader.string()
+          break
         case 2:
-          message.enable_create = reader.bool();
-          break;
+          message.enableCreate = reader.bool()
+          break
         case 3:
-          message.enable_call = reader.bool();
-          break;
+          message.enableCall = reader.bool()
+          break
         case 4:
           if ((tag & 7) === 2) {
-            const end2 = reader.uint32() + reader.pos;
+            const end2 = reader.uint32() + reader.pos
             while (reader.pos < end2) {
-              message.extra_eips.push(longToNumber(reader.int64() as Long));
+              message.extraEips.push(longToNumber(reader.int64() as Long))
             }
           } else {
-            message.extra_eips.push(longToNumber(reader.int64() as Long));
+            message.extraEips.push(longToNumber(reader.int64() as Long))
           }
-          break;
+          break
         case 5:
-          message.chain_config = ChainConfig.decode(reader, reader.uint32());
-          break;
+          message.chainConfig = ChainConfig.decode(reader, reader.uint32())
+          break
         default:
-          reader.skipType(tag & 7);
-          break;
+          reader.skipType(tag & 7)
+          break
       }
     }
-    return message;
+    return message
   },
 
   fromJSON(object: any): Params {
-    const message = { ...baseParams } as Params;
-    message.extra_eips = [];
-    if (object.evm_denom !== undefined && object.evm_denom !== null) {
-      message.evm_denom = String(object.evm_denom);
+    const message = { ...baseParams } as Params
+    message.extraEips = []
+    if (object.evmDenom !== undefined && object.evmDenom !== null) {
+      message.evmDenom = String(object.evmDenom)
     } else {
-      message.evm_denom = "";
+      message.evmDenom = ''
     }
-    if (object.enable_create !== undefined && object.enable_create !== null) {
-      message.enable_create = Boolean(object.enable_create);
+    if (object.enableCreate !== undefined && object.enableCreate !== null) {
+      message.enableCreate = Boolean(object.enableCreate)
     } else {
-      message.enable_create = false;
+      message.enableCreate = false
     }
-    if (object.enable_call !== undefined && object.enable_call !== null) {
-      message.enable_call = Boolean(object.enable_call);
+    if (object.enableCall !== undefined && object.enableCall !== null) {
+      message.enableCall = Boolean(object.enableCall)
     } else {
-      message.enable_call = false;
+      message.enableCall = false
     }
-    if (object.extra_eips !== undefined && object.extra_eips !== null) {
-      for (const e of object.extra_eips) {
-        message.extra_eips.push(Number(e));
+    if (object.extraEips !== undefined && object.extraEips !== null) {
+      for (const e of object.extraEips) {
+        message.extraEips.push(Number(e))
       }
     }
-    if (object.chain_config !== undefined && object.chain_config !== null) {
-      message.chain_config = ChainConfig.fromJSON(object.chain_config);
+    if (object.chainConfig !== undefined && object.chainConfig !== null) {
+      message.chainConfig = ChainConfig.fromJSON(object.chainConfig)
     } else {
-      message.chain_config = undefined;
+      message.chainConfig = undefined
     }
-    return message;
+    return message
   },
 
   toJSON(message: Params): unknown {
-    const obj: any = {};
-    message.evm_denom !== undefined && (obj.evm_denom = message.evm_denom);
-    message.enable_create !== undefined &&
-      (obj.enable_create = message.enable_create);
-    message.enable_call !== undefined &&
-      (obj.enable_call = message.enable_call);
-    if (message.extra_eips) {
-      obj.extra_eips = message.extra_eips.map((e) => e);
+    const obj: any = {}
+    message.evmDenom !== undefined && (obj.evmDenom = message.evmDenom)
+    message.enableCreate !== undefined && (obj.enableCreate = message.enableCreate)
+    message.enableCall !== undefined && (obj.enableCall = message.enableCall)
+    if (message.extraEips) {
+      obj.extraEips = message.extraEips.map((e) => e)
     } else {
-      obj.extra_eips = [];
+      obj.extraEips = []
     }
-    message.chain_config !== undefined &&
-      (obj.chain_config = message.chain_config
-        ? ChainConfig.toJSON(message.chain_config)
-        : undefined);
-    return obj;
+    message.chainConfig !== undefined &&
+      (obj.chainConfig = message.chainConfig ? ChainConfig.toJSON(message.chainConfig) : undefined)
+    return obj
   },
 
   fromPartial(object: DeepPartial<Params>): Params {
-    const message = { ...baseParams } as Params;
-    message.extra_eips = [];
-    if (object.evm_denom !== undefined && object.evm_denom !== null) {
-      message.evm_denom = object.evm_denom;
+    const message = { ...baseParams } as Params
+    message.extraEips = []
+    if (object.evmDenom !== undefined && object.evmDenom !== null) {
+      message.evmDenom = object.evmDenom
     } else {
-      message.evm_denom = "";
+      message.evmDenom = ''
     }
-    if (object.enable_create !== undefined && object.enable_create !== null) {
-      message.enable_create = object.enable_create;
+    if (object.enableCreate !== undefined && object.enableCreate !== null) {
+      message.enableCreate = object.enableCreate
     } else {
-      message.enable_create = false;
+      message.enableCreate = false
     }
-    if (object.enable_call !== undefined && object.enable_call !== null) {
-      message.enable_call = object.enable_call;
+    if (object.enableCall !== undefined && object.enableCall !== null) {
+      message.enableCall = object.enableCall
     } else {
-      message.enable_call = false;
+      message.enableCall = false
     }
-    if (object.extra_eips !== undefined && object.extra_eips !== null) {
-      for (const e of object.extra_eips) {
-        message.extra_eips.push(e);
+    if (object.extraEips !== undefined && object.extraEips !== null) {
+      for (const e of object.extraEips) {
+        message.extraEips.push(e)
       }
     }
-    if (object.chain_config !== undefined && object.chain_config !== null) {
-      message.chain_config = ChainConfig.fromPartial(object.chain_config);
+    if (object.chainConfig !== undefined && object.chainConfig !== null) {
+      message.chainConfig = ChainConfig.fromPartial(object.chainConfig)
     } else {
-      message.chain_config = undefined;
+      message.chainConfig = undefined
     }
-    return message;
-  },
-};
+    return message
+  }
+}
 
 const baseChainConfig: object = {
-  homestead_block: "",
-  dao_fork_block: "",
-  dao_fork_support: false,
-  eip150_block: "",
-  eip150_hash: "",
-  eip155_block: "",
-  eip158_block: "",
-  byzantium_block: "",
-  constantinople_block: "",
-  petersburg_block: "",
-  istanbul_block: "",
-  muir_glacier_block: "",
-  berlin_block: "",
-  london_block: "",
-  arrow_glacier_block: "",
-  merge_fork_block: "",
-};
+  homesteadBlock: '',
+  daoForkBlock: '',
+  daoForkSupport: false,
+  eip150Block: '',
+  eip150Hash: '',
+  eip155Block: '',
+  eip158Block: '',
+  byzantiumBlock: '',
+  constantinopleBlock: '',
+  petersburgBlock: '',
+  istanbulBlock: '',
+  muirGlacierBlock: '',
+  berlinBlock: '',
+  londonBlock: '',
+  arrowGlacierBlock: '',
+  mergeForkBlock: ''
+}
 
 export const ChainConfig = {
   encode(message: ChainConfig, writer: Writer = Writer.create()): Writer {
-    if (message.homestead_block !== "") {
-      writer.uint32(10).string(message.homestead_block);
+    if (message.homesteadBlock !== '') {
+      writer.uint32(10).string(message.homesteadBlock)
     }
-    if (message.dao_fork_block !== "") {
-      writer.uint32(18).string(message.dao_fork_block);
+    if (message.daoForkBlock !== '') {
+      writer.uint32(18).string(message.daoForkBlock)
     }
-    if (message.dao_fork_support === true) {
-      writer.uint32(24).bool(message.dao_fork_support);
+    if (message.daoForkSupport === true) {
+      writer.uint32(24).bool(message.daoForkSupport)
     }
-    if (message.eip150_block !== "") {
-      writer.uint32(34).string(message.eip150_block);
+    if (message.eip150Block !== '') {
+      writer.uint32(34).string(message.eip150Block)
     }
-    if (message.eip150_hash !== "") {
-      writer.uint32(42).string(message.eip150_hash);
+    if (message.eip150Hash !== '') {
+      writer.uint32(42).string(message.eip150Hash)
     }
-    if (message.eip155_block !== "") {
-      writer.uint32(50).string(message.eip155_block);
+    if (message.eip155Block !== '') {
+      writer.uint32(50).string(message.eip155Block)
     }
-    if (message.eip158_block !== "") {
-      writer.uint32(58).string(message.eip158_block);
+    if (message.eip158Block !== '') {
+      writer.uint32(58).string(message.eip158Block)
     }
-    if (message.byzantium_block !== "") {
-      writer.uint32(66).string(message.byzantium_block);
+    if (message.byzantiumBlock !== '') {
+      writer.uint32(66).string(message.byzantiumBlock)
     }
-    if (message.constantinople_block !== "") {
-      writer.uint32(74).string(message.constantinople_block);
+    if (message.constantinopleBlock !== '') {
+      writer.uint32(74).string(message.constantinopleBlock)
     }
-    if (message.petersburg_block !== "") {
-      writer.uint32(82).string(message.petersburg_block);
+    if (message.petersburgBlock !== '') {
+      writer.uint32(82).string(message.petersburgBlock)
     }
-    if (message.istanbul_block !== "") {
-      writer.uint32(90).string(message.istanbul_block);
+    if (message.istanbulBlock !== '') {
+      writer.uint32(90).string(message.istanbulBlock)
     }
-    if (message.muir_glacier_block !== "") {
-      writer.uint32(98).string(message.muir_glacier_block);
+    if (message.muirGlacierBlock !== '') {
+      writer.uint32(98).string(message.muirGlacierBlock)
     }
-    if (message.berlin_block !== "") {
-      writer.uint32(106).string(message.berlin_block);
+    if (message.berlinBlock !== '') {
+      writer.uint32(106).string(message.berlinBlock)
     }
-    if (message.london_block !== "") {
-      writer.uint32(138).string(message.london_block);
+    if (message.londonBlock !== '') {
+      writer.uint32(138).string(message.londonBlock)
     }
-    if (message.arrow_glacier_block !== "") {
-      writer.uint32(146).string(message.arrow_glacier_block);
+    if (message.arrowGlacierBlock !== '') {
+      writer.uint32(146).string(message.arrowGlacierBlock)
     }
-    if (message.merge_fork_block !== "") {
-      writer.uint32(154).string(message.merge_fork_block);
+    if (message.mergeForkBlock !== '') {
+      writer.uint32(154).string(message.mergeForkBlock)
     }
-    return writer;
+    return writer
   },
 
   decode(input: Reader | Uint8Array, length?: number): ChainConfig {
-    const reader = input instanceof Uint8Array ? new Reader(input) : input;
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = { ...baseChainConfig } as ChainConfig;
+    const reader = input instanceof Uint8Array ? new Reader(input) : input
+    let end = length === undefined ? reader.len : reader.pos + length
+    const message = { ...baseChainConfig } as ChainConfig
     while (reader.pos < end) {
-      const tag = reader.uint32();
+      const tag = reader.uint32()
       switch (tag >>> 3) {
         case 1:
-          message.homestead_block = reader.string();
-          break;
+          message.homesteadBlock = reader.string()
+          break
         case 2:
-          message.dao_fork_block = reader.string();
-          break;
+          message.daoForkBlock = reader.string()
+          break
         case 3:
-          message.dao_fork_support = reader.bool();
-          break;
+          message.daoForkSupport = reader.bool()
+          break
         case 4:
-          message.eip150_block = reader.string();
-          break;
+          message.eip150Block = reader.string()
+          break
         case 5:
-          message.eip150_hash = reader.string();
-          break;
+          message.eip150Hash = reader.string()
+          break
         case 6:
-          message.eip155_block = reader.string();
-          break;
+          message.eip155Block = reader.string()
+          break
         case 7:
-          message.eip158_block = reader.string();
-          break;
+          message.eip158Block = reader.string()
+          break
         case 8:
-          message.byzantium_block = reader.string();
-          break;
+          message.byzantiumBlock = reader.string()
+          break
         case 9:
-          message.constantinople_block = reader.string();
-          break;
+          message.constantinopleBlock = reader.string()
+          break
         case 10:
-          message.petersburg_block = reader.string();
-          break;
+          message.petersburgBlock = reader.string()
+          break
         case 11:
-          message.istanbul_block = reader.string();
-          break;
+          message.istanbulBlock = reader.string()
+          break
         case 12:
-          message.muir_glacier_block = reader.string();
-          break;
+          message.muirGlacierBlock = reader.string()
+          break
         case 13:
-          message.berlin_block = reader.string();
-          break;
+          message.berlinBlock = reader.string()
+          break
         case 17:
-          message.london_block = reader.string();
-          break;
+          message.londonBlock = reader.string()
+          break
         case 18:
-          message.arrow_glacier_block = reader.string();
-          break;
+          message.arrowGlacierBlock = reader.string()
+          break
         case 19:
-          message.merge_fork_block = reader.string();
-          break;
+          message.mergeForkBlock = reader.string()
+          break
         default:
-          reader.skipType(tag & 7);
-          break;
+          reader.skipType(tag & 7)
+          break
       }
     }
-    return message;
+    return message
   },
 
   fromJSON(object: any): ChainConfig {
-    const message = { ...baseChainConfig } as ChainConfig;
-    if (
-      object.homestead_block !== undefined &&
-      object.homestead_block !== null
-    ) {
-      message.homestead_block = String(object.homestead_block);
+    const message = { ...baseChainConfig } as ChainConfig
+    if (object.homesteadBlock !== undefined && object.homesteadBlock !== null) {
+      message.homesteadBlock = String(object.homesteadBlock)
     } else {
-      message.homestead_block = "";
+      message.homesteadBlock = ''
     }
-    if (object.dao_fork_block !== undefined && object.dao_fork_block !== null) {
-      message.dao_fork_block = String(object.dao_fork_block);
+    if (object.daoForkBlock !== undefined && object.daoForkBlock !== null) {
+      message.daoForkBlock = String(object.daoForkBlock)
     } else {
-      message.dao_fork_block = "";
+      message.daoForkBlock = ''
     }
-    if (
-      object.dao_fork_support !== undefined &&
-      object.dao_fork_support !== null
-    ) {
-      message.dao_fork_support = Boolean(object.dao_fork_support);
+    if (object.daoForkSupport !== undefined && object.daoForkSupport !== null) {
+      message.daoForkSupport = Boolean(object.daoForkSupport)
     } else {
-      message.dao_fork_support = false;
+      message.daoForkSupport = false
     }
-    if (object.eip150_block !== undefined && object.eip150_block !== null) {
-      message.eip150_block = String(object.eip150_block);
+    if (object.eip150Block !== undefined && object.eip150Block !== null) {
+      message.eip150Block = String(object.eip150Block)
     } else {
-      message.eip150_block = "";
+      message.eip150Block = ''
     }
-    if (object.eip150_hash !== undefined && object.eip150_hash !== null) {
-      message.eip150_hash = String(object.eip150_hash);
+    if (object.eip150Hash !== undefined && object.eip150Hash !== null) {
+      message.eip150Hash = String(object.eip150Hash)
     } else {
-      message.eip150_hash = "";
+      message.eip150Hash = ''
     }
-    if (object.eip155_block !== undefined && object.eip155_block !== null) {
-      message.eip155_block = String(object.eip155_block);
+    if (object.eip155Block !== undefined && object.eip155Block !== null) {
+      message.eip155Block = String(object.eip155Block)
     } else {
-      message.eip155_block = "";
+      message.eip155Block = ''
     }
-    if (object.eip158_block !== undefined && object.eip158_block !== null) {
-      message.eip158_block = String(object.eip158_block);
+    if (object.eip158Block !== undefined && object.eip158Block !== null) {
+      message.eip158Block = String(object.eip158Block)
     } else {
-      message.eip158_block = "";
+      message.eip158Block = ''
     }
-    if (
-      object.byzantium_block !== undefined &&
-      object.byzantium_block !== null
-    ) {
-      message.byzantium_block = String(object.byzantium_block);
+    if (object.byzantiumBlock !== undefined && object.byzantiumBlock !== null) {
+      message.byzantiumBlock = String(object.byzantiumBlock)
     } else {
-      message.byzantium_block = "";
+      message.byzantiumBlock = ''
     }
-    if (
-      object.constantinople_block !== undefined &&
-      object.constantinople_block !== null
-    ) {
-      message.constantinople_block = String(object.constantinople_block);
+    if (object.constantinopleBlock !== undefined && object.constantinopleBlock !== null) {
+      message.constantinopleBlock = String(object.constantinopleBlock)
     } else {
-      message.constantinople_block = "";
+      message.constantinopleBlock = ''
     }
-    if (
-      object.petersburg_block !== undefined &&
-      object.petersburg_block !== null
-    ) {
-      message.petersburg_block = String(object.petersburg_block);
+    if (object.petersburgBlock !== undefined && object.petersburgBlock !== null) {
+      message.petersburgBlock = String(object.petersburgBlock)
     } else {
-      message.petersburg_block = "";
+      message.petersburgBlock = ''
     }
-    if (object.istanbul_block !== undefined && object.istanbul_block !== null) {
-      message.istanbul_block = String(object.istanbul_block);
+    if (object.istanbulBlock !== undefined && object.istanbulBlock !== null) {
+      message.istanbulBlock = String(object.istanbulBlock)
     } else {
-      message.istanbul_block = "";
+      message.istanbulBlock = ''
     }
-    if (
-      object.muir_glacier_block !== undefined &&
-      object.muir_glacier_block !== null
-    ) {
-      message.muir_glacier_block = String(object.muir_glacier_block);
+    if (object.muirGlacierBlock !== undefined && object.muirGlacierBlock !== null) {
+      message.muirGlacierBlock = String(object.muirGlacierBlock)
     } else {
-      message.muir_glacier_block = "";
+      message.muirGlacierBlock = ''
     }
-    if (object.berlin_block !== undefined && object.berlin_block !== null) {
-      message.berlin_block = String(object.berlin_block);
+    if (object.berlinBlock !== undefined && object.berlinBlock !== null) {
+      message.berlinBlock = String(object.berlinBlock)
     } else {
-      message.berlin_block = "";
+      message.berlinBlock = ''
     }
-    if (object.london_block !== undefined && object.london_block !== null) {
-      message.london_block = String(object.london_block);
+    if (object.londonBlock !== undefined && object.londonBlock !== null) {
+      message.londonBlock = String(object.londonBlock)
     } else {
-      message.london_block = "";
+      message.londonBlock = ''
     }
-    if (
-      object.arrow_glacier_block !== undefined &&
-      object.arrow_glacier_block !== null
-    ) {
-      message.arrow_glacier_block = String(object.arrow_glacier_block);
+    if (object.arrowGlacierBlock !== undefined && object.arrowGlacierBlock !== null) {
+      message.arrowGlacierBlock = String(object.arrowGlacierBlock)
     } else {
-      message.arrow_glacier_block = "";
+      message.arrowGlacierBlock = ''
     }
-    if (
-      object.merge_fork_block !== undefined &&
-      object.merge_fork_block !== null
-    ) {
-      message.merge_fork_block = String(object.merge_fork_block);
+    if (object.mergeForkBlock !== undefined && object.mergeForkBlock !== null) {
+      message.mergeForkBlock = String(object.mergeForkBlock)
     } else {
-      message.merge_fork_block = "";
+      message.mergeForkBlock = ''
     }
-    return message;
+    return message
   },
 
   toJSON(message: ChainConfig): unknown {
-    const obj: any = {};
-    message.homestead_block !== undefined &&
-      (obj.homestead_block = message.homestead_block);
-    message.dao_fork_block !== undefined &&
-      (obj.dao_fork_block = message.dao_fork_block);
-    message.dao_fork_support !== undefined &&
-      (obj.dao_fork_support = message.dao_fork_support);
-    message.eip150_block !== undefined &&
-      (obj.eip150_block = message.eip150_block);
-    message.eip150_hash !== undefined &&
-      (obj.eip150_hash = message.eip150_hash);
-    message.eip155_block !== undefined &&
-      (obj.eip155_block = message.eip155_block);
-    message.eip158_block !== undefined &&
-      (obj.eip158_block = message.eip158_block);
-    message.byzantium_block !== undefined &&
-      (obj.byzantium_block = message.byzantium_block);
-    message.constantinople_block !== undefined &&
-      (obj.constantinople_block = message.constantinople_block);
-    message.petersburg_block !== undefined &&
-      (obj.petersburg_block = message.petersburg_block);
-    message.istanbul_block !== undefined &&
-      (obj.istanbul_block = message.istanbul_block);
-    message.muir_glacier_block !== undefined &&
-      (obj.muir_glacier_block = message.muir_glacier_block);
-    message.berlin_block !== undefined &&
-      (obj.berlin_block = message.berlin_block);
-    message.london_block !== undefined &&
-      (obj.london_block = message.london_block);
-    message.arrow_glacier_block !== undefined &&
-      (obj.arrow_glacier_block = message.arrow_glacier_block);
-    message.merge_fork_block !== undefined &&
-      (obj.merge_fork_block = message.merge_fork_block);
-    return obj;
+    const obj: any = {}
+    message.homesteadBlock !== undefined && (obj.homesteadBlock = message.homesteadBlock)
+    message.daoForkBlock !== undefined && (obj.daoForkBlock = message.daoForkBlock)
+    message.daoForkSupport !== undefined && (obj.daoForkSupport = message.daoForkSupport)
+    message.eip150Block !== undefined && (obj.eip150Block = message.eip150Block)
+    message.eip150Hash !== undefined && (obj.eip150Hash = message.eip150Hash)
+    message.eip155Block !== undefined && (obj.eip155Block = message.eip155Block)
+    message.eip158Block !== undefined && (obj.eip158Block = message.eip158Block)
+    message.byzantiumBlock !== undefined && (obj.byzantiumBlock = message.byzantiumBlock)
+    message.constantinopleBlock !== undefined &&
+      (obj.constantinopleBlock = message.constantinopleBlock)
+    message.petersburgBlock !== undefined && (obj.petersburgBlock = message.petersburgBlock)
+    message.istanbulBlock !== undefined && (obj.istanbulBlock = message.istanbulBlock)
+    message.muirGlacierBlock !== undefined && (obj.muirGlacierBlock = message.muirGlacierBlock)
+    message.berlinBlock !== undefined && (obj.berlinBlock = message.berlinBlock)
+    message.londonBlock !== undefined && (obj.londonBlock = message.londonBlock)
+    message.arrowGlacierBlock !== undefined && (obj.arrowGlacierBlock = message.arrowGlacierBlock)
+    message.mergeForkBlock !== undefined && (obj.mergeForkBlock = message.mergeForkBlock)
+    return obj
   },
 
   fromPartial(object: DeepPartial<ChainConfig>): ChainConfig {
-    const message = { ...baseChainConfig } as ChainConfig;
-    if (
-      object.homestead_block !== undefined &&
-      object.homestead_block !== null
-    ) {
-      message.homestead_block = object.homestead_block;
+    const message = { ...baseChainConfig } as ChainConfig
+    if (object.homesteadBlock !== undefined && object.homesteadBlock !== null) {
+      message.homesteadBlock = object.homesteadBlock
     } else {
-      message.homestead_block = "";
+      message.homesteadBlock = ''
     }
-    if (object.dao_fork_block !== undefined && object.dao_fork_block !== null) {
-      message.dao_fork_block = object.dao_fork_block;
+    if (object.daoForkBlock !== undefined && object.daoForkBlock !== null) {
+      message.daoForkBlock = object.daoForkBlock
     } else {
-      message.dao_fork_block = "";
+      message.daoForkBlock = ''
     }
-    if (
-      object.dao_fork_support !== undefined &&
-      object.dao_fork_support !== null
-    ) {
-      message.dao_fork_support = object.dao_fork_support;
+    if (object.daoForkSupport !== undefined && object.daoForkSupport !== null) {
+      message.daoForkSupport = object.daoForkSupport
     } else {
-      message.dao_fork_support = false;
+      message.daoForkSupport = false
     }
-    if (object.eip150_block !== undefined && object.eip150_block !== null) {
-      message.eip150_block = object.eip150_block;
+    if (object.eip150Block !== undefined && object.eip150Block !== null) {
+      message.eip150Block = object.eip150Block
     } else {
-      message.eip150_block = "";
+      message.eip150Block = ''
     }
-    if (object.eip150_hash !== undefined && object.eip150_hash !== null) {
-      message.eip150_hash = object.eip150_hash;
+    if (object.eip150Hash !== undefined && object.eip150Hash !== null) {
+      message.eip150Hash = object.eip150Hash
     } else {
-      message.eip150_hash = "";
+      message.eip150Hash = ''
     }
-    if (object.eip155_block !== undefined && object.eip155_block !== null) {
-      message.eip155_block = object.eip155_block;
+    if (object.eip155Block !== undefined && object.eip155Block !== null) {
+      message.eip155Block = object.eip155Block
     } else {
-      message.eip155_block = "";
+      message.eip155Block = ''
     }
-    if (object.eip158_block !== undefined && object.eip158_block !== null) {
-      message.eip158_block = object.eip158_block;
+    if (object.eip158Block !== undefined && object.eip158Block !== null) {
+      message.eip158Block = object.eip158Block
     } else {
-      message.eip158_block = "";
+      message.eip158Block = ''
     }
-    if (
-      object.byzantium_block !== undefined &&
-      object.byzantium_block !== null
-    ) {
-      message.byzantium_block = object.byzantium_block;
+    if (object.byzantiumBlock !== undefined && object.byzantiumBlock !== null) {
+      message.byzantiumBlock = object.byzantiumBlock
     } else {
-      message.byzantium_block = "";
+      message.byzantiumBlock = ''
     }
-    if (
-      object.constantinople_block !== undefined &&
-      object.constantinople_block !== null
-    ) {
-      message.constantinople_block = object.constantinople_block;
+    if (object.constantinopleBlock !== undefined && object.constantinopleBlock !== null) {
+      message.constantinopleBlock = object.constantinopleBlock
     } else {
-      message.constantinople_block = "";
+      message.constantinopleBlock = ''
     }
-    if (
-      object.petersburg_block !== undefined &&
-      object.petersburg_block !== null
-    ) {
-      message.petersburg_block = object.petersburg_block;
+    if (object.petersburgBlock !== undefined && object.petersburgBlock !== null) {
+      message.petersburgBlock = object.petersburgBlock
     } else {
-      message.petersburg_block = "";
+      message.petersburgBlock = ''
     }
-    if (object.istanbul_block !== undefined && object.istanbul_block !== null) {
-      message.istanbul_block = object.istanbul_block;
+    if (object.istanbulBlock !== undefined && object.istanbulBlock !== null) {
+      message.istanbulBlock = object.istanbulBlock
     } else {
-      message.istanbul_block = "";
+      message.istanbulBlock = ''
     }
-    if (
-      object.muir_glacier_block !== undefined &&
-      object.muir_glacier_block !== null
-    ) {
-      message.muir_glacier_block = object.muir_glacier_block;
+    if (object.muirGlacierBlock !== undefined && object.muirGlacierBlock !== null) {
+      message.muirGlacierBlock = object.muirGlacierBlock
     } else {
-      message.muir_glacier_block = "";
+      message.muirGlacierBlock = ''
     }
-    if (object.berlin_block !== undefined && object.berlin_block !== null) {
-      message.berlin_block = object.berlin_block;
+    if (object.berlinBlock !== undefined && object.berlinBlock !== null) {
+      message.berlinBlock = object.berlinBlock
     } else {
-      message.berlin_block = "";
+      message.berlinBlock = ''
     }
-    if (object.london_block !== undefined && object.london_block !== null) {
-      message.london_block = object.london_block;
+    if (object.londonBlock !== undefined && object.londonBlock !== null) {
+      message.londonBlock = object.londonBlock
     } else {
-      message.london_block = "";
+      message.londonBlock = ''
     }
-    if (
-      object.arrow_glacier_block !== undefined &&
-      object.arrow_glacier_block !== null
-    ) {
-      message.arrow_glacier_block = object.arrow_glacier_block;
+    if (object.arrowGlacierBlock !== undefined && object.arrowGlacierBlock !== null) {
+      message.arrowGlacierBlock = object.arrowGlacierBlock
     } else {
-      message.arrow_glacier_block = "";
+      message.arrowGlacierBlock = ''
     }
-    if (
-      object.merge_fork_block !== undefined &&
-      object.merge_fork_block !== null
-    ) {
-      message.merge_fork_block = object.merge_fork_block;
+    if (object.mergeForkBlock !== undefined && object.mergeForkBlock !== null) {
+      message.mergeForkBlock = object.mergeForkBlock
     } else {
-      message.merge_fork_block = "";
+      message.mergeForkBlock = ''
     }
-    return message;
-  },
-};
+    return message
+  }
+}
 
-const baseState: object = { key: "", value: "" };
+const baseState: object = { key: '', value: '' }
 
 export const State = {
   encode(message: State, writer: Writer = Writer.create()): Writer {
-    if (message.key !== "") {
-      writer.uint32(10).string(message.key);
+    if (message.key !== '') {
+      writer.uint32(10).string(message.key)
     }
-    if (message.value !== "") {
-      writer.uint32(18).string(message.value);
+    if (message.value !== '') {
+      writer.uint32(18).string(message.value)
     }
-    return writer;
+    return writer
   },
 
   decode(input: Reader | Uint8Array, length?: number): State {
-    const reader = input instanceof Uint8Array ? new Reader(input) : input;
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = { ...baseState } as State;
+    const reader = input instanceof Uint8Array ? new Reader(input) : input
+    let end = length === undefined ? reader.len : reader.pos + length
+    const message = { ...baseState } as State
     while (reader.pos < end) {
-      const tag = reader.uint32();
+      const tag = reader.uint32()
       switch (tag >>> 3) {
         case 1:
-          message.key = reader.string();
-          break;
+          message.key = reader.string()
+          break
         case 2:
-          message.value = reader.string();
-          break;
+          message.value = reader.string()
+          break
         default:
-          reader.skipType(tag & 7);
-          break;
+          reader.skipType(tag & 7)
+          break
       }
     }
-    return message;
+    return message
   },
 
   fromJSON(object: any): State {
-    const message = { ...baseState } as State;
+    const message = { ...baseState } as State
     if (object.key !== undefined && object.key !== null) {
-      message.key = String(object.key);
+      message.key = String(object.key)
     } else {
-      message.key = "";
+      message.key = ''
     }
     if (object.value !== undefined && object.value !== null) {
-      message.value = String(object.value);
+      message.value = String(object.value)
     } else {
-      message.value = "";
+      message.value = ''
     }
-    return message;
+    return message
   },
 
   toJSON(message: State): unknown {
-    const obj: any = {};
-    message.key !== undefined && (obj.key = message.key);
-    message.value !== undefined && (obj.value = message.value);
-    return obj;
+    const obj: any = {}
+    message.key !== undefined && (obj.key = message.key)
+    message.value !== undefined && (obj.value = message.value)
+    return obj
   },
 
   fromPartial(object: DeepPartial<State>): State {
-    const message = { ...baseState } as State;
+    const message = { ...baseState } as State
     if (object.key !== undefined && object.key !== null) {
-      message.key = object.key;
+      message.key = object.key
     } else {
-      message.key = "";
+      message.key = ''
     }
     if (object.value !== undefined && object.value !== null) {
-      message.value = object.value;
+      message.value = object.value
     } else {
-      message.value = "";
+      message.value = ''
     }
-    return message;
-  },
-};
+    return message
+  }
+}
 
-const baseTransactionLogs: object = { hash: "" };
+const baseTransactionLogs: object = { hash: '' }
 
 export const TransactionLogs = {
   encode(message: TransactionLogs, writer: Writer = Writer.create()): Writer {
-    if (message.hash !== "") {
-      writer.uint32(10).string(message.hash);
+    if (message.hash !== '') {
+      writer.uint32(10).string(message.hash)
     }
     for (const v of message.logs) {
-      Log.encode(v!, writer.uint32(18).fork()).ldelim();
+      Log.encode(v!, writer.uint32(18).fork()).ldelim()
     }
-    return writer;
+    return writer
   },
 
   decode(input: Reader | Uint8Array, length?: number): TransactionLogs {
-    const reader = input instanceof Uint8Array ? new Reader(input) : input;
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = { ...baseTransactionLogs } as TransactionLogs;
-    message.logs = [];
+    const reader = input instanceof Uint8Array ? new Reader(input) : input
+    let end = length === undefined ? reader.len : reader.pos + length
+    const message = { ...baseTransactionLogs } as TransactionLogs
+    message.logs = []
     while (reader.pos < end) {
-      const tag = reader.uint32();
+      const tag = reader.uint32()
       switch (tag >>> 3) {
         case 1:
-          message.hash = reader.string();
-          break;
+          message.hash = reader.string()
+          break
         case 2:
-          message.logs.push(Log.decode(reader, reader.uint32()));
-          break;
+          message.logs.push(Log.decode(reader, reader.uint32()))
+          break
         default:
-          reader.skipType(tag & 7);
-          break;
+          reader.skipType(tag & 7)
+          break
       }
     }
-    return message;
+    return message
   },
 
   fromJSON(object: any): TransactionLogs {
-    const message = { ...baseTransactionLogs } as TransactionLogs;
-    message.logs = [];
+    const message = { ...baseTransactionLogs } as TransactionLogs
+    message.logs = []
     if (object.hash !== undefined && object.hash !== null) {
-      message.hash = String(object.hash);
+      message.hash = String(object.hash)
     } else {
-      message.hash = "";
+      message.hash = ''
     }
     if (object.logs !== undefined && object.logs !== null) {
       for (const e of object.logs) {
-        message.logs.push(Log.fromJSON(e));
+        message.logs.push(Log.fromJSON(e))
       }
     }
-    return message;
+    return message
   },
 
   toJSON(message: TransactionLogs): unknown {
-    const obj: any = {};
-    message.hash !== undefined && (obj.hash = message.hash);
+    const obj: any = {}
+    message.hash !== undefined && (obj.hash = message.hash)
     if (message.logs) {
-      obj.logs = message.logs.map((e) => (e ? Log.toJSON(e) : undefined));
+      obj.logs = message.logs.map((e) => (e ? Log.toJSON(e) : undefined))
     } else {
-      obj.logs = [];
+      obj.logs = []
     }
-    return obj;
+    return obj
   },
 
   fromPartial(object: DeepPartial<TransactionLogs>): TransactionLogs {
-    const message = { ...baseTransactionLogs } as TransactionLogs;
-    message.logs = [];
+    const message = { ...baseTransactionLogs } as TransactionLogs
+    message.logs = []
     if (object.hash !== undefined && object.hash !== null) {
-      message.hash = object.hash;
+      message.hash = object.hash
     } else {
-      message.hash = "";
+      message.hash = ''
     }
     if (object.logs !== undefined && object.logs !== null) {
       for (const e of object.logs) {
-        message.logs.push(Log.fromPartial(e));
+        message.logs.push(Log.fromPartial(e))
       }
     }
-    return message;
-  },
-};
+    return message
+  }
+}
 
 const baseLog: object = {
-  address: "",
-  topics: "",
-  block_number: 0,
-  tx_hash: "",
-  tx_index: 0,
-  block_hash: "",
+  address: '',
+  topics: '',
+  blockNumber: 0,
+  txHash: '',
+  txIndex: 0,
+  blockHash: '',
   index: 0,
-  removed: false,
-};
+  removed: false
+}
 
 export const Log = {
   encode(message: Log, writer: Writer = Writer.create()): Writer {
-    if (message.address !== "") {
-      writer.uint32(10).string(message.address);
+    if (message.address !== '') {
+      writer.uint32(10).string(message.address)
     }
     for (const v of message.topics) {
-      writer.uint32(18).string(v!);
+      writer.uint32(18).string(v!)
     }
     if (message.data.length !== 0) {
-      writer.uint32(26).bytes(message.data);
+      writer.uint32(26).bytes(message.data)
     }
-    if (message.block_number !== 0) {
-      writer.uint32(32).uint64(message.block_number);
+    if (message.blockNumber !== 0) {
+      writer.uint32(32).uint64(message.blockNumber)
     }
-    if (message.tx_hash !== "") {
-      writer.uint32(42).string(message.tx_hash);
+    if (message.txHash !== '') {
+      writer.uint32(42).string(message.txHash)
     }
-    if (message.tx_index !== 0) {
-      writer.uint32(48).uint64(message.tx_index);
+    if (message.txIndex !== 0) {
+      writer.uint32(48).uint64(message.txIndex)
     }
-    if (message.block_hash !== "") {
-      writer.uint32(58).string(message.block_hash);
+    if (message.blockHash !== '') {
+      writer.uint32(58).string(message.blockHash)
     }
     if (message.index !== 0) {
-      writer.uint32(64).uint64(message.index);
+      writer.uint32(64).uint64(message.index)
     }
     if (message.removed === true) {
-      writer.uint32(72).bool(message.removed);
+      writer.uint32(72).bool(message.removed)
     }
-    return writer;
+    return writer
   },
 
   decode(input: Reader | Uint8Array, length?: number): Log {
-    const reader = input instanceof Uint8Array ? new Reader(input) : input;
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = { ...baseLog } as Log;
-    message.topics = [];
+    const reader = input instanceof Uint8Array ? new Reader(input) : input
+    let end = length === undefined ? reader.len : reader.pos + length
+    const message = { ...baseLog } as Log
+    message.topics = []
     while (reader.pos < end) {
-      const tag = reader.uint32();
+      const tag = reader.uint32()
       switch (tag >>> 3) {
         case 1:
-          message.address = reader.string();
-          break;
+          message.address = reader.string()
+          break
         case 2:
-          message.topics.push(reader.string());
-          break;
+          message.topics.push(reader.string())
+          break
         case 3:
-          message.data = reader.bytes();
-          break;
+          message.data = reader.bytes()
+          break
         case 4:
-          message.block_number = longToNumber(reader.uint64() as Long);
-          break;
+          message.blockNumber = longToNumber(reader.uint64() as Long)
+          break
         case 5:
-          message.tx_hash = reader.string();
-          break;
+          message.txHash = reader.string()
+          break
         case 6:
-          message.tx_index = longToNumber(reader.uint64() as Long);
-          break;
+          message.txIndex = longToNumber(reader.uint64() as Long)
+          break
         case 7:
-          message.block_hash = reader.string();
-          break;
+          message.blockHash = reader.string()
+          break
         case 8:
-          message.index = longToNumber(reader.uint64() as Long);
-          break;
+          message.index = longToNumber(reader.uint64() as Long)
+          break
         case 9:
-          message.removed = reader.bool();
-          break;
+          message.removed = reader.bool()
+          break
         default:
-          reader.skipType(tag & 7);
-          break;
+          reader.skipType(tag & 7)
+          break
       }
     }
-    return message;
+    return message
   },
 
   fromJSON(object: any): Log {
-    const message = { ...baseLog } as Log;
-    message.topics = [];
+    const message = { ...baseLog } as Log
+    message.topics = []
     if (object.address !== undefined && object.address !== null) {
-      message.address = String(object.address);
+      message.address = String(object.address)
     } else {
-      message.address = "";
+      message.address = ''
     }
     if (object.topics !== undefined && object.topics !== null) {
       for (const e of object.topics) {
-        message.topics.push(String(e));
+        message.topics.push(String(e))
       }
     }
     if (object.data !== undefined && object.data !== null) {
-      message.data = bytesFromBase64(object.data);
+      message.data = bytesFromBase64(object.data)
     }
-    if (object.block_number !== undefined && object.block_number !== null) {
-      message.block_number = Number(object.block_number);
+    if (object.blockNumber !== undefined && object.blockNumber !== null) {
+      message.blockNumber = Number(object.blockNumber)
     } else {
-      message.block_number = 0;
+      message.blockNumber = 0
     }
-    if (object.tx_hash !== undefined && object.tx_hash !== null) {
-      message.tx_hash = String(object.tx_hash);
+    if (object.txHash !== undefined && object.txHash !== null) {
+      message.txHash = String(object.txHash)
     } else {
-      message.tx_hash = "";
+      message.txHash = ''
     }
-    if (object.tx_index !== undefined && object.tx_index !== null) {
-      message.tx_index = Number(object.tx_index);
+    if (object.txIndex !== undefined && object.txIndex !== null) {
+      message.txIndex = Number(object.txIndex)
     } else {
-      message.tx_index = 0;
+      message.txIndex = 0
     }
-    if (object.block_hash !== undefined && object.block_hash !== null) {
-      message.block_hash = String(object.block_hash);
+    if (object.blockHash !== undefined && object.blockHash !== null) {
+      message.blockHash = String(object.blockHash)
     } else {
-      message.block_hash = "";
+      message.blockHash = ''
     }
     if (object.index !== undefined && object.index !== null) {
-      message.index = Number(object.index);
+      message.index = Number(object.index)
     } else {
-      message.index = 0;
+      message.index = 0
     }
     if (object.removed !== undefined && object.removed !== null) {
-      message.removed = Boolean(object.removed);
+      message.removed = Boolean(object.removed)
     } else {
-      message.removed = false;
+      message.removed = false
     }
-    return message;
+    return message
   },
 
   toJSON(message: Log): unknown {
-    const obj: any = {};
-    message.address !== undefined && (obj.address = message.address);
+    const obj: any = {}
+    message.address !== undefined && (obj.address = message.address)
     if (message.topics) {
-      obj.topics = message.topics.map((e) => e);
+      obj.topics = message.topics.map((e) => e)
     } else {
-      obj.topics = [];
+      obj.topics = []
     }
     message.data !== undefined &&
-      (obj.data = base64FromBytes(
-        message.data !== undefined ? message.data : new Uint8Array()
-      ));
-    message.block_number !== undefined &&
-      (obj.block_number = message.block_number);
-    message.tx_hash !== undefined && (obj.tx_hash = message.tx_hash);
-    message.tx_index !== undefined && (obj.tx_index = message.tx_index);
-    message.block_hash !== undefined && (obj.block_hash = message.block_hash);
-    message.index !== undefined && (obj.index = message.index);
-    message.removed !== undefined && (obj.removed = message.removed);
-    return obj;
+      (obj.data = base64FromBytes(message.data !== undefined ? message.data : new Uint8Array()))
+    message.blockNumber !== undefined && (obj.blockNumber = message.blockNumber)
+    message.txHash !== undefined && (obj.txHash = message.txHash)
+    message.txIndex !== undefined && (obj.txIndex = message.txIndex)
+    message.blockHash !== undefined && (obj.blockHash = message.blockHash)
+    message.index !== undefined && (obj.index = message.index)
+    message.removed !== undefined && (obj.removed = message.removed)
+    return obj
   },
 
   fromPartial(object: DeepPartial<Log>): Log {
-    const message = { ...baseLog } as Log;
-    message.topics = [];
+    const message = { ...baseLog } as Log
+    message.topics = []
     if (object.address !== undefined && object.address !== null) {
-      message.address = object.address;
+      message.address = object.address
     } else {
-      message.address = "";
+      message.address = ''
     }
     if (object.topics !== undefined && object.topics !== null) {
       for (const e of object.topics) {
-        message.topics.push(e);
+        message.topics.push(e)
       }
     }
     if (object.data !== undefined && object.data !== null) {
-      message.data = object.data;
+      message.data = object.data
     } else {
-      message.data = new Uint8Array();
+      message.data = new Uint8Array()
     }
-    if (object.block_number !== undefined && object.block_number !== null) {
-      message.block_number = object.block_number;
+    if (object.blockNumber !== undefined && object.blockNumber !== null) {
+      message.blockNumber = object.blockNumber
     } else {
-      message.block_number = 0;
+      message.blockNumber = 0
     }
-    if (object.tx_hash !== undefined && object.tx_hash !== null) {
-      message.tx_hash = object.tx_hash;
+    if (object.txHash !== undefined && object.txHash !== null) {
+      message.txHash = object.txHash
     } else {
-      message.tx_hash = "";
+      message.txHash = ''
     }
-    if (object.tx_index !== undefined && object.tx_index !== null) {
-      message.tx_index = object.tx_index;
+    if (object.txIndex !== undefined && object.txIndex !== null) {
+      message.txIndex = object.txIndex
     } else {
-      message.tx_index = 0;
+      message.txIndex = 0
     }
-    if (object.block_hash !== undefined && object.block_hash !== null) {
-      message.block_hash = object.block_hash;
+    if (object.blockHash !== undefined && object.blockHash !== null) {
+      message.blockHash = object.blockHash
     } else {
-      message.block_hash = "";
+      message.blockHash = ''
     }
     if (object.index !== undefined && object.index !== null) {
-      message.index = object.index;
+      message.index = object.index
     } else {
-      message.index = 0;
+      message.index = 0
     }
     if (object.removed !== undefined && object.removed !== null) {
-      message.removed = object.removed;
+      message.removed = object.removed
     } else {
-      message.removed = false;
+      message.removed = false
     }
-    return message;
-  },
-};
+    return message
+  }
+}
 
-const baseTxResult: object = {
-  contract_address: "",
-  reverted: false,
-  gas_used: 0,
-};
+const baseTxResult: object = { contractAddress: '', reverted: false, gasUsed: 0 }
 
 export const TxResult = {
   encode(message: TxResult, writer: Writer = Writer.create()): Writer {
-    if (message.contract_address !== "") {
-      writer.uint32(10).string(message.contract_address);
+    if (message.contractAddress !== '') {
+      writer.uint32(10).string(message.contractAddress)
     }
     if (message.bloom.length !== 0) {
-      writer.uint32(18).bytes(message.bloom);
+      writer.uint32(18).bytes(message.bloom)
     }
-    if (message.tx_logs !== undefined) {
-      TransactionLogs.encode(
-        message.tx_logs,
-        writer.uint32(26).fork()
-      ).ldelim();
+    if (message.txLogs !== undefined) {
+      TransactionLogs.encode(message.txLogs, writer.uint32(26).fork()).ldelim()
     }
     if (message.ret.length !== 0) {
-      writer.uint32(34).bytes(message.ret);
+      writer.uint32(34).bytes(message.ret)
     }
     if (message.reverted === true) {
-      writer.uint32(40).bool(message.reverted);
+      writer.uint32(40).bool(message.reverted)
     }
-    if (message.gas_used !== 0) {
-      writer.uint32(48).uint64(message.gas_used);
+    if (message.gasUsed !== 0) {
+      writer.uint32(48).uint64(message.gasUsed)
     }
-    return writer;
+    return writer
   },
 
   decode(input: Reader | Uint8Array, length?: number): TxResult {
-    const reader = input instanceof Uint8Array ? new Reader(input) : input;
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = { ...baseTxResult } as TxResult;
+    const reader = input instanceof Uint8Array ? new Reader(input) : input
+    let end = length === undefined ? reader.len : reader.pos + length
+    const message = { ...baseTxResult } as TxResult
     while (reader.pos < end) {
-      const tag = reader.uint32();
+      const tag = reader.uint32()
       switch (tag >>> 3) {
         case 1:
-          message.contract_address = reader.string();
-          break;
+          message.contractAddress = reader.string()
+          break
         case 2:
-          message.bloom = reader.bytes();
-          break;
+          message.bloom = reader.bytes()
+          break
         case 3:
-          message.tx_logs = TransactionLogs.decode(reader, reader.uint32());
-          break;
+          message.txLogs = TransactionLogs.decode(reader, reader.uint32())
+          break
         case 4:
-          message.ret = reader.bytes();
-          break;
+          message.ret = reader.bytes()
+          break
         case 5:
-          message.reverted = reader.bool();
-          break;
+          message.reverted = reader.bool()
+          break
         case 6:
-          message.gas_used = longToNumber(reader.uint64() as Long);
-          break;
+          message.gasUsed = longToNumber(reader.uint64() as Long)
+          break
         default:
-          reader.skipType(tag & 7);
-          break;
+          reader.skipType(tag & 7)
+          break
       }
     }
-    return message;
+    return message
   },
 
   fromJSON(object: any): TxResult {
-    const message = { ...baseTxResult } as TxResult;
-    if (
-      object.contract_address !== undefined &&
-      object.contract_address !== null
-    ) {
-      message.contract_address = String(object.contract_address);
+    const message = { ...baseTxResult } as TxResult
+    if (object.contractAddress !== undefined && object.contractAddress !== null) {
+      message.contractAddress = String(object.contractAddress)
     } else {
-      message.contract_address = "";
+      message.contractAddress = ''
     }
     if (object.bloom !== undefined && object.bloom !== null) {
-      message.bloom = bytesFromBase64(object.bloom);
+      message.bloom = bytesFromBase64(object.bloom)
     }
-    if (object.tx_logs !== undefined && object.tx_logs !== null) {
-      message.tx_logs = TransactionLogs.fromJSON(object.tx_logs);
+    if (object.txLogs !== undefined && object.txLogs !== null) {
+      message.txLogs = TransactionLogs.fromJSON(object.txLogs)
     } else {
-      message.tx_logs = undefined;
+      message.txLogs = undefined
     }
     if (object.ret !== undefined && object.ret !== null) {
-      message.ret = bytesFromBase64(object.ret);
+      message.ret = bytesFromBase64(object.ret)
     }
     if (object.reverted !== undefined && object.reverted !== null) {
-      message.reverted = Boolean(object.reverted);
+      message.reverted = Boolean(object.reverted)
     } else {
-      message.reverted = false;
+      message.reverted = false
     }
-    if (object.gas_used !== undefined && object.gas_used !== null) {
-      message.gas_used = Number(object.gas_used);
+    if (object.gasUsed !== undefined && object.gasUsed !== null) {
+      message.gasUsed = Number(object.gasUsed)
     } else {
-      message.gas_used = 0;
+      message.gasUsed = 0
     }
-    return message;
+    return message
   },
 
   toJSON(message: TxResult): unknown {
-    const obj: any = {};
-    message.contract_address !== undefined &&
-      (obj.contract_address = message.contract_address);
+    const obj: any = {}
+    message.contractAddress !== undefined && (obj.contractAddress = message.contractAddress)
     message.bloom !== undefined &&
-      (obj.bloom = base64FromBytes(
-        message.bloom !== undefined ? message.bloom : new Uint8Array()
-      ));
-    message.tx_logs !== undefined &&
-      (obj.tx_logs = message.tx_logs
-        ? TransactionLogs.toJSON(message.tx_logs)
-        : undefined);
+      (obj.bloom = base64FromBytes(message.bloom !== undefined ? message.bloom : new Uint8Array()))
+    message.txLogs !== undefined &&
+      (obj.txLogs = message.txLogs ? TransactionLogs.toJSON(message.txLogs) : undefined)
     message.ret !== undefined &&
-      (obj.ret = base64FromBytes(
-        message.ret !== undefined ? message.ret : new Uint8Array()
-      ));
-    message.reverted !== undefined && (obj.reverted = message.reverted);
-    message.gas_used !== undefined && (obj.gas_used = message.gas_used);
-    return obj;
+      (obj.ret = base64FromBytes(message.ret !== undefined ? message.ret : new Uint8Array()))
+    message.reverted !== undefined && (obj.reverted = message.reverted)
+    message.gasUsed !== undefined && (obj.gasUsed = message.gasUsed)
+    return obj
   },
 
   fromPartial(object: DeepPartial<TxResult>): TxResult {
-    const message = { ...baseTxResult } as TxResult;
-    if (
-      object.contract_address !== undefined &&
-      object.contract_address !== null
-    ) {
-      message.contract_address = object.contract_address;
+    const message = { ...baseTxResult } as TxResult
+    if (object.contractAddress !== undefined && object.contractAddress !== null) {
+      message.contractAddress = object.contractAddress
     } else {
-      message.contract_address = "";
+      message.contractAddress = ''
     }
     if (object.bloom !== undefined && object.bloom !== null) {
-      message.bloom = object.bloom;
+      message.bloom = object.bloom
     } else {
-      message.bloom = new Uint8Array();
+      message.bloom = new Uint8Array()
     }
-    if (object.tx_logs !== undefined && object.tx_logs !== null) {
-      message.tx_logs = TransactionLogs.fromPartial(object.tx_logs);
+    if (object.txLogs !== undefined && object.txLogs !== null) {
+      message.txLogs = TransactionLogs.fromPartial(object.txLogs)
     } else {
-      message.tx_logs = undefined;
+      message.txLogs = undefined
     }
     if (object.ret !== undefined && object.ret !== null) {
-      message.ret = object.ret;
+      message.ret = object.ret
     } else {
-      message.ret = new Uint8Array();
+      message.ret = new Uint8Array()
     }
     if (object.reverted !== undefined && object.reverted !== null) {
-      message.reverted = object.reverted;
+      message.reverted = object.reverted
     } else {
-      message.reverted = false;
+      message.reverted = false
     }
-    if (object.gas_used !== undefined && object.gas_used !== null) {
-      message.gas_used = object.gas_used;
+    if (object.gasUsed !== undefined && object.gasUsed !== null) {
+      message.gasUsed = object.gasUsed
     } else {
-      message.gas_used = 0;
+      message.gasUsed = 0
     }
-    return message;
-  },
-};
+    return message
+  }
+}
 
-const baseAccessTuple: object = { address: "", storage_keys: "" };
+const baseAccessTuple: object = { address: '', storageKeys: '' }
 
 export const AccessTuple = {
   encode(message: AccessTuple, writer: Writer = Writer.create()): Writer {
-    if (message.address !== "") {
-      writer.uint32(10).string(message.address);
+    if (message.address !== '') {
+      writer.uint32(10).string(message.address)
     }
-    for (const v of message.storage_keys) {
-      writer.uint32(18).string(v!);
+    for (const v of message.storageKeys) {
+      writer.uint32(18).string(v!)
     }
-    return writer;
+    return writer
   },
 
   decode(input: Reader | Uint8Array, length?: number): AccessTuple {
-    const reader = input instanceof Uint8Array ? new Reader(input) : input;
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = { ...baseAccessTuple } as AccessTuple;
-    message.storage_keys = [];
+    const reader = input instanceof Uint8Array ? new Reader(input) : input
+    let end = length === undefined ? reader.len : reader.pos + length
+    const message = { ...baseAccessTuple } as AccessTuple
+    message.storageKeys = []
     while (reader.pos < end) {
-      const tag = reader.uint32();
+      const tag = reader.uint32()
       switch (tag >>> 3) {
         case 1:
-          message.address = reader.string();
-          break;
+          message.address = reader.string()
+          break
         case 2:
-          message.storage_keys.push(reader.string());
-          break;
+          message.storageKeys.push(reader.string())
+          break
         default:
-          reader.skipType(tag & 7);
-          break;
+          reader.skipType(tag & 7)
+          break
       }
     }
-    return message;
+    return message
   },
 
   fromJSON(object: any): AccessTuple {
-    const message = { ...baseAccessTuple } as AccessTuple;
-    message.storage_keys = [];
+    const message = { ...baseAccessTuple } as AccessTuple
+    message.storageKeys = []
     if (object.address !== undefined && object.address !== null) {
-      message.address = String(object.address);
+      message.address = String(object.address)
     } else {
-      message.address = "";
+      message.address = ''
     }
-    if (object.storage_keys !== undefined && object.storage_keys !== null) {
-      for (const e of object.storage_keys) {
-        message.storage_keys.push(String(e));
+    if (object.storageKeys !== undefined && object.storageKeys !== null) {
+      for (const e of object.storageKeys) {
+        message.storageKeys.push(String(e))
       }
     }
-    return message;
+    return message
   },
 
   toJSON(message: AccessTuple): unknown {
-    const obj: any = {};
-    message.address !== undefined && (obj.address = message.address);
-    if (message.storage_keys) {
-      obj.storage_keys = message.storage_keys.map((e) => e);
+    const obj: any = {}
+    message.address !== undefined && (obj.address = message.address)
+    if (message.storageKeys) {
+      obj.storageKeys = message.storageKeys.map((e) => e)
     } else {
-      obj.storage_keys = [];
+      obj.storageKeys = []
     }
-    return obj;
+    return obj
   },
 
   fromPartial(object: DeepPartial<AccessTuple>): AccessTuple {
-    const message = { ...baseAccessTuple } as AccessTuple;
-    message.storage_keys = [];
+    const message = { ...baseAccessTuple } as AccessTuple
+    message.storageKeys = []
     if (object.address !== undefined && object.address !== null) {
-      message.address = object.address;
+      message.address = object.address
     } else {
-      message.address = "";
+      message.address = ''
     }
-    if (object.storage_keys !== undefined && object.storage_keys !== null) {
-      for (const e of object.storage_keys) {
-        message.storage_keys.push(e);
+    if (object.storageKeys !== undefined && object.storageKeys !== null) {
+      for (const e of object.storageKeys) {
+        message.storageKeys.push(e)
       }
     }
-    return message;
-  },
-};
+    return message
+  }
+}
 
 const baseTraceConfig: object = {
-  tracer: "",
-  timeout: "",
+  tracer: '',
+  timeout: '',
   reexec: 0,
-  disable_stack: false,
-  disable_storage: false,
+  disableStack: false,
+  disableStorage: false,
   debug: false,
   limit: 0,
-  enable_memory: false,
-  enable_return_data: false,
-};
+  enableMemory: false,
+  enableReturnData: false
+}
 
 export const TraceConfig = {
   encode(message: TraceConfig, writer: Writer = Writer.create()): Writer {
-    if (message.tracer !== "") {
-      writer.uint32(10).string(message.tracer);
+    if (message.tracer !== '') {
+      writer.uint32(10).string(message.tracer)
     }
-    if (message.timeout !== "") {
-      writer.uint32(18).string(message.timeout);
+    if (message.timeout !== '') {
+      writer.uint32(18).string(message.timeout)
     }
     if (message.reexec !== 0) {
-      writer.uint32(24).uint64(message.reexec);
+      writer.uint32(24).uint64(message.reexec)
     }
-    if (message.disable_stack === true) {
-      writer.uint32(40).bool(message.disable_stack);
+    if (message.disableStack === true) {
+      writer.uint32(40).bool(message.disableStack)
     }
-    if (message.disable_storage === true) {
-      writer.uint32(48).bool(message.disable_storage);
+    if (message.disableStorage === true) {
+      writer.uint32(48).bool(message.disableStorage)
     }
     if (message.debug === true) {
-      writer.uint32(64).bool(message.debug);
+      writer.uint32(64).bool(message.debug)
     }
     if (message.limit !== 0) {
-      writer.uint32(72).int32(message.limit);
+      writer.uint32(72).int32(message.limit)
     }
     if (message.overrides !== undefined) {
-      ChainConfig.encode(message.overrides, writer.uint32(82).fork()).ldelim();
+      ChainConfig.encode(message.overrides, writer.uint32(82).fork()).ldelim()
     }
-    if (message.enable_memory === true) {
-      writer.uint32(88).bool(message.enable_memory);
+    if (message.enableMemory === true) {
+      writer.uint32(88).bool(message.enableMemory)
     }
-    if (message.enable_return_data === true) {
-      writer.uint32(96).bool(message.enable_return_data);
+    if (message.enableReturnData === true) {
+      writer.uint32(96).bool(message.enableReturnData)
     }
-    return writer;
+    return writer
   },
 
   decode(input: Reader | Uint8Array, length?: number): TraceConfig {
-    const reader = input instanceof Uint8Array ? new Reader(input) : input;
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = { ...baseTraceConfig } as TraceConfig;
+    const reader = input instanceof Uint8Array ? new Reader(input) : input
+    let end = length === undefined ? reader.len : reader.pos + length
+    const message = { ...baseTraceConfig } as TraceConfig
     while (reader.pos < end) {
-      const tag = reader.uint32();
+      const tag = reader.uint32()
       switch (tag >>> 3) {
         case 1:
-          message.tracer = reader.string();
-          break;
+          message.tracer = reader.string()
+          break
         case 2:
-          message.timeout = reader.string();
-          break;
+          message.timeout = reader.string()
+          break
         case 3:
-          message.reexec = longToNumber(reader.uint64() as Long);
-          break;
+          message.reexec = longToNumber(reader.uint64() as Long)
+          break
         case 5:
-          message.disable_stack = reader.bool();
-          break;
+          message.disableStack = reader.bool()
+          break
         case 6:
-          message.disable_storage = reader.bool();
-          break;
+          message.disableStorage = reader.bool()
+          break
         case 8:
-          message.debug = reader.bool();
-          break;
+          message.debug = reader.bool()
+          break
         case 9:
-          message.limit = reader.int32();
-          break;
+          message.limit = reader.int32()
+          break
         case 10:
-          message.overrides = ChainConfig.decode(reader, reader.uint32());
-          break;
+          message.overrides = ChainConfig.decode(reader, reader.uint32())
+          break
         case 11:
-          message.enable_memory = reader.bool();
-          break;
+          message.enableMemory = reader.bool()
+          break
         case 12:
-          message.enable_return_data = reader.bool();
-          break;
+          message.enableReturnData = reader.bool()
+          break
         default:
-          reader.skipType(tag & 7);
-          break;
+          reader.skipType(tag & 7)
+          break
       }
     }
-    return message;
+    return message
   },
 
   fromJSON(object: any): TraceConfig {
-    const message = { ...baseTraceConfig } as TraceConfig;
+    const message = { ...baseTraceConfig } as TraceConfig
     if (object.tracer !== undefined && object.tracer !== null) {
-      message.tracer = String(object.tracer);
+      message.tracer = String(object.tracer)
     } else {
-      message.tracer = "";
+      message.tracer = ''
     }
     if (object.timeout !== undefined && object.timeout !== null) {
-      message.timeout = String(object.timeout);
+      message.timeout = String(object.timeout)
     } else {
-      message.timeout = "";
+      message.timeout = ''
     }
     if (object.reexec !== undefined && object.reexec !== null) {
-      message.reexec = Number(object.reexec);
+      message.reexec = Number(object.reexec)
     } else {
-      message.reexec = 0;
+      message.reexec = 0
     }
-    if (object.disable_stack !== undefined && object.disable_stack !== null) {
-      message.disable_stack = Boolean(object.disable_stack);
+    if (object.disableStack !== undefined && object.disableStack !== null) {
+      message.disableStack = Boolean(object.disableStack)
     } else {
-      message.disable_stack = false;
+      message.disableStack = false
     }
-    if (
-      object.disable_storage !== undefined &&
-      object.disable_storage !== null
-    ) {
-      message.disable_storage = Boolean(object.disable_storage);
+    if (object.disableStorage !== undefined && object.disableStorage !== null) {
+      message.disableStorage = Boolean(object.disableStorage)
     } else {
-      message.disable_storage = false;
+      message.disableStorage = false
     }
     if (object.debug !== undefined && object.debug !== null) {
-      message.debug = Boolean(object.debug);
+      message.debug = Boolean(object.debug)
     } else {
-      message.debug = false;
+      message.debug = false
     }
     if (object.limit !== undefined && object.limit !== null) {
-      message.limit = Number(object.limit);
+      message.limit = Number(object.limit)
     } else {
-      message.limit = 0;
+      message.limit = 0
     }
     if (object.overrides !== undefined && object.overrides !== null) {
-      message.overrides = ChainConfig.fromJSON(object.overrides);
+      message.overrides = ChainConfig.fromJSON(object.overrides)
     } else {
-      message.overrides = undefined;
+      message.overrides = undefined
     }
-    if (object.enable_memory !== undefined && object.enable_memory !== null) {
-      message.enable_memory = Boolean(object.enable_memory);
+    if (object.enableMemory !== undefined && object.enableMemory !== null) {
+      message.enableMemory = Boolean(object.enableMemory)
     } else {
-      message.enable_memory = false;
+      message.enableMemory = false
     }
-    if (
-      object.enable_return_data !== undefined &&
-      object.enable_return_data !== null
-    ) {
-      message.enable_return_data = Boolean(object.enable_return_data);
+    if (object.enableReturnData !== undefined && object.enableReturnData !== null) {
+      message.enableReturnData = Boolean(object.enableReturnData)
     } else {
-      message.enable_return_data = false;
+      message.enableReturnData = false
     }
-    return message;
+    return message
   },
 
   toJSON(message: TraceConfig): unknown {
-    const obj: any = {};
-    message.tracer !== undefined && (obj.tracer = message.tracer);
-    message.timeout !== undefined && (obj.timeout = message.timeout);
-    message.reexec !== undefined && (obj.reexec = message.reexec);
-    message.disable_stack !== undefined &&
-      (obj.disable_stack = message.disable_stack);
-    message.disable_storage !== undefined &&
-      (obj.disable_storage = message.disable_storage);
-    message.debug !== undefined && (obj.debug = message.debug);
-    message.limit !== undefined && (obj.limit = message.limit);
+    const obj: any = {}
+    message.tracer !== undefined && (obj.tracer = message.tracer)
+    message.timeout !== undefined && (obj.timeout = message.timeout)
+    message.reexec !== undefined && (obj.reexec = message.reexec)
+    message.disableStack !== undefined && (obj.disableStack = message.disableStack)
+    message.disableStorage !== undefined && (obj.disableStorage = message.disableStorage)
+    message.debug !== undefined && (obj.debug = message.debug)
+    message.limit !== undefined && (obj.limit = message.limit)
     message.overrides !== undefined &&
-      (obj.overrides = message.overrides
-        ? ChainConfig.toJSON(message.overrides)
-        : undefined);
-    message.enable_memory !== undefined &&
-      (obj.enable_memory = message.enable_memory);
-    message.enable_return_data !== undefined &&
-      (obj.enable_return_data = message.enable_return_data);
-    return obj;
+      (obj.overrides = message.overrides ? ChainConfig.toJSON(message.overrides) : undefined)
+    message.enableMemory !== undefined && (obj.enableMemory = message.enableMemory)
+    message.enableReturnData !== undefined && (obj.enableReturnData = message.enableReturnData)
+    return obj
   },
 
   fromPartial(object: DeepPartial<TraceConfig>): TraceConfig {
-    const message = { ...baseTraceConfig } as TraceConfig;
+    const message = { ...baseTraceConfig } as TraceConfig
     if (object.tracer !== undefined && object.tracer !== null) {
-      message.tracer = object.tracer;
+      message.tracer = object.tracer
     } else {
-      message.tracer = "";
+      message.tracer = ''
     }
     if (object.timeout !== undefined && object.timeout !== null) {
-      message.timeout = object.timeout;
+      message.timeout = object.timeout
     } else {
-      message.timeout = "";
+      message.timeout = ''
     }
     if (object.reexec !== undefined && object.reexec !== null) {
-      message.reexec = object.reexec;
+      message.reexec = object.reexec
     } else {
-      message.reexec = 0;
+      message.reexec = 0
     }
-    if (object.disable_stack !== undefined && object.disable_stack !== null) {
-      message.disable_stack = object.disable_stack;
+    if (object.disableStack !== undefined && object.disableStack !== null) {
+      message.disableStack = object.disableStack
     } else {
-      message.disable_stack = false;
+      message.disableStack = false
     }
-    if (
-      object.disable_storage !== undefined &&
-      object.disable_storage !== null
-    ) {
-      message.disable_storage = object.disable_storage;
+    if (object.disableStorage !== undefined && object.disableStorage !== null) {
+      message.disableStorage = object.disableStorage
     } else {
-      message.disable_storage = false;
+      message.disableStorage = false
     }
     if (object.debug !== undefined && object.debug !== null) {
-      message.debug = object.debug;
+      message.debug = object.debug
     } else {
-      message.debug = false;
+      message.debug = false
     }
     if (object.limit !== undefined && object.limit !== null) {
-      message.limit = object.limit;
+      message.limit = object.limit
     } else {
-      message.limit = 0;
+      message.limit = 0
     }
     if (object.overrides !== undefined && object.overrides !== null) {
-      message.overrides = ChainConfig.fromPartial(object.overrides);
+      message.overrides = ChainConfig.fromPartial(object.overrides)
     } else {
-      message.overrides = undefined;
+      message.overrides = undefined
     }
-    if (object.enable_memory !== undefined && object.enable_memory !== null) {
-      message.enable_memory = object.enable_memory;
+    if (object.enableMemory !== undefined && object.enableMemory !== null) {
+      message.enableMemory = object.enableMemory
     } else {
-      message.enable_memory = false;
+      message.enableMemory = false
     }
-    if (
-      object.enable_return_data !== undefined &&
-      object.enable_return_data !== null
-    ) {
-      message.enable_return_data = object.enable_return_data;
+    if (object.enableReturnData !== undefined && object.enableReturnData !== null) {
+      message.enableReturnData = object.enableReturnData
     } else {
-      message.enable_return_data = false;
+      message.enableReturnData = false
     }
-    return message;
-  },
-};
+    return message
+  }
+}
 
-declare var self: any | undefined;
-declare var window: any | undefined;
+declare var self: any | undefined
+declare var window: any | undefined
 var globalThis: any = (() => {
-  if (typeof globalThis !== "undefined") return globalThis;
-  if (typeof self !== "undefined") return self;
-  if (typeof window !== "undefined") return window;
-  if (typeof global !== "undefined") return global;
-  throw "Unable to locate global object";
-})();
+  if (typeof globalThis !== 'undefined') return globalThis
+  if (typeof self !== 'undefined') return self
+  if (typeof window !== 'undefined') return window
+  if (typeof global !== 'undefined') return global
+  throw 'Unable to locate global object'
+})()
 
 const atob: (b64: string) => string =
-  globalThis.atob ||
-  ((b64) => globalThis.Buffer.from(b64, "base64").toString("binary"));
+  globalThis.atob || ((b64) => globalThis.Buffer.from(b64, 'base64').toString('binary'))
 function bytesFromBase64(b64: string): Uint8Array {
-  const bin = atob(b64);
-  const arr = new Uint8Array(bin.length);
+  const bin = atob(b64)
+  const arr = new Uint8Array(bin.length)
   for (let i = 0; i < bin.length; ++i) {
-    arr[i] = bin.charCodeAt(i);
+    arr[i] = bin.charCodeAt(i)
   }
-  return arr;
+  return arr
 }
 
 const btoa: (bin: string) => string =
-  globalThis.btoa ||
-  ((bin) => globalThis.Buffer.from(bin, "binary").toString("base64"));
+  globalThis.btoa || ((bin) => globalThis.Buffer.from(bin, 'binary').toString('base64'))
 function base64FromBytes(arr: Uint8Array): string {
-  const bin: string[] = [];
+  const bin: string[] = []
   for (let i = 0; i < arr.byteLength; ++i) {
-    bin.push(String.fromCharCode(arr[i]));
+    bin.push(String.fromCharCode(arr[i]))
   }
-  return btoa(bin.join(""));
+  return btoa(bin.join(''))
 }
 
-type Builtin = Date | Function | Uint8Array | string | number | undefined;
+type Builtin = Date | Function | Uint8Array | string | number | undefined
 export type DeepPartial<T> = T extends Builtin
   ? T
   : T extends Array<infer U>
@@ -1587,16 +1469,16 @@ export type DeepPartial<T> = T extends Builtin
   ? ReadonlyArray<DeepPartial<U>>
   : T extends {}
   ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
+  : Partial<T>
 
 function longToNumber(long: Long): number {
   if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+    throw new globalThis.Error('Value is larger than Number.MAX_SAFE_INTEGER')
   }
-  return long.toNumber();
+  return long.toNumber()
 }
-// @ts-ignore
+
 if (util.Long !== Long) {
-  util.Long = Long as any;
-  configure();
+  util.Long = Long as any
+  configure()
 }
