@@ -8,7 +8,7 @@ tsfy.js
 .vscode
 node_modules
 .env
-
+.lib
 # Yarn v2
 .yarn/*
 !.yarn/cache

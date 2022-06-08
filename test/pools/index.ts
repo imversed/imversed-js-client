@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import { loadWallet, pools } from '../../lib'
-import { assertTx } from '../utils'
+import { assertTx } from '../utils/utils'
 
 const { queryClient, txClient } = pools
 
@@ -51,7 +51,7 @@ describe('pools module', () => {
                         weight: '1'
                     },
                 ],
-            
+
             })
 
             const res = await tx.signAndBroadcast([msg], {

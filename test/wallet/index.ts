@@ -1,6 +1,6 @@
 import { expect } from "chai"
 import { loadWallet } from "../../src/"
-import { pubKey, mnemonic, address as addressExpected } from '../lib/env'
+import { pubKey, mnemonic, address as addressExpected } from '../utils/env'
 
 import { toBase64 } from "@imversed/encoding"
 

@@ -1,6 +1,6 @@
 import { loadWallet, nft } from '../../lib'
 import { expect } from 'chai'
-import { assertTx } from '../utils'
+import { assertTx } from '../utils/utils'
 import * as faker from 'faker'
 
 const { txClient, queryClient } = nft
