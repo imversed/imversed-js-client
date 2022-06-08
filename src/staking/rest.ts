@@ -93,6 +93,8 @@ field. Example (for message [google.protobuf.Duration][]):
       "value": "1.212s"
     }
 */
+import {fetch} from "cross-fetch"
+
 export interface ProtobufAny {
   /**
    * A URL/resource name that uniquely identifies the type of the serialized

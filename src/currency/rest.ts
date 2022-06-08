@@ -54,6 +54,8 @@ export interface CurrencyQueryParamsResponse {
   params?: CurrencyParams;
 }
 
+import {fetch} from "cross-fetch"
+
 export interface ProtobufAny {
   "@type"?: string;
 }
