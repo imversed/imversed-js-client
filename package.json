@@ -38,6 +38,7 @@
     "prettier": "^1.18.2",
     "prettier-tslint": "^0.4.2",
     "ts-node": "^10.7.0",
+    "ts-proto": "^1.115.4",
     "tslint": "^5.20.0",
     "tslint-config-prettier": "^1.18.0",
     "tslint-plugin-prettier": "^2.0.1",
