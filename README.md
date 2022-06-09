@@ -1,6 +1,6 @@
 # imversed-js-client
 
-Javascript and Typescript client library for [Inversed](https://imversed.com).
+Javascript and Typescript client library for [Imversed](https://imversed.com).
 
 # Usage
 
@@ -24,7 +24,7 @@ async function getNft(denomId: string, nftId: string): Promise<NftBaseNFT> {
 }
 ```
 
-Use transactions (TXs) to put some data in Inmversed:
+Use transactions (TXs) to put some data in Imversed:
 
 ```ts
 import { loadWallet, nft } from '@imversed/js-client'

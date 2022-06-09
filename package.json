@@ -1,11 +1,12 @@
 {
   "name": "@imversed/js-client",
-  "version": "1.0.0",
+  "version": "2.1.5",
   "author": "Imversed team",
   "description": "Imversed chain client Library",
   "scripts": {
-    "build": "rm -rf lib/* && tsc --build ./tsconfig.json",
-    "test": "yarn build && yarn mocha -r dotenv/config test/**/*.ts",
+    "build": "rm -rf lib && tsc --build ./tsconfig.json",
+    "test": "yarn build && yarn test:path test/**/*.ts",
+    "test:path": "yarn mocha -n preserve-symlinks=true -r dotenv/config",
     "prepare": "yarn build",
     "lint": "tslint --project .",
     "lint:fix": "tslint --fix --project ."
@@ -16,10 +17,11 @@
     "lib"
   ],
   "dependencies": {
-    "@cosmjs/launchpad": "^0.26.0",
-    "@cosmjs/stargate": "^0.26.0",
+    "@imversed/proto-signing": "^0.28.4",
+    "@imversed/stargate": "^0.28.4",
     "cross-fetch": "^3.1.4",
-    "protobufjs": "^6.11.2"
+    "prettier-tslint": "^0.4.2",
+    "protobufjs": "^6.11.3"
   },
   "license": "UNLICENSED",
   "devDependencies": {
@@ -36,7 +38,6 @@
     "nodemon": "^1.19.4",
     "organize-imports-cli": "^0.7.0",
     "prettier": "^1.18.2",
-    "prettier-tslint": "^0.4.2",
     "ts-node": "^10.7.0",
     "tslint": "^5.20.0",
     "tslint-config-prettier": "^1.18.0",

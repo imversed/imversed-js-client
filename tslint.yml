@@ -15,7 +15,7 @@ rules:
   ordered-imports: false
   semicolon: [ false, never ]
   no-bitwise: false
-  no-console: true
+  no-console: false
   new-cap: false
   strict: false
   no-empty-interface: false

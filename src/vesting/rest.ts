@@ -93,7 +93,7 @@ field. Example (for message [google.protobuf.Duration][]):
       "value": "1.212s"
     }
 */
-import fetch from "cross-fetch"
+import {fetch} from "cross-fetch"
 
 export interface ProtobufAny {
   /**
