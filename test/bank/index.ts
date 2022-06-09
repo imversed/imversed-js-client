@@ -1,5 +1,5 @@
 import { expect } from "chai"
-import { bank, loadWallet, createWallet, restoreWallet } from "../../src"
+import { bank, loadWallet } from "../../src"
 import { qAddr, mnemonic, denom, txAddr } from "../utils/env"
 
 const { txClient, queryClient } = bank
@@ -36,7 +36,7 @@ describe("Bank", () => {
   it("can query balances", async () => {
     const wallet = await loadWallet(mnemonic)
     const [account] = await wallet.getAccounts()
-    const q = await bank.queryClient({ addr: qAddr })
+    const q = await queryClient({ addr: qAddr })
     const resp = await q.queryBalance(account.address, { denom })
 
     expect(+resp.data.balance.amount).to.be.gt(1000)
