@@ -11,6 +11,11 @@ env:
   es6: true
   mocha: true
 rules:
+  no-string-throw: false
+  no-var-keyword: false
+  curly: [true, "ignore-same-line"]
+  class-name: false
+  prefer-const: false
   import-spacing: false
   ordered-imports: false
   semicolon: [ false, never ]
@@ -23,9 +28,10 @@ rules:
   no-string-literal: false
   no-use-before-define: false
   eol-last: false
-  quotemark: [ true, double, "avoid-escape" ]
+  quotemark: false
+  member-access: [true, "no-public"]
   trailing-comma: [false, {"multiline": "always", "singleline": "never"}]
-  arrow-parens: [true, "ban-single-arg-parens"]
+  arrow-parens: false
   no-shadowed-variable: false
   no-var-requires: false
   object-literal-sort-keys: false
@@ -36,3 +42,4 @@ rules:
   variable-name: false
   max-line-length: false
   jsdoc-format: false
+  radix: false

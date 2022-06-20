@@ -11,7 +11,6 @@ import { MsgIssueDenom } from "./types/nft/tx"
 import { MsgBurnNFT } from "./types/nft/tx"
 import { MsgEditNFT } from "./types/nft/tx"
 
-
 const types = [
   ["/imversed.nft.MsgMintNFT", MsgMintNFT],
   ["/imversed.nft.MsgTransferDenom", MsgTransferDenom],
@@ -19,11 +18,11 @@ const types = [
   ["/imversed.nft.MsgIssueDenom", MsgIssueDenom],
   ["/imversed.nft.MsgBurnNFT", MsgBurnNFT],
   ["/imversed.nft.MsgEditNFT", MsgEditNFT],
-  
+
 ]
 export const MissingWalletError = new Error("wallet is required")
 
-export const registry = new Registry(<any>types)
+export const registry = new Registry(types as any)
 
 const defaultFee = {
   amount: [],
@@ -44,20 +43,20 @@ const txClient = async (wallet: OfflineSigner, { addr: addr }: TxClientOptions =
   let client
   if (addr) {
     client = await SigningStargateClient.connectWithSigner(addr, wallet, { registry })
-  }else{
+  } else {
     client = await SigningStargateClient.offline( wallet, { registry })
   }
   const { address } = (await wallet.getAccounts())[0]
 
   return {
-    signAndBroadcast: (msgs: EncodeObject[], { fee, memo }: SignAndBroadcastOptions = {fee: defaultFee, memo: ""}) => client.signAndBroadcast(address, msgs, fee,memo),
+    signAndBroadcast: (msgs: EncodeObject[], { fee, memo }: SignAndBroadcastOptions = {fee: defaultFee, memo: ""}) => client.signAndBroadcast(address, msgs, fee, memo),
     msgMintNFT: (data: MsgMintNFT): EncodeObject => ({ typeUrl: "/imversed.nft.MsgMintNFT", value: MsgMintNFT.fromPartial( data ) }),
     msgTransferDenom: (data: MsgTransferDenom): EncodeObject => ({ typeUrl: "/imversed.nft.MsgTransferDenom", value: MsgTransferDenom.fromPartial( data ) }),
     msgTransferNFT: (data: MsgTransferNFT): EncodeObject => ({ typeUrl: "/imversed.nft.MsgTransferNFT", value: MsgTransferNFT.fromPartial( data ) }),
     msgIssueDenom: (data: MsgIssueDenom): EncodeObject => ({ typeUrl: "/imversed.nft.MsgIssueDenom", value: MsgIssueDenom.fromPartial( data ) }),
     msgBurnNFT: (data: MsgBurnNFT): EncodeObject => ({ typeUrl: "/imversed.nft.MsgBurnNFT", value: MsgBurnNFT.fromPartial( data ) }),
     msgEditNFT: (data: MsgEditNFT): EncodeObject => ({ typeUrl: "/imversed.nft.MsgEditNFT", value: MsgEditNFT.fromPartial( data ) }),
-    
+
   }
 }
 

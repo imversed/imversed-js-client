@@ -1,5 +1,6 @@
 import { HdPath, Slip10RawIndex } from "@imversed/crypto"
-import { DirectSecp256k1HdWallet, OfflineDirectSigner } from "@imversed/proto-signing"
+import { DirectSecp256k1HdWallet } from "@imversed/proto-signing"
+import {toHex, fromHex, toBech32, fromBech32} from "@imversed/encoding"
 
 const prefix = 'imv'
 
@@ -14,7 +15,7 @@ const hdPath: HdPath = [
 export async function loadWallet(mnemonic: string): Promise<IWallet> {
     return DirectSecp256k1HdWallet.fromMnemonic(mnemonic, {
         hdPaths: [hdPath],
-        prefix: prefix
+        prefix
     })
 }
 
@@ -28,6 +29,21 @@ export async function createWallet(password?: string): Promise<IWallet> {
 
 export async function restoreWallet(serializedWallet: string, password?: string): Promise<IWallet> {
     return DirectSecp256k1HdWallet.deserialize(serializedWallet, password)
+}
+
+export function convertAddress(address: string): string {
+  if (/^0x[a-fA-F0-9]{40}$/g.test(address)) {
+    const evmAddrWithoutHexPrefix = address.replace(/^(-)?0x/i, '$1')
+    const evmAddressBytes = fromHex(evmAddrWithoutHexPrefix)
+    return toBech32(prefix, evmAddressBytes)
+  }
+
+   if (/^imv/g.test(address)) {
+    const {data: bytesBech32} = fromBech32(address)
+    const bytesBech32ToHex = toHex(bytesBech32)
+     return `0x${bytesBech32ToHex}`
+  }
+  throw new Error("unsupported type of address")
 }
 
 export class IWallet extends DirectSecp256k1HdWallet {}

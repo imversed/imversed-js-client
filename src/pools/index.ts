@@ -14,7 +14,6 @@ import { MsgSwapExactAmountIn } from "./types/pools/v1beta1/tx"
 import { MsgSwapExactAmountOut } from "./types/pools/v1beta1/tx"
 import { MsgExitSwapShareAmountIn } from "./types/pools/v1beta1/tx"
 
-
 const types = [
   ["/imversed.pools.v1beta1.MsgCreatePool", MsgCreatePool],
   ["/imversed.pools.v1beta1.MsgExitPool", MsgExitPool],
@@ -25,11 +24,11 @@ const types = [
   ["/imversed.pools.v1beta1.MsgSwapExactAmountIn", MsgSwapExactAmountIn],
   ["/imversed.pools.v1beta1.MsgSwapExactAmountOut", MsgSwapExactAmountOut],
   ["/imversed.pools.v1beta1.MsgExitSwapShareAmountIn", MsgExitSwapShareAmountIn],
-  
+
 ]
 export const MissingWalletError = new Error("wallet is required")
 
-export const registry = new Registry(<any>types)
+export const registry = new Registry(types as any)
 
 const defaultFee = {
   amount: [],
@@ -50,13 +49,13 @@ const txClient = async (wallet: OfflineSigner, { addr: addr }: TxClientOptions =
   let client
   if (addr) {
     client = await SigningStargateClient.connectWithSigner(addr, wallet, { registry })
-  }else{
+  } else {
     client = await SigningStargateClient.offline( wallet, { registry })
   }
   const { address } = (await wallet.getAccounts())[0]
 
   return {
-    signAndBroadcast: (msgs: EncodeObject[], { fee, memo }: SignAndBroadcastOptions = {fee: defaultFee, memo: ""}) => client.signAndBroadcast(address, msgs, fee,memo),
+    signAndBroadcast: (msgs: EncodeObject[], { fee, memo }: SignAndBroadcastOptions = {fee: defaultFee, memo: ""}) => client.signAndBroadcast(address, msgs, fee, memo),
     msgCreatePool: (data: MsgCreatePool): EncodeObject => ({ typeUrl: "/imversed.pools.v1beta1.MsgCreatePool", value: MsgCreatePool.fromPartial( data ) }),
     msgExitPool: (data: MsgExitPool): EncodeObject => ({ typeUrl: "/imversed.pools.v1beta1.MsgExitPool", value: MsgExitPool.fromPartial( data ) }),
     msgJoinSwapShareAmountOut: (data: MsgJoinSwapShareAmountOut): EncodeObject => ({ typeUrl: "/imversed.pools.v1beta1.MsgJoinSwapShareAmountOut", value: MsgJoinSwapShareAmountOut.fromPartial( data ) }),
@@ -66,7 +65,7 @@ const txClient = async (wallet: OfflineSigner, { addr: addr }: TxClientOptions =
     msgSwapExactAmountIn: (data: MsgSwapExactAmountIn): EncodeObject => ({ typeUrl: "/imversed.pools.v1beta1.MsgSwapExactAmountIn", value: MsgSwapExactAmountIn.fromPartial( data ) }),
     msgSwapExactAmountOut: (data: MsgSwapExactAmountOut): EncodeObject => ({ typeUrl: "/imversed.pools.v1beta1.MsgSwapExactAmountOut", value: MsgSwapExactAmountOut.fromPartial( data ) }),
     msgExitSwapShareAmountIn: (data: MsgExitSwapShareAmountIn): EncodeObject => ({ typeUrl: "/imversed.pools.v1beta1.MsgExitSwapShareAmountIn", value: MsgExitSwapShareAmountIn.fromPartial( data ) }),
-    
+
   }
 }
 
