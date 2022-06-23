@@ -6,8 +6,9 @@
   "scripts": {
     "build": "rm -rf lib && tsc --build ./tsconfig.json",
     "test": "yarn build && yarn test:path test/**/*.ts",
+    "test:only": "yarn test:path test/**/*.ts",
     "test:path": "yarn mocha -n preserve-symlinks=true -r dotenv/config",
-    "prepare": "yarn build",
+    "prepare": "yarn lint && yarn build",
     "lint": "tslint --project .",
     "lint:fix": "tslint --fix --project ."
   },
