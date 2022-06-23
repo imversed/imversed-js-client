@@ -1,6 +1,6 @@
 {
   "name": "@imversed/js-client",
-  "version": "2.1.5",
+  "version": "2.2.0",
   "author": "Imversed team",
   "description": "Imversed chain client Library",
   "scripts": {
