@@ -48,60 +48,30 @@ export function convertAddress(address: string): string {
 
 export class IWallet extends DirectSecp256k1HdWallet {}
 
-import * as auth from './auth'
-import * as authz from './authz'
-import * as bank from './bank'
-import * as crisis from './crisis'
-import * as currency from './currency'
-import * as distribution from './distribution'
-import * as evidence from './evidence'
-import * as evm from './evm'
-import * as feegrant from './feegrant'
-import * as feemarket from './feemarket'
-import * as gov from './gov'
-import * as ibc_transfer from './ibc-transfer'
-import * as ibc_accounts_controller from './ibc-accounts-controller'
-import * as ibc_accounts_host from './ibc-accounts-host'
-import * as ibc_channel from './ibc-channel'
-import * as ibc_client from './ibc-client'
-import * as ibc_connection from './ibc-connection'
-import * as mint from './mint'
-import * as nft from './nft'
-import * as params from './params'
-import * as pools from './pools'
-import * as slashing from './slashing'
-import * as staking from './staking'
-import * as tendermint from './tendermint'
-import * as tx from './tx'
-import * as upgrade from './upgrade'
-import * as vesting from './vesting'
-
-export {
-    auth,
-    authz,
-    bank,
-    crisis,
-    currency,
-    distribution,
-    evidence,
-    evm,
-    feegrant,
-    feemarket,
-    gov,
-    ibc_transfer,
-    ibc_accounts_controller,
-    ibc_accounts_host,
-    ibc_channel,
-    ibc_client,
-    ibc_connection,
-    mint,
-    nft,
-    params,
-    pools,
-    slashing,
-    staking,
-    tendermint,
-    tx,
-    upgrade,
-    vesting
-}
+export * as auth from './auth'
+export * as authz from './authz'
+export * as bank from './bank'
+export * as crisis from './crisis'
+export * as currency from './currency'
+export * as distribution from './distribution'
+export * as evidence from './evidence'
+export * as evm from './evm'
+export * as feegrant from './feegrant'
+export * as feemarket from './feemarket'
+export * as gov from './gov'
+export * as ibc_transfer from './ibc-transfer'
+export * as ibc_accounts_controller from './ibc-accounts-controller'
+export * as ibc_accounts_host from './ibc-accounts-host'
+export * as ibc_channel from './ibc-channel'
+export * as ibc_client from './ibc-client'
+export * as ibc_connection from './ibc-connection'
+export * as mint from './mint'
+export * as nft from './nft'
+export * as params from './params'
+export * as pools from './pools'
+export * as slashing from './slashing'
+export * as staking from './staking'
+export * as tendermint from './tendermint'
+export * as tx from './tx'
+export * as upgrade from './upgrade'
+export * as vesting from './vesting'
