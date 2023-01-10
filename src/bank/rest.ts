@@ -568,7 +568,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
 
   /**
  * No description
- * 
+ *
  * @tags Query
  * @name QuerySpendableBalances
  * @summary SpendableBalances queries the spenable balance of all coins for a single

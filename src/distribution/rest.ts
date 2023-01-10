@@ -473,7 +473,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
 
   /**
  * No description
- * 
+ *
  * @tags Query
  * @name QueryDelegationTotalRewards
  * @summary DelegationTotalRewards queries the total rewards accrued by a each

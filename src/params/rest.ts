@@ -238,7 +238,7 @@ export class HttpClient<SecurityDataType = unknown> {
 export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDataType> {
   /**
  * No description
- * 
+ *
  * @tags Query
  * @name QueryParams
  * @summary Params queries a specific parameter of a module, given its subspace and
