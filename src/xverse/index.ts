@@ -9,17 +9,16 @@ import { MsgRemoveAssetFromVerse } from "./types/xverse/tx"
 import { MsgAddAssetToVerse } from "./types/xverse/tx"
 import { MsgCreateVerse } from "./types/xverse/tx"
 
-
 const types = [
   ["/imversed.xverse.MsgRenameVerse", MsgRenameVerse],
   ["/imversed.xverse.MsgRemoveAssetFromVerse", MsgRemoveAssetFromVerse],
   ["/imversed.xverse.MsgAddAssetToVerse", MsgAddAssetToVerse],
   ["/imversed.xverse.MsgCreateVerse", MsgCreateVerse],
-  
+
 ]
 export const MissingWalletError = new Error("wallet is required")
 
-export const registry = new Registry(<any>types)
+export const registry = new Registry(types as any)
 
 const defaultFee = {
   amount: [],
@@ -40,18 +39,18 @@ const txClient = async (wallet: OfflineSigner, { addr: addr }: TxClientOptions =
   let client
   if (addr) {
     client = await SigningStargateClient.connectWithSigner(addr, wallet, { registry })
-  }else{
+  } else {
     client = await SigningStargateClient.offline( wallet, { registry })
   }
   const { address } = (await wallet.getAccounts())[0]
 
   return {
-    signAndBroadcast: (msgs: EncodeObject[], { fee, memo }: SignAndBroadcastOptions = {fee: defaultFee, memo: ""}) => client.signAndBroadcast(address, msgs, fee,memo),
+    signAndBroadcast: (msgs: EncodeObject[], { fee, memo }: SignAndBroadcastOptions = {fee: defaultFee, memo: ""}) => client.signAndBroadcast(address, msgs, fee, memo),
     msgRenameVerse: (data: MsgRenameVerse): EncodeObject => ({ typeUrl: "/imversed.xverse.MsgRenameVerse", value: MsgRenameVerse.fromPartial( data ) }),
     msgRemoveAssetFromVerse: (data: MsgRemoveAssetFromVerse): EncodeObject => ({ typeUrl: "/imversed.xverse.MsgRemoveAssetFromVerse", value: MsgRemoveAssetFromVerse.fromPartial( data ) }),
     msgAddAssetToVerse: (data: MsgAddAssetToVerse): EncodeObject => ({ typeUrl: "/imversed.xverse.MsgAddAssetToVerse", value: MsgAddAssetToVerse.fromPartial( data ) }),
     msgCreateVerse: (data: MsgCreateVerse): EncodeObject => ({ typeUrl: "/imversed.xverse.MsgCreateVerse", value: MsgCreateVerse.fromPartial( data ) }),
-    
+
   }
 }
 

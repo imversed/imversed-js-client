@@ -6,14 +6,13 @@ import { Registry, OfflineSigner, EncodeObject, DirectSecp256k1HdWallet } from "
 import { Api } from "./rest"
 import { MsgVerifyInvariant } from "./types/cosmos/crisis/v1beta1/tx"
 
-
 const types = [
   ["/cosmos.crisis.v1beta1.MsgVerifyInvariant", MsgVerifyInvariant],
-  
+
 ]
 export const MissingWalletError = new Error("wallet is required")
 
-export const registry = new Registry(<any>types)
+export const registry = new Registry(types as any)
 
 const defaultFee = {
   amount: [],
@@ -34,15 +33,15 @@ const txClient = async (wallet: OfflineSigner, { addr: addr }: TxClientOptions =
   let client
   if (addr) {
     client = await SigningStargateClient.connectWithSigner(addr, wallet, { registry })
-  }else{
+  } else {
     client = await SigningStargateClient.offline( wallet, { registry })
   }
   const { address } = (await wallet.getAccounts())[0]
 
   return {
-    signAndBroadcast: (msgs: EncodeObject[], { fee, memo }: SignAndBroadcastOptions = {fee: defaultFee, memo: ""}) => client.signAndBroadcast(address, msgs, fee,memo),
+    signAndBroadcast: (msgs: EncodeObject[], { fee, memo }: SignAndBroadcastOptions = {fee: defaultFee, memo: ""}) => client.signAndBroadcast(address, msgs, fee, memo),
     msgVerifyInvariant: (data: MsgVerifyInvariant): EncodeObject => ({ typeUrl: "/cosmos.crisis.v1beta1.MsgVerifyInvariant", value: MsgVerifyInvariant.fromPartial( data ) }),
-    
+
   }
 }
 
