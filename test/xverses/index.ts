@@ -18,7 +18,6 @@ const encoding = require("@imversed/encoding");
 const long_1 = require("long")
 
 const tx3 = require('cosmjs-types/cosmos/tx/v1beta1/tx')
-// import tx3 from "cosmjs-types/cosmos/tx/v1beta1/tx"
 
 const { txClient, queryClient } = xverse
 
@@ -158,7 +157,7 @@ describe('Xverse', () => {
     const tx = await txClient(wallet, { addr: txAddr })
     const { data } = await q.queryVerseAll()
     const verseToAddAsset = faker.random.arrayElement(data.verse.filter(v => v.owner === account.address))
-    const someContractId = '0xaFbCB330Cb235CBda761Efd22bf16c62ea0E1f0b'
+    const someContractHash = '0xaFbCB330Cb235CBda761Efd22bf16c62ea0E1f0b'
 
     const client = await SigningStargateClient.connectWithSigner('https://rpc-test.imversed.network', wallet, { registry })
 
@@ -167,7 +166,7 @@ describe('Xverse', () => {
         sender: account.address,
         verseName: verseToAddAsset.name,
         assetType: 'contract',
-        assetId: someContractId,
+        assetId: someContractHash,
         assetCreator: account.address,
         verseCreator: account.address
       }
@@ -194,23 +193,28 @@ describe('Xverse', () => {
         fee,
         mnemonic
       )
+
     // const txBodyBytes = registry.encode(addAssetMessage)
     const txBodyBytes = signedTx.bodyBytes
 
     const authInfoBytes1 = protoSign.makeAuthInfoBytes([{ pubkey, sequence }], fee.amount, 200000)
-    const authInfoBytes2 = protoSign.makeAuthInfoBytes([
-      { pubkey, sequence },
-      {
-      pubkey,
-      sequence: sequence + 1
-    }
-    ], fee.amount, 200000)
     // console.log('authInfoBytes', authInfoBytes1)
     // console.log("signedTx", signedTx)
     // console.log("signedTx to json",tx3.TxRaw.toJSON(signedTx))
 
     const signDoc1 = protoSign.makeSignDoc(txBodyBytes, authInfoBytes1, 'imversed_5555558-1', accountNumber)
     const { signature } = await wallet.signDirect(account.address, signDoc1, pubkey.typeUrl)
+
+    const authInfoBytes2 = protoSign.makeAuthInfoBytes([
+      { pubkey, sequence },
+      {
+        pubkey,
+        sequence: sequence + 1
+      }
+    ], fee.amount, 200000)
+    // let hash = try! signDoc.serializedData().sha256()
+    // let signature = try! ECDSA.compactsign(hash, privateKey: keys.private)
+    // partialRawTx.signatures.append(signature)
 
     const signDoc2 = protoSign.makeSignDoc(txBodyBytes, authInfoBytes2, 'imversed_5555558-1', accountNumber)
     const { signature: signature2 } = await wallet.signDirect(account.address, signDoc2, pubkey.typeUrl)
@@ -219,6 +223,8 @@ describe('Xverse', () => {
       authInfoBytes: authInfoBytes2,
       bodyBytes: txBodyBytes,
       signatures: [encoding.fromBase64(signature.signature), encoding.fromBase64(signature2.signature)]
+      // signatures: [signature.signature, signature2.signature]
+
     }
 
     console.log("txR", txR)
