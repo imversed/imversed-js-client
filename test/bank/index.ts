@@ -23,7 +23,7 @@ describe("Bank", () => {
     const response = await tx.signAndBroadcast([msg], {
       fee: {
         amount: [{
-          amount: "200",
+          amount: "1500000",
           denom
         }],
         gas: "200000"

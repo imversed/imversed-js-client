@@ -5,9 +5,7 @@ import * as Faker from "faker"
 
 const { txClient } = currency
 
-const txAddr = process.env.IMVERSED_TX_ADDR || "https://tx-endpoint-test.imversed.com:443"
-const qAddr = process.env.IMVERSED_QUERY_ADDR || "https://query-endpoint-test.imversed.com"
-const mnemonic = process.env.IMVERSED_WALLET_MNEMONIC || "invalid mnemonic"
+import { qAddr, mnemonic, txAddr } from "../utils/env"
 
 describe("currency", () => {
   describe("txs", () => {
@@ -25,13 +23,12 @@ describe("currency", () => {
       const resIssue = await tx.signAndBroadcast([issueMessage], {
         fee: {
           amount: [{
-            amount: "200",
+            amount: "1500000",
             denom: "aimv"
           }],
           gas: "200000"
         }
       })
-
       assertTx(resIssue)
 
       const mintMessage = tx.msgMint({
@@ -45,7 +42,7 @@ describe("currency", () => {
       const resMint = await tx.signAndBroadcast([mintMessage], {
         fee: {
           amount: [{
-            amount: "20000",
+            amount: "15000000",
             denom: "aimv"
           }],
           gas: "2000000"

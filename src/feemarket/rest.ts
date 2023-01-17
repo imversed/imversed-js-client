@@ -47,6 +47,8 @@ export interface V1Params {
 
   /** base fee for EIP-1559 blocks. */
   base_fee?: string;
+  min_gas_price?: string;
+  min_gas_multiplier?: string;
 }
 
 /**

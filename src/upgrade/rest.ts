@@ -474,7 +474,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
 
   /**
  * No description
- * 
+ *
  * @tags Query
  * @name QueryUpgradedConsensusState
  * @summary UpgradedConsensusState queries the consensus state that will serve

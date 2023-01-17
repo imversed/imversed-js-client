@@ -1,0 +1,35 @@
+{
+  "body": {
+    "messages": [
+      {
+        "@type": "/imversed.xverse.MsgAddAssetToVerse",
+        "sender": "imv1yd86razw6ca9tzxcfsathe09e8207agp74g0sc",
+        "verse_name": "vKakurinVerse",
+        "asset_type": "contract",
+        "asset_id": "0x1fd03B6ed1a9a95d9781cBd48A8d4aB54B90429F",
+        "asset_creator": "0xFCC0CA8a012fdFDf4a6227865BD16F3Eb27497B8",
+        "verse_creator": "imv1yd86razw6ca9tzxcfsathe09e8207agp74g0sc"
+      }
+    ],
+    "memo": "",
+    "timeout_height": "0",
+    "extension_options": [],
+    "non_critical_extension_options": []
+  },
+  "auth_info": {
+    "signer_infos": [],
+    "fee": {
+      "amount": [
+        {
+          "denom": "aimv",
+          "amount": "10000000"
+        }
+      ],
+      "gas_limit": "200000",
+      "payer": "",
+      "granter": ""
+    },
+    "tip": null
+  },
+  "signatures": []
+}

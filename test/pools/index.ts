@@ -4,10 +4,7 @@ import { loadWallet, pools, currency } from "../../lib"
 import * as Faker from "faker"
 
 const { queryClient, txClient } = pools
-
-const txAddr = process.env.IMVERSED_TX_ADDR || "https://tx-endpoint-test.imversed.com:443"
-const qAddr = process.env.IMVERSED_QUERY_ADDR || "https://query-endpoint-test.imversed.com"
-const mnemonic = process.env.IMVERSED_WALLET_MNEMONIC || "invalid mnemonic"
+import { qAddr, mnemonic, txAddr } from "../utils/env"
 
 describe("pools module", () => {
     describe("queries", () => {
@@ -40,13 +37,12 @@ describe("pools module", () => {
           const resIssue = await currencyTx.signAndBroadcast([issueMessage], {
             fee: {
               amount: [{
-                amount: "200",
+                amount: "15000000",
                 denom: "aimv"
               }],
-              gas: "200000"
+              gas: "2000000"
             }
           })
-
           assertTx(resIssue)
 
           const mintMessage = currencyTx.msgMint({
@@ -60,7 +56,7 @@ describe("pools module", () => {
           const resMint = await currencyTx.signAndBroadcast([mintMessage], {
             fee: {
               amount: [{
-                amount: "20000",
+                amount: "15000000",
                 denom: "aimv"
               }],
               gas: "2000000"
@@ -101,10 +97,10 @@ describe("pools module", () => {
             const res = await tx.signAndBroadcast([msg], {
                 fee: {
                     amount: [{
-                        amount: "20000",
+                        amount: "15000000",
                         denom: "aimv"
                     }],
-                    gas: "200000"
+                    gas: "2000000"
                 }
             })
 

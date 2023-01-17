@@ -412,6 +412,14 @@ export interface V1Beta1SmoothWeightChangeParams {
    * to time between start_time, and start_time + duration. The amount
    * PoolAsset.token.amount field is ignored if present, future type
    * refactorings should just have a type with the denom & weight here.
+   *
+   * Intermediate variable for the 'slope' of pool weights. This is equal to
+   *  (target_pool_weights - initial_pool_weights) / (duration)
+   *  TODO: Work out precision, and decide if this is good to add
+   *  repeated PoolAsset poolWeightSlope = 5 [
+   *   (gogoproto.moretags) = "yaml:\"pool_weight_slope\"",
+   *   (gogoproto.nullable) = false
+   *  ];
    */
   targetPoolWeights?: V1Beta1PoolAsset[];
 }
