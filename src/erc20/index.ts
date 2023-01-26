@@ -11,7 +11,6 @@ import { MsgConvertCoin } from "./types/erc20/v1/tx"
 import { MsgToggleTokenRelay } from "./types/erc20/v1/tx"
 import { MsgRegisterCoin } from "./types/erc20/v1/tx"
 
-
 const types = [
   ["/imversed.erc20.v1.MsgConvertERC20", MsgConvertERC20],
   ["/imversed.erc20.v1.MsgUpdateTokenPairERC20", MsgUpdateTokenPairERC20],
@@ -19,11 +18,11 @@ const types = [
   ["/imversed.erc20.v1.MsgConvertCoin", MsgConvertCoin],
   ["/imversed.erc20.v1.MsgToggleTokenRelay", MsgToggleTokenRelay],
   ["/imversed.erc20.v1.MsgRegisterCoin", MsgRegisterCoin],
-  
+
 ]
 export const MissingWalletError = new Error("wallet is required")
 
-export const registry = new Registry(<any>types)
+export const registry = new Registry(types as any)
 
 const defaultFee = {
   amount: [],
@@ -44,20 +43,20 @@ const txClient = async (wallet: OfflineSigner, { addr: addr }: TxClientOptions =
   let client
   if (addr) {
     client = await SigningStargateClient.connectWithSigner(addr, wallet, { registry })
-  }else{
+  } else {
     client = await SigningStargateClient.offline( wallet, { registry })
   }
   const { address } = (await wallet.getAccounts())[0]
 
   return {
-    signAndBroadcast: (msgs: EncodeObject[], { fee, memo }: SignAndBroadcastOptions = {fee: defaultFee, memo: ""}) => client.signAndBroadcast(address, msgs, fee,memo),
+    signAndBroadcast: (msgs: EncodeObject[], { fee, memo }: SignAndBroadcastOptions = {fee: defaultFee, memo: ""}) => client.signAndBroadcast(address, msgs, fee, memo),
     msgConvertERC20: (data: MsgConvertERC20): EncodeObject => ({ typeUrl: "/imversed.erc20.v1.MsgConvertERC20", value: MsgConvertERC20.fromPartial( data ) }),
     msgUpdateTokenPairERC20: (data: MsgUpdateTokenPairERC20): EncodeObject => ({ typeUrl: "/imversed.erc20.v1.MsgUpdateTokenPairERC20", value: MsgUpdateTokenPairERC20.fromPartial( data ) }),
     msgRegisterERC20: (data: MsgRegisterERC20): EncodeObject => ({ typeUrl: "/imversed.erc20.v1.MsgRegisterERC20", value: MsgRegisterERC20.fromPartial( data ) }),
     msgConvertCoin: (data: MsgConvertCoin): EncodeObject => ({ typeUrl: "/imversed.erc20.v1.MsgConvertCoin", value: MsgConvertCoin.fromPartial( data ) }),
     msgToggleTokenRelay: (data: MsgToggleTokenRelay): EncodeObject => ({ typeUrl: "/imversed.erc20.v1.MsgToggleTokenRelay", value: MsgToggleTokenRelay.fromPartial( data ) }),
     msgRegisterCoin: (data: MsgRegisterCoin): EncodeObject => ({ typeUrl: "/imversed.erc20.v1.MsgRegisterCoin", value: MsgRegisterCoin.fromPartial( data ) }),
-    
+
   }
 }
 
