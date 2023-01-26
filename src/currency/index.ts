@@ -4,12 +4,12 @@ import { StdFee } from "@imversed/stargate"
 import { SigningStargateClient } from "@imversed/stargate"
 import { Registry, OfflineSigner, EncodeObject, DirectSecp256k1HdWallet } from "@imversed/proto-signing"
 import { Api } from "./rest"
-import { MsgMint } from "./types/currency/tx"
 import { MsgIssue } from "./types/currency/tx"
+import { MsgMint } from "./types/currency/tx"
 
 const types = [
-  ["/imversed.currency.MsgMint", MsgMint],
   ["/imversed.currency.MsgIssue", MsgIssue],
+  ["/imversed.currency.MsgMint", MsgMint],
 
 ]
 export const MissingWalletError = new Error("wallet is required")
@@ -42,8 +42,8 @@ const txClient = async (wallet: OfflineSigner, { addr: addr }: TxClientOptions =
 
   return {
     signAndBroadcast: (msgs: EncodeObject[], { fee, memo }: SignAndBroadcastOptions = {fee: defaultFee, memo: ""}) => client.signAndBroadcast(address, msgs, fee, memo),
-    msgMint: (data: MsgMint): EncodeObject => ({ typeUrl: "/imversed.currency.MsgMint", value: MsgMint.fromPartial( data ) }),
     msgIssue: (data: MsgIssue): EncodeObject => ({ typeUrl: "/imversed.currency.MsgIssue", value: MsgIssue.fromPartial( data ) }),
+    msgMint: (data: MsgMint): EncodeObject => ({ typeUrl: "/imversed.currency.MsgMint", value: MsgMint.fromPartial( data ) }),
 
   }
 }

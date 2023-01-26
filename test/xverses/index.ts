@@ -22,7 +22,7 @@ const tx3 = require('cosmjs-types/cosmos/tx/v1beta1/tx')
 const { txClient, queryClient } = xverse
 
 describe('Xverse', () => {
-  it('create verse', async () => {
+  it.only('create verse', async () => {
     const wallet = await loadWallet(mnemonic)
     const [account] = await wallet.getAccounts()
     const q = await queryClient({ addr: qAddr })
@@ -150,7 +150,7 @@ describe('Xverse', () => {
     expect(verseAfterRename).to.have.all.keys(['name', 'owner', 'description', 'icon', 'smart_contracts'])
   })
 
-  it.only('add asset', async () => {
+  it('add asset', async () => {
     const wallet = await loadWallet(mnemonic)
     const [account] = await wallet.getAccounts()
     const q = await queryClient({ addr: qAddr })

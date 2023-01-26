@@ -9,6 +9,8 @@ export interface Verse {
   icon: string;
   description: string;
   smartContracts: string[];
+  oracle: string;
+  authenticatedKeys: string[];
 }
 
 const baseVerse: object = {
@@ -17,6 +19,8 @@ const baseVerse: object = {
   icon: "",
   description: "",
   smartContracts: "",
+  oracle: "",
+  authenticatedKeys: "",
 };
 
 export const Verse = {
@@ -36,6 +40,12 @@ export const Verse = {
     for (const v of message.smartContracts) {
       writer.uint32(42).string(v!);
     }
+    if (message.oracle !== "") {
+      writer.uint32(50).string(message.oracle);
+    }
+    for (const v of message.authenticatedKeys) {
+      writer.uint32(58).string(v!);
+    }
     return writer;
   },
 
@@ -44,6 +54,7 @@ export const Verse = {
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = { ...baseVerse } as Verse;
     message.smartContracts = [];
+    message.authenticatedKeys = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -62,6 +73,12 @@ export const Verse = {
         case 5:
           message.smartContracts.push(reader.string());
           break;
+        case 6:
+          message.oracle = reader.string();
+          break;
+        case 7:
+          message.authenticatedKeys.push(reader.string());
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -73,6 +90,7 @@ export const Verse = {
   fromJSON(object: any): Verse {
     const message = { ...baseVerse } as Verse;
     message.smartContracts = [];
+    message.authenticatedKeys = [];
     if (object.owner !== undefined && object.owner !== null) {
       message.owner = String(object.owner);
     } else {
@@ -98,6 +116,19 @@ export const Verse = {
         message.smartContracts.push(String(e));
       }
     }
+    if (object.oracle !== undefined && object.oracle !== null) {
+      message.oracle = String(object.oracle);
+    } else {
+      message.oracle = "";
+    }
+    if (
+      object.authenticatedKeys !== undefined &&
+      object.authenticatedKeys !== null
+    ) {
+      for (const e of object.authenticatedKeys) {
+        message.authenticatedKeys.push(String(e));
+      }
+    }
     return message;
   },
 
@@ -113,12 +144,19 @@ export const Verse = {
     } else {
       obj.smartContracts = [];
     }
+    message.oracle !== undefined && (obj.oracle = message.oracle);
+    if (message.authenticatedKeys) {
+      obj.authenticatedKeys = message.authenticatedKeys.map((e) => e);
+    } else {
+      obj.authenticatedKeys = [];
+    }
     return obj;
   },
 
   fromPartial(object: DeepPartial<Verse>): Verse {
     const message = { ...baseVerse } as Verse;
     message.smartContracts = [];
+    message.authenticatedKeys = [];
     if (object.owner !== undefined && object.owner !== null) {
       message.owner = object.owner;
     } else {
@@ -142,6 +180,19 @@ export const Verse = {
     if (object.smartContracts !== undefined && object.smartContracts !== null) {
       for (const e of object.smartContracts) {
         message.smartContracts.push(e);
+      }
+    }
+    if (object.oracle !== undefined && object.oracle !== null) {
+      message.oracle = object.oracle;
+    } else {
+      message.oracle = "";
+    }
+    if (
+      object.authenticatedKeys !== undefined &&
+      object.authenticatedKeys !== null
+    ) {
+      for (const e of object.authenticatedKeys) {
+        message.authenticatedKeys.push(e);
       }
     }
     return message;

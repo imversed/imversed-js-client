@@ -53,6 +53,17 @@ export interface QueryGetVerseAssetsResponse {
   assets: string[];
 }
 
+export interface QueryGetVersesByOwnerRequest {
+  /** pagination defines an optional pagination for the request. */
+  pagination: PageRequest | undefined;
+  ownerAddress: string;
+}
+
+export interface QueryGetVersesByOwnerResponse {
+  verses: Verse[];
+  pagination: PageResponse | undefined;
+}
+
 const baseQueryGetVerseRequest: object = { verseName: "" };
 
 export const QueryGetVerseRequest = {
@@ -721,6 +732,195 @@ export const QueryGetVerseAssetsResponse = {
   },
 };
 
+const baseQueryGetVersesByOwnerRequest: object = { ownerAddress: "" };
+
+export const QueryGetVersesByOwnerRequest = {
+  encode(
+    message: QueryGetVersesByOwnerRequest,
+    writer: Writer = Writer.create()
+  ): Writer {
+    if (message.pagination !== undefined) {
+      PageRequest.encode(message.pagination, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.ownerAddress !== "") {
+      writer.uint32(18).string(message.ownerAddress);
+    }
+    return writer;
+  },
+
+  decode(
+    input: Reader | Uint8Array,
+    length?: number
+  ): QueryGetVersesByOwnerRequest {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input;
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = {
+      ...baseQueryGetVersesByOwnerRequest,
+    } as QueryGetVersesByOwnerRequest;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.pagination = PageRequest.decode(reader, reader.uint32());
+          break;
+        case 2:
+          message.ownerAddress = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetVersesByOwnerRequest {
+    const message = {
+      ...baseQueryGetVersesByOwnerRequest,
+    } as QueryGetVersesByOwnerRequest;
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageRequest.fromJSON(object.pagination);
+    } else {
+      message.pagination = undefined;
+    }
+    if (object.ownerAddress !== undefined && object.ownerAddress !== null) {
+      message.ownerAddress = String(object.ownerAddress);
+    } else {
+      message.ownerAddress = "";
+    }
+    return message;
+  },
+
+  toJSON(message: QueryGetVersesByOwnerRequest): unknown {
+    const obj: any = {};
+    message.pagination !== undefined &&
+      (obj.pagination = message.pagination
+        ? PageRequest.toJSON(message.pagination)
+        : undefined);
+    message.ownerAddress !== undefined &&
+      (obj.ownerAddress = message.ownerAddress);
+    return obj;
+  },
+
+  fromPartial(
+    object: DeepPartial<QueryGetVersesByOwnerRequest>
+  ): QueryGetVersesByOwnerRequest {
+    const message = {
+      ...baseQueryGetVersesByOwnerRequest,
+    } as QueryGetVersesByOwnerRequest;
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageRequest.fromPartial(object.pagination);
+    } else {
+      message.pagination = undefined;
+    }
+    if (object.ownerAddress !== undefined && object.ownerAddress !== null) {
+      message.ownerAddress = object.ownerAddress;
+    } else {
+      message.ownerAddress = "";
+    }
+    return message;
+  },
+};
+
+const baseQueryGetVersesByOwnerResponse: object = {};
+
+export const QueryGetVersesByOwnerResponse = {
+  encode(
+    message: QueryGetVersesByOwnerResponse,
+    writer: Writer = Writer.create()
+  ): Writer {
+    for (const v of message.verses) {
+      Verse.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.pagination !== undefined) {
+      PageResponse.encode(
+        message.pagination,
+        writer.uint32(18).fork()
+      ).ldelim();
+    }
+    return writer;
+  },
+
+  decode(
+    input: Reader | Uint8Array,
+    length?: number
+  ): QueryGetVersesByOwnerResponse {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input;
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = {
+      ...baseQueryGetVersesByOwnerResponse,
+    } as QueryGetVersesByOwnerResponse;
+    message.verses = [];
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.verses.push(Verse.decode(reader, reader.uint32()));
+          break;
+        case 2:
+          message.pagination = PageResponse.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetVersesByOwnerResponse {
+    const message = {
+      ...baseQueryGetVersesByOwnerResponse,
+    } as QueryGetVersesByOwnerResponse;
+    message.verses = [];
+    if (object.verses !== undefined && object.verses !== null) {
+      for (const e of object.verses) {
+        message.verses.push(Verse.fromJSON(e));
+      }
+    }
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageResponse.fromJSON(object.pagination);
+    } else {
+      message.pagination = undefined;
+    }
+    return message;
+  },
+
+  toJSON(message: QueryGetVersesByOwnerResponse): unknown {
+    const obj: any = {};
+    if (message.verses) {
+      obj.verses = message.verses.map((e) => (e ? Verse.toJSON(e) : undefined));
+    } else {
+      obj.verses = [];
+    }
+    message.pagination !== undefined &&
+      (obj.pagination = message.pagination
+        ? PageResponse.toJSON(message.pagination)
+        : undefined);
+    return obj;
+  },
+
+  fromPartial(
+    object: DeepPartial<QueryGetVersesByOwnerResponse>
+  ): QueryGetVersesByOwnerResponse {
+    const message = {
+      ...baseQueryGetVersesByOwnerResponse,
+    } as QueryGetVersesByOwnerResponse;
+    message.verses = [];
+    if (object.verses !== undefined && object.verses !== null) {
+      for (const e of object.verses) {
+        message.verses.push(Verse.fromPartial(e));
+      }
+    }
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageResponse.fromPartial(object.pagination);
+    } else {
+      message.pagination = undefined;
+    }
+    return message;
+  },
+};
+
 /** Query defines the gRPC querier service. */
 export interface Query {
   /** Queries a verse by index. */
@@ -733,6 +933,9 @@ export interface Query {
   GetAssets(
     request: QueryGetVerseAssetsRequest
   ): Promise<QueryGetVerseAssetsResponse>;
+  VersesByOwner(
+    request: QueryGetVersesByOwnerRequest
+  ): Promise<QueryGetVersesByOwnerResponse>;
 }
 
 export class QueryClientImpl implements Query {
@@ -781,6 +984,20 @@ export class QueryClientImpl implements Query {
     );
     return promise.then((data) =>
       QueryGetVerseAssetsResponse.decode(new Reader(data))
+    );
+  }
+
+  VersesByOwner(
+    request: QueryGetVersesByOwnerRequest
+  ): Promise<QueryGetVersesByOwnerResponse> {
+    const data = QueryGetVersesByOwnerRequest.encode(request).finish();
+    const promise = this.rpc.request(
+      "imversed.xverse.Query",
+      "VersesByOwner",
+      data
+    );
+    return promise.then((data) =>
+      QueryGetVersesByOwnerResponse.decode(new Reader(data))
     );
   }
 }
