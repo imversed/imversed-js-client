@@ -7,14 +7,15 @@ import { Api } from "./rest"
 import { MsgRevokeAllowance } from "./types/cosmos/feegrant/v1beta1/tx"
 import { MsgGrantAllowance } from "./types/cosmos/feegrant/v1beta1/tx"
 
+
 const types = [
   ["/cosmos.feegrant.v1beta1.MsgRevokeAllowance", MsgRevokeAllowance],
   ["/cosmos.feegrant.v1beta1.MsgGrantAllowance", MsgGrantAllowance],
-
+  
 ]
 export const MissingWalletError = new Error("wallet is required")
 
-export const registry = new Registry(types as any)
+export const registry = new Registry(<any>types)
 
 const defaultFee = {
   amount: [],
@@ -35,16 +36,16 @@ const txClient = async (wallet: OfflineSigner, { addr: addr }: TxClientOptions =
   let client
   if (addr) {
     client = await SigningStargateClient.connectWithSigner(addr, wallet, { registry })
-  } else {
+  }else{
     client = await SigningStargateClient.offline( wallet, { registry })
   }
   const { address } = (await wallet.getAccounts())[0]
 
   return {
-    signAndBroadcast: (msgs: EncodeObject[], { fee, memo }: SignAndBroadcastOptions = {fee: defaultFee, memo: ""}) => client.signAndBroadcast(address, msgs, fee, memo),
+    signAndBroadcast: (msgs: EncodeObject[], { fee, memo }: SignAndBroadcastOptions = {fee: defaultFee, memo: ""}) => client.signAndBroadcast(address, msgs, fee,memo),
     msgRevokeAllowance: (data: MsgRevokeAllowance): EncodeObject => ({ typeUrl: "/cosmos.feegrant.v1beta1.MsgRevokeAllowance", value: MsgRevokeAllowance.fromPartial( data ) }),
     msgGrantAllowance: (data: MsgGrantAllowance): EncodeObject => ({ typeUrl: "/cosmos.feegrant.v1beta1.MsgGrantAllowance", value: MsgGrantAllowance.fromPartial( data ) }),
-
+    
   }
 }
 

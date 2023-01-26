@@ -9,9 +9,9 @@
  * ---------------------------------------------------------------
  */
 
-import {fetch} from "cross-fetch"
+    import {fetch} from "cross-fetch"
 
-export interface ProtobufAny {
+    export interface ProtobufAny {
   "@type"?: string;
 }
 
@@ -87,7 +87,13 @@ export interface V1Beta1PageResponse {
 
 export type XverseMsgAddAssetToVerseResponse = object;
 
+export type XverseMsgAddOracleToVerseResponse = object;
+
+export type XverseMsgAuthorizeKeyToVerseResponse = object;
+
 export type XverseMsgCreateVerseResponse = object;
+
+export type XverseMsgDeauthorizeKeyToVerseResponse = object;
 
 export type XverseMsgRemoveAssetFromVerseResponse = object;
 
@@ -121,6 +127,21 @@ export interface XverseQueryGetVerseResponse {
   verse?: XverseVerse;
 }
 
+export interface XverseQueryGetVersesByOwnerResponse {
+  verses?: XverseVerse[];
+
+  /**
+   * PageResponse is to be embedded in gRPC response messages where the
+   * corresponding request message has used PageRequest.
+   *
+   *  message SomeResponse {
+   *          repeated Bar results = 1;
+   *          PageResponse page = 2;
+   *  }
+   */
+  pagination?: V1Beta1PageResponse;
+}
+
 export interface XverseQueryHasAssetResponse {
   has_asset?: boolean;
 }
@@ -139,6 +160,8 @@ export interface XverseVerse {
   icon?: string;
   description?: string;
   smart_contracts?: string[];
+  oracle?: string;
+  authenticated_keys?: string[];
 }
 
 export type QueryParamsType = Record<string | number, any>;
@@ -333,7 +356,7 @@ export class HttpClient<SecurityDataType = unknown> {
 }
 
 /**
- * @title xverse/genesis.proto
+ * @title xverse/contract.proto
  * @version version not set
  */
 export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDataType> {
@@ -421,6 +444,32 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
     this.request<XverseQueryGetVerseAssetsResponse, RpcStatus>({
       path: `/imversed/imversed/xverse/verse_assets/${verse_name}`,
       method: "GET",
+      format: "json",
+      ...params,
+    });
+
+  /**
+   * No description
+   *
+   * @tags Query
+   * @name QueryVersesByOwner
+   * @request GET:/imversed/imversed/xverse/verses_by_owner/{owner_address}
+   */
+  queryVersesByOwner = (
+    owner_address: string,
+    query?: {
+      "pagination.key"?: string;
+      "pagination.offset"?: string;
+      "pagination.limit"?: string;
+      "pagination.count_total"?: boolean;
+      "pagination.reverse"?: boolean;
+    },
+    params: RequestParams = {},
+  ) =>
+    this.request<XverseQueryGetVersesByOwnerResponse, RpcStatus>({
+      path: `/imversed/imversed/xverse/verses_by_owner/${owner_address}`,
+      method: "GET",
+      query: query,
       format: "json",
       ...params,
     });

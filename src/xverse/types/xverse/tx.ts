@@ -41,6 +41,30 @@ export interface MsgRemoveAssetFromVerse {
 
 export interface MsgRemoveAssetFromVerseResponse {}
 
+export interface MsgAddOracleToVerse {
+  sender: string;
+  verseName: string;
+  oracle: string;
+}
+
+export interface MsgAddOracleToVerseResponse {}
+
+export interface MsgAuthorizeKeyToVerse {
+  sender: string;
+  verseName: string;
+  address: string;
+}
+
+export interface MsgAuthorizeKeyToVerseResponse {}
+
+export interface MsgDeauthorizeKeyToVerse {
+  sender: string;
+  verseName: string;
+  address: string;
+}
+
+export interface MsgDeauthorizeKeyToVerseResponse {}
+
 const baseMsgCreateVerse: object = { sender: "", icon: "", description: "" };
 
 export const MsgCreateVerse = {
@@ -718,6 +742,463 @@ export const MsgRemoveAssetFromVerseResponse = {
   },
 };
 
+const baseMsgAddOracleToVerse: object = {
+  sender: "",
+  verseName: "",
+  oracle: "",
+};
+
+export const MsgAddOracleToVerse = {
+  encode(
+    message: MsgAddOracleToVerse,
+    writer: Writer = Writer.create()
+  ): Writer {
+    if (message.sender !== "") {
+      writer.uint32(10).string(message.sender);
+    }
+    if (message.verseName !== "") {
+      writer.uint32(18).string(message.verseName);
+    }
+    if (message.oracle !== "") {
+      writer.uint32(26).string(message.oracle);
+    }
+    return writer;
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): MsgAddOracleToVerse {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input;
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseMsgAddOracleToVerse } as MsgAddOracleToVerse;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.sender = reader.string();
+          break;
+        case 2:
+          message.verseName = reader.string();
+          break;
+        case 3:
+          message.oracle = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MsgAddOracleToVerse {
+    const message = { ...baseMsgAddOracleToVerse } as MsgAddOracleToVerse;
+    if (object.sender !== undefined && object.sender !== null) {
+      message.sender = String(object.sender);
+    } else {
+      message.sender = "";
+    }
+    if (object.verseName !== undefined && object.verseName !== null) {
+      message.verseName = String(object.verseName);
+    } else {
+      message.verseName = "";
+    }
+    if (object.oracle !== undefined && object.oracle !== null) {
+      message.oracle = String(object.oracle);
+    } else {
+      message.oracle = "";
+    }
+    return message;
+  },
+
+  toJSON(message: MsgAddOracleToVerse): unknown {
+    const obj: any = {};
+    message.sender !== undefined && (obj.sender = message.sender);
+    message.verseName !== undefined && (obj.verseName = message.verseName);
+    message.oracle !== undefined && (obj.oracle = message.oracle);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<MsgAddOracleToVerse>): MsgAddOracleToVerse {
+    const message = { ...baseMsgAddOracleToVerse } as MsgAddOracleToVerse;
+    if (object.sender !== undefined && object.sender !== null) {
+      message.sender = object.sender;
+    } else {
+      message.sender = "";
+    }
+    if (object.verseName !== undefined && object.verseName !== null) {
+      message.verseName = object.verseName;
+    } else {
+      message.verseName = "";
+    }
+    if (object.oracle !== undefined && object.oracle !== null) {
+      message.oracle = object.oracle;
+    } else {
+      message.oracle = "";
+    }
+    return message;
+  },
+};
+
+const baseMsgAddOracleToVerseResponse: object = {};
+
+export const MsgAddOracleToVerseResponse = {
+  encode(
+    _: MsgAddOracleToVerseResponse,
+    writer: Writer = Writer.create()
+  ): Writer {
+    return writer;
+  },
+
+  decode(
+    input: Reader | Uint8Array,
+    length?: number
+  ): MsgAddOracleToVerseResponse {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input;
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = {
+      ...baseMsgAddOracleToVerseResponse,
+    } as MsgAddOracleToVerseResponse;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(_: any): MsgAddOracleToVerseResponse {
+    const message = {
+      ...baseMsgAddOracleToVerseResponse,
+    } as MsgAddOracleToVerseResponse;
+    return message;
+  },
+
+  toJSON(_: MsgAddOracleToVerseResponse): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  fromPartial(
+    _: DeepPartial<MsgAddOracleToVerseResponse>
+  ): MsgAddOracleToVerseResponse {
+    const message = {
+      ...baseMsgAddOracleToVerseResponse,
+    } as MsgAddOracleToVerseResponse;
+    return message;
+  },
+};
+
+const baseMsgAuthorizeKeyToVerse: object = {
+  sender: "",
+  verseName: "",
+  address: "",
+};
+
+export const MsgAuthorizeKeyToVerse = {
+  encode(
+    message: MsgAuthorizeKeyToVerse,
+    writer: Writer = Writer.create()
+  ): Writer {
+    if (message.sender !== "") {
+      writer.uint32(10).string(message.sender);
+    }
+    if (message.verseName !== "") {
+      writer.uint32(18).string(message.verseName);
+    }
+    if (message.address !== "") {
+      writer.uint32(26).string(message.address);
+    }
+    return writer;
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): MsgAuthorizeKeyToVerse {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input;
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseMsgAuthorizeKeyToVerse } as MsgAuthorizeKeyToVerse;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.sender = reader.string();
+          break;
+        case 2:
+          message.verseName = reader.string();
+          break;
+        case 3:
+          message.address = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MsgAuthorizeKeyToVerse {
+    const message = { ...baseMsgAuthorizeKeyToVerse } as MsgAuthorizeKeyToVerse;
+    if (object.sender !== undefined && object.sender !== null) {
+      message.sender = String(object.sender);
+    } else {
+      message.sender = "";
+    }
+    if (object.verseName !== undefined && object.verseName !== null) {
+      message.verseName = String(object.verseName);
+    } else {
+      message.verseName = "";
+    }
+    if (object.address !== undefined && object.address !== null) {
+      message.address = String(object.address);
+    } else {
+      message.address = "";
+    }
+    return message;
+  },
+
+  toJSON(message: MsgAuthorizeKeyToVerse): unknown {
+    const obj: any = {};
+    message.sender !== undefined && (obj.sender = message.sender);
+    message.verseName !== undefined && (obj.verseName = message.verseName);
+    message.address !== undefined && (obj.address = message.address);
+    return obj;
+  },
+
+  fromPartial(
+    object: DeepPartial<MsgAuthorizeKeyToVerse>
+  ): MsgAuthorizeKeyToVerse {
+    const message = { ...baseMsgAuthorizeKeyToVerse } as MsgAuthorizeKeyToVerse;
+    if (object.sender !== undefined && object.sender !== null) {
+      message.sender = object.sender;
+    } else {
+      message.sender = "";
+    }
+    if (object.verseName !== undefined && object.verseName !== null) {
+      message.verseName = object.verseName;
+    } else {
+      message.verseName = "";
+    }
+    if (object.address !== undefined && object.address !== null) {
+      message.address = object.address;
+    } else {
+      message.address = "";
+    }
+    return message;
+  },
+};
+
+const baseMsgAuthorizeKeyToVerseResponse: object = {};
+
+export const MsgAuthorizeKeyToVerseResponse = {
+  encode(
+    _: MsgAuthorizeKeyToVerseResponse,
+    writer: Writer = Writer.create()
+  ): Writer {
+    return writer;
+  },
+
+  decode(
+    input: Reader | Uint8Array,
+    length?: number
+  ): MsgAuthorizeKeyToVerseResponse {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input;
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = {
+      ...baseMsgAuthorizeKeyToVerseResponse,
+    } as MsgAuthorizeKeyToVerseResponse;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(_: any): MsgAuthorizeKeyToVerseResponse {
+    const message = {
+      ...baseMsgAuthorizeKeyToVerseResponse,
+    } as MsgAuthorizeKeyToVerseResponse;
+    return message;
+  },
+
+  toJSON(_: MsgAuthorizeKeyToVerseResponse): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  fromPartial(
+    _: DeepPartial<MsgAuthorizeKeyToVerseResponse>
+  ): MsgAuthorizeKeyToVerseResponse {
+    const message = {
+      ...baseMsgAuthorizeKeyToVerseResponse,
+    } as MsgAuthorizeKeyToVerseResponse;
+    return message;
+  },
+};
+
+const baseMsgDeauthorizeKeyToVerse: object = {
+  sender: "",
+  verseName: "",
+  address: "",
+};
+
+export const MsgDeauthorizeKeyToVerse = {
+  encode(
+    message: MsgDeauthorizeKeyToVerse,
+    writer: Writer = Writer.create()
+  ): Writer {
+    if (message.sender !== "") {
+      writer.uint32(10).string(message.sender);
+    }
+    if (message.verseName !== "") {
+      writer.uint32(18).string(message.verseName);
+    }
+    if (message.address !== "") {
+      writer.uint32(26).string(message.address);
+    }
+    return writer;
+  },
+
+  decode(
+    input: Reader | Uint8Array,
+    length?: number
+  ): MsgDeauthorizeKeyToVerse {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input;
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = {
+      ...baseMsgDeauthorizeKeyToVerse,
+    } as MsgDeauthorizeKeyToVerse;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.sender = reader.string();
+          break;
+        case 2:
+          message.verseName = reader.string();
+          break;
+        case 3:
+          message.address = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MsgDeauthorizeKeyToVerse {
+    const message = {
+      ...baseMsgDeauthorizeKeyToVerse,
+    } as MsgDeauthorizeKeyToVerse;
+    if (object.sender !== undefined && object.sender !== null) {
+      message.sender = String(object.sender);
+    } else {
+      message.sender = "";
+    }
+    if (object.verseName !== undefined && object.verseName !== null) {
+      message.verseName = String(object.verseName);
+    } else {
+      message.verseName = "";
+    }
+    if (object.address !== undefined && object.address !== null) {
+      message.address = String(object.address);
+    } else {
+      message.address = "";
+    }
+    return message;
+  },
+
+  toJSON(message: MsgDeauthorizeKeyToVerse): unknown {
+    const obj: any = {};
+    message.sender !== undefined && (obj.sender = message.sender);
+    message.verseName !== undefined && (obj.verseName = message.verseName);
+    message.address !== undefined && (obj.address = message.address);
+    return obj;
+  },
+
+  fromPartial(
+    object: DeepPartial<MsgDeauthorizeKeyToVerse>
+  ): MsgDeauthorizeKeyToVerse {
+    const message = {
+      ...baseMsgDeauthorizeKeyToVerse,
+    } as MsgDeauthorizeKeyToVerse;
+    if (object.sender !== undefined && object.sender !== null) {
+      message.sender = object.sender;
+    } else {
+      message.sender = "";
+    }
+    if (object.verseName !== undefined && object.verseName !== null) {
+      message.verseName = object.verseName;
+    } else {
+      message.verseName = "";
+    }
+    if (object.address !== undefined && object.address !== null) {
+      message.address = object.address;
+    } else {
+      message.address = "";
+    }
+    return message;
+  },
+};
+
+const baseMsgDeauthorizeKeyToVerseResponse: object = {};
+
+export const MsgDeauthorizeKeyToVerseResponse = {
+  encode(
+    _: MsgDeauthorizeKeyToVerseResponse,
+    writer: Writer = Writer.create()
+  ): Writer {
+    return writer;
+  },
+
+  decode(
+    input: Reader | Uint8Array,
+    length?: number
+  ): MsgDeauthorizeKeyToVerseResponse {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input;
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = {
+      ...baseMsgDeauthorizeKeyToVerseResponse,
+    } as MsgDeauthorizeKeyToVerseResponse;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(_: any): MsgDeauthorizeKeyToVerseResponse {
+    const message = {
+      ...baseMsgDeauthorizeKeyToVerseResponse,
+    } as MsgDeauthorizeKeyToVerseResponse;
+    return message;
+  },
+
+  toJSON(_: MsgDeauthorizeKeyToVerseResponse): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  fromPartial(
+    _: DeepPartial<MsgDeauthorizeKeyToVerseResponse>
+  ): MsgDeauthorizeKeyToVerseResponse {
+    const message = {
+      ...baseMsgDeauthorizeKeyToVerseResponse,
+    } as MsgDeauthorizeKeyToVerseResponse;
+    return message;
+  },
+};
+
 /** Msg defines the Msg service. */
 export interface Msg {
   CreateVerse(request: MsgCreateVerse): Promise<MsgCreateVerseResponse>;
@@ -729,6 +1210,15 @@ export interface Msg {
     request: MsgRemoveAssetFromVerse
   ): Promise<MsgRemoveAssetFromVerseResponse>;
   RenameVerse(request: MsgRenameVerse): Promise<MsgRenameVerseResponse>;
+  AddOracleToVerse(
+    request: MsgAddOracleToVerse
+  ): Promise<MsgAddOracleToVerseResponse>;
+  AuthorizeKeyToVerse(
+    request: MsgAuthorizeKeyToVerse
+  ): Promise<MsgAuthorizeKeyToVerseResponse>;
+  DeauthorizeKeyToVerse(
+    request: MsgDeauthorizeKeyToVerse
+  ): Promise<MsgDeauthorizeKeyToVerseResponse>;
 }
 
 export class MsgClientImpl implements Msg {
@@ -785,6 +1275,48 @@ export class MsgClientImpl implements Msg {
     );
     return promise.then((data) =>
       MsgRenameVerseResponse.decode(new Reader(data))
+    );
+  }
+
+  AddOracleToVerse(
+    request: MsgAddOracleToVerse
+  ): Promise<MsgAddOracleToVerseResponse> {
+    const data = MsgAddOracleToVerse.encode(request).finish();
+    const promise = this.rpc.request(
+      "imversed.xverse.Msg",
+      "AddOracleToVerse",
+      data
+    );
+    return promise.then((data) =>
+      MsgAddOracleToVerseResponse.decode(new Reader(data))
+    );
+  }
+
+  AuthorizeKeyToVerse(
+    request: MsgAuthorizeKeyToVerse
+  ): Promise<MsgAuthorizeKeyToVerseResponse> {
+    const data = MsgAuthorizeKeyToVerse.encode(request).finish();
+    const promise = this.rpc.request(
+      "imversed.xverse.Msg",
+      "AuthorizeKeyToVerse",
+      data
+    );
+    return promise.then((data) =>
+      MsgAuthorizeKeyToVerseResponse.decode(new Reader(data))
+    );
+  }
+
+  DeauthorizeKeyToVerse(
+    request: MsgDeauthorizeKeyToVerse
+  ): Promise<MsgDeauthorizeKeyToVerseResponse> {
+    const data = MsgDeauthorizeKeyToVerse.encode(request).finish();
+    const promise = this.rpc.request(
+      "imversed.xverse.Msg",
+      "DeauthorizeKeyToVerse",
+      data
+    );
+    return promise.then((data) =>
+      MsgDeauthorizeKeyToVerseResponse.decode(new Reader(data))
     );
   }
 }

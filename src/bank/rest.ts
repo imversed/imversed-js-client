@@ -9,9 +9,9 @@
  * ---------------------------------------------------------------
  */
 
-import {fetch} from "cross-fetch"
+    import {fetch} from "cross-fetch"
 
-export interface ProtobufAny {
+    export interface ProtobufAny {
   "@type"?: string;
 }
 

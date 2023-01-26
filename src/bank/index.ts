@@ -7,14 +7,15 @@ import { Api } from "./rest"
 import { MsgSend } from "./types/cosmos/bank/v1beta1/tx"
 import { MsgMultiSend } from "./types/cosmos/bank/v1beta1/tx"
 
+
 const types = [
   ["/cosmos.bank.v1beta1.MsgSend", MsgSend],
   ["/cosmos.bank.v1beta1.MsgMultiSend", MsgMultiSend],
-
+  
 ]
 export const MissingWalletError = new Error("wallet is required")
 
-export const registry = new Registry(types as any)
+export const registry = new Registry(<any>types)
 
 const defaultFee = {
   amount: [],
@@ -35,16 +36,16 @@ const txClient = async (wallet: OfflineSigner, { addr: addr }: TxClientOptions =
   let client
   if (addr) {
     client = await SigningStargateClient.connectWithSigner(addr, wallet, { registry })
-  } else {
+  }else{
     client = await SigningStargateClient.offline( wallet, { registry })
   }
   const { address } = (await wallet.getAccounts())[0]
 
   return {
-    signAndBroadcast: (msgs: EncodeObject[], { fee, memo }: SignAndBroadcastOptions = {fee: defaultFee, memo: ""}) => client.signAndBroadcast(address, msgs, fee, memo),
+    signAndBroadcast: (msgs: EncodeObject[], { fee, memo }: SignAndBroadcastOptions = {fee: defaultFee, memo: ""}) => client.signAndBroadcast(address, msgs, fee,memo),
     msgSend: (data: MsgSend): EncodeObject => ({ typeUrl: "/cosmos.bank.v1beta1.MsgSend", value: MsgSend.fromPartial( data ) }),
     msgMultiSend: (data: MsgMultiSend): EncodeObject => ({ typeUrl: "/cosmos.bank.v1beta1.MsgMultiSend", value: MsgMultiSend.fromPartial( data ) }),
-
+    
   }
 }
 
