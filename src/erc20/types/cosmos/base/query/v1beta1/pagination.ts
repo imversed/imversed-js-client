@@ -320,9 +320,8 @@ function longToNumber(long: Long): number {
   }
   return long.toNumber();
 }
-
-    // @ts-ignore
-    if (util.Long !== Long) {
+// @ts-ignore
+if (util.Long !== Long) {
   util.Long = Long as any;
   configure();
 }

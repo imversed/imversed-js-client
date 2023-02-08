@@ -9,9 +9,9 @@
  * ---------------------------------------------------------------
  */
 
-    import {fetch} from "cross-fetch"
+import {fetch} from "cross-fetch"
 
-    export interface ProtobufAny {
+export interface ProtobufAny {
   "@type"?: string;
 }
 
@@ -98,6 +98,10 @@ export type XverseMsgDeauthorizeKeyToVerseResponse = object;
 export type XverseMsgRemoveAssetFromVerseResponse = object;
 
 export type XverseMsgRenameVerseResponse = object;
+
+export type XverseMsgUpdateVerseDescriptionResponse = object;
+
+export type XverseMsgUpdateVerseIconResponse = object;
 
 export interface XverseParams {
   /** @format uint64 */
