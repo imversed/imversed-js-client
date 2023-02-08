@@ -54,7 +54,7 @@ describe('Xverse', () => {
     expect(+versesCountFin).to.be.gt(+versesCountStart)
   })
 
-  it.only('create verse direct sign', async () => {
+  it('create verse direct sign', async () => {
     const wallet = await loadWallet(mnemonic)
     const [account] = await wallet.getAccounts()
     const q = await queryClient({ addr: qAddr })
@@ -113,7 +113,7 @@ describe('Xverse', () => {
     console.log(resp)
   })
 
-  it('rename verse', async () => {
+  it.only('rename verse', async () => {
     const wallet = await loadWallet(mnemonic)
     const [account] = await wallet.getAccounts()
     const q = await queryClient({ addr: qAddr })
@@ -132,7 +132,7 @@ describe('Xverse', () => {
         verseOldName: verseToRename.name,
         verseNewName: newVerseName
       }
-    )
+    )set
 
     const renameRes = await tx.signAndBroadcast([renameMessage], {
       fee: {
