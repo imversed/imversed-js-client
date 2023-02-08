@@ -41,7 +41,7 @@ describe('Xverse', () => {
     const createRes = await tx.signAndBroadcast([createMessage], {
       fee: {
         amount: [{
-          amount: '1500000',
+          amount: '150000000',
           denom
         }],
         gas: '200000'
@@ -54,7 +54,7 @@ describe('Xverse', () => {
     expect(+versesCountFin).to.be.gt(+versesCountStart)
   })
 
-  it.only('create verse direct sign', async () => {
+  it('create verse direct sign', async () => {
     const wallet = await loadWallet(mnemonic)
     const [account] = await wallet.getAccounts()
     const q = await queryClient({ addr: qAddr })
@@ -113,7 +113,7 @@ describe('Xverse', () => {
     console.log(resp)
   })
 
-  it('rename verse', async () => {
+  it.only('rename verse', async () => {
     const wallet = await loadWallet(mnemonic)
     const [account] = await wallet.getAccounts()
     const q = await queryClient({ addr: qAddr })
@@ -137,7 +137,7 @@ describe('Xverse', () => {
     const renameRes = await tx.signAndBroadcast([renameMessage], {
       fee: {
         amount: [{
-          amount: '15000000',
+          amount: '15000000000',
           denom
         }],
         gas: '2000000'
@@ -145,10 +145,13 @@ describe('Xverse', () => {
     })
     expect(renameRes.code).to.be.eq(0)
 
-    const verseAfterRename = await q.queryVerse(newVerseName)
+    const {data: renameResponse} = await q.queryVerse(newVerseName)
 
-    expect(verseAfterRename).to.have.all.keys(['name', 'owner', 'description', 'icon', 'smart_contracts'])
+    expect(renameResponse.verse).to.have.all.keys(['name', 'owner', 'description', 'icon', 'smart_contracts', 'oracle', 'authenticated_keys'])
   })
+
+
+
 
   it('add asset', async () => {
     const wallet = await loadWallet(mnemonic)

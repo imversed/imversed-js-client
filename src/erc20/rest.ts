@@ -21,9 +21,9 @@ export interface Erc20V1Params {
   enable_evm_hook?: boolean;
 }
 
-    import {fetch} from "cross-fetch"
+import {fetch} from "cross-fetch"
 
-    export interface ProtobufAny {
+export interface ProtobufAny {
   "@type"?: string;
 }
 

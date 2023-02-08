@@ -65,6 +65,22 @@ export interface MsgDeauthorizeKeyToVerse {
 
 export interface MsgDeauthorizeKeyToVerseResponse {}
 
+export interface MsgUpdateVerseIcon {
+  sender: string;
+  verseName: string;
+  icon: string;
+}
+
+export interface MsgUpdateVerseDescription {
+  sender: string;
+  verseName: string;
+  description: string;
+}
+
+export interface MsgUpdateVerseDescriptionResponse {}
+
+export interface MsgUpdateVerseIconResponse {}
+
 const baseMsgCreateVerse: object = { sender: "", icon: "", description: "" };
 
 export const MsgCreateVerse = {
@@ -1199,6 +1215,310 @@ export const MsgDeauthorizeKeyToVerseResponse = {
   },
 };
 
+const baseMsgUpdateVerseIcon: object = { sender: "", verseName: "", icon: "" };
+
+export const MsgUpdateVerseIcon = {
+  encode(
+    message: MsgUpdateVerseIcon,
+    writer: Writer = Writer.create()
+  ): Writer {
+    if (message.sender !== "") {
+      writer.uint32(10).string(message.sender);
+    }
+    if (message.verseName !== "") {
+      writer.uint32(18).string(message.verseName);
+    }
+    if (message.icon !== "") {
+      writer.uint32(26).string(message.icon);
+    }
+    return writer;
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): MsgUpdateVerseIcon {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input;
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseMsgUpdateVerseIcon } as MsgUpdateVerseIcon;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.sender = reader.string();
+          break;
+        case 2:
+          message.verseName = reader.string();
+          break;
+        case 3:
+          message.icon = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MsgUpdateVerseIcon {
+    const message = { ...baseMsgUpdateVerseIcon } as MsgUpdateVerseIcon;
+    if (object.sender !== undefined && object.sender !== null) {
+      message.sender = String(object.sender);
+    } else {
+      message.sender = "";
+    }
+    if (object.verseName !== undefined && object.verseName !== null) {
+      message.verseName = String(object.verseName);
+    } else {
+      message.verseName = "";
+    }
+    if (object.icon !== undefined && object.icon !== null) {
+      message.icon = String(object.icon);
+    } else {
+      message.icon = "";
+    }
+    return message;
+  },
+
+  toJSON(message: MsgUpdateVerseIcon): unknown {
+    const obj: any = {};
+    message.sender !== undefined && (obj.sender = message.sender);
+    message.verseName !== undefined && (obj.verseName = message.verseName);
+    message.icon !== undefined && (obj.icon = message.icon);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<MsgUpdateVerseIcon>): MsgUpdateVerseIcon {
+    const message = { ...baseMsgUpdateVerseIcon } as MsgUpdateVerseIcon;
+    if (object.sender !== undefined && object.sender !== null) {
+      message.sender = object.sender;
+    } else {
+      message.sender = "";
+    }
+    if (object.verseName !== undefined && object.verseName !== null) {
+      message.verseName = object.verseName;
+    } else {
+      message.verseName = "";
+    }
+    if (object.icon !== undefined && object.icon !== null) {
+      message.icon = object.icon;
+    } else {
+      message.icon = "";
+    }
+    return message;
+  },
+};
+
+const baseMsgUpdateVerseDescription: object = {
+  sender: "",
+  verseName: "",
+  description: "",
+};
+
+export const MsgUpdateVerseDescription = {
+  encode(
+    message: MsgUpdateVerseDescription,
+    writer: Writer = Writer.create()
+  ): Writer {
+    if (message.sender !== "") {
+      writer.uint32(10).string(message.sender);
+    }
+    if (message.verseName !== "") {
+      writer.uint32(18).string(message.verseName);
+    }
+    if (message.description !== "") {
+      writer.uint32(34).string(message.description);
+    }
+    return writer;
+  },
+
+  decode(
+    input: Reader | Uint8Array,
+    length?: number
+  ): MsgUpdateVerseDescription {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input;
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = {
+      ...baseMsgUpdateVerseDescription,
+    } as MsgUpdateVerseDescription;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.sender = reader.string();
+          break;
+        case 2:
+          message.verseName = reader.string();
+          break;
+        case 4:
+          message.description = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MsgUpdateVerseDescription {
+    const message = {
+      ...baseMsgUpdateVerseDescription,
+    } as MsgUpdateVerseDescription;
+    if (object.sender !== undefined && object.sender !== null) {
+      message.sender = String(object.sender);
+    } else {
+      message.sender = "";
+    }
+    if (object.verseName !== undefined && object.verseName !== null) {
+      message.verseName = String(object.verseName);
+    } else {
+      message.verseName = "";
+    }
+    if (object.description !== undefined && object.description !== null) {
+      message.description = String(object.description);
+    } else {
+      message.description = "";
+    }
+    return message;
+  },
+
+  toJSON(message: MsgUpdateVerseDescription): unknown {
+    const obj: any = {};
+    message.sender !== undefined && (obj.sender = message.sender);
+    message.verseName !== undefined && (obj.verseName = message.verseName);
+    message.description !== undefined &&
+      (obj.description = message.description);
+    return obj;
+  },
+
+  fromPartial(
+    object: DeepPartial<MsgUpdateVerseDescription>
+  ): MsgUpdateVerseDescription {
+    const message = {
+      ...baseMsgUpdateVerseDescription,
+    } as MsgUpdateVerseDescription;
+    if (object.sender !== undefined && object.sender !== null) {
+      message.sender = object.sender;
+    } else {
+      message.sender = "";
+    }
+    if (object.verseName !== undefined && object.verseName !== null) {
+      message.verseName = object.verseName;
+    } else {
+      message.verseName = "";
+    }
+    if (object.description !== undefined && object.description !== null) {
+      message.description = object.description;
+    } else {
+      message.description = "";
+    }
+    return message;
+  },
+};
+
+const baseMsgUpdateVerseDescriptionResponse: object = {};
+
+export const MsgUpdateVerseDescriptionResponse = {
+  encode(
+    _: MsgUpdateVerseDescriptionResponse,
+    writer: Writer = Writer.create()
+  ): Writer {
+    return writer;
+  },
+
+  decode(
+    input: Reader | Uint8Array,
+    length?: number
+  ): MsgUpdateVerseDescriptionResponse {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input;
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = {
+      ...baseMsgUpdateVerseDescriptionResponse,
+    } as MsgUpdateVerseDescriptionResponse;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(_: any): MsgUpdateVerseDescriptionResponse {
+    const message = {
+      ...baseMsgUpdateVerseDescriptionResponse,
+    } as MsgUpdateVerseDescriptionResponse;
+    return message;
+  },
+
+  toJSON(_: MsgUpdateVerseDescriptionResponse): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  fromPartial(
+    _: DeepPartial<MsgUpdateVerseDescriptionResponse>
+  ): MsgUpdateVerseDescriptionResponse {
+    const message = {
+      ...baseMsgUpdateVerseDescriptionResponse,
+    } as MsgUpdateVerseDescriptionResponse;
+    return message;
+  },
+};
+
+const baseMsgUpdateVerseIconResponse: object = {};
+
+export const MsgUpdateVerseIconResponse = {
+  encode(
+    _: MsgUpdateVerseIconResponse,
+    writer: Writer = Writer.create()
+  ): Writer {
+    return writer;
+  },
+
+  decode(
+    input: Reader | Uint8Array,
+    length?: number
+  ): MsgUpdateVerseIconResponse {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input;
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = {
+      ...baseMsgUpdateVerseIconResponse,
+    } as MsgUpdateVerseIconResponse;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(_: any): MsgUpdateVerseIconResponse {
+    const message = {
+      ...baseMsgUpdateVerseIconResponse,
+    } as MsgUpdateVerseIconResponse;
+    return message;
+  },
+
+  toJSON(_: MsgUpdateVerseIconResponse): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  fromPartial(
+    _: DeepPartial<MsgUpdateVerseIconResponse>
+  ): MsgUpdateVerseIconResponse {
+    const message = {
+      ...baseMsgUpdateVerseIconResponse,
+    } as MsgUpdateVerseIconResponse;
+    return message;
+  },
+};
+
 /** Msg defines the Msg service. */
 export interface Msg {
   CreateVerse(request: MsgCreateVerse): Promise<MsgCreateVerseResponse>;
@@ -1219,6 +1539,12 @@ export interface Msg {
   DeauthorizeKeyToVerse(
     request: MsgDeauthorizeKeyToVerse
   ): Promise<MsgDeauthorizeKeyToVerseResponse>;
+  UpdateVerseIcon(
+    request: MsgUpdateVerseIcon
+  ): Promise<MsgUpdateVerseIconResponse>;
+  UpdateVerseDescription(
+    request: MsgUpdateVerseDescription
+  ): Promise<MsgUpdateVerseDescriptionResponse>;
 }
 
 export class MsgClientImpl implements Msg {
@@ -1317,6 +1643,34 @@ export class MsgClientImpl implements Msg {
     );
     return promise.then((data) =>
       MsgDeauthorizeKeyToVerseResponse.decode(new Reader(data))
+    );
+  }
+
+  UpdateVerseIcon(
+    request: MsgUpdateVerseIcon
+  ): Promise<MsgUpdateVerseIconResponse> {
+    const data = MsgUpdateVerseIcon.encode(request).finish();
+    const promise = this.rpc.request(
+      "imversed.xverse.Msg",
+      "UpdateVerseIcon",
+      data
+    );
+    return promise.then((data) =>
+      MsgUpdateVerseIconResponse.decode(new Reader(data))
+    );
+  }
+
+  UpdateVerseDescription(
+    request: MsgUpdateVerseDescription
+  ): Promise<MsgUpdateVerseDescriptionResponse> {
+    const data = MsgUpdateVerseDescription.encode(request).finish();
+    const promise = this.rpc.request(
+      "imversed.xverse.Msg",
+      "UpdateVerseDescription",
+      data
+    );
+    return promise.then((data) =>
+      MsgUpdateVerseDescriptionResponse.decode(new Reader(data))
     );
   }
 }
