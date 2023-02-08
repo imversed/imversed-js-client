@@ -132,7 +132,7 @@ describe('Xverse', () => {
         verseOldName: verseToRename.name,
         verseNewName: newVerseName
       }
-    )set
+    )
 
     const renameRes = await tx.signAndBroadcast([renameMessage], {
       fee: {
