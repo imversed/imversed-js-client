@@ -14,15 +14,16 @@ import Long from 'long'
 import { Any } from 'cosmjs-types/google/protobuf/any'
 import { EncodeObject } from '@imversed/proto-signing/build/registry'
 import { SignMode } from 'cosmjs-types/cosmos/tx/signing/v1beta1/signing'
-const encoding = require("@imversed/encoding");
-const long_1 = require("long")
+
+const encoding = require('@imversed/encoding')
+const long_1 = require('long')
 
 const tx3 = require('cosmjs-types/cosmos/tx/v1beta1/tx')
 
 const { txClient, queryClient } = xverse
 
 describe('Xverse', () => {
-  it.only('create verse', async () => {
+  it('create verse', async () => {
     const wallet = await loadWallet(mnemonic)
     const [account] = await wallet.getAccounts()
     const q = await queryClient({ addr: qAddr })
@@ -106,14 +107,14 @@ describe('Xverse', () => {
       signatures: [encoding.fromBase64(signature.signature)]
     }
 
-    console.log("txR", txR)
+    console.log('txR', txR)
 
     const resp = await client.broadcastTx(tx3.TxRaw.encode(txR).finish())
     console.log('resp')
     console.log(resp)
   })
 
-  it.only('rename verse', async () => {
+  it('rename verse', async () => {
     const wallet = await loadWallet(mnemonic)
     const [account] = await wallet.getAccounts()
     const q = await queryClient({ addr: qAddr })
@@ -145,15 +146,48 @@ describe('Xverse', () => {
     })
     expect(renameRes.code).to.be.eq(0)
 
-    const {data: renameResponse} = await q.queryVerse(newVerseName)
+    const { data: renameResponse } = await q.queryVerse(newVerseName)
 
     expect(renameResponse.verse).to.have.all.keys(['name', 'owner', 'description', 'icon', 'smart_contracts', 'oracle', 'authenticated_keys'])
   })
 
+  it.only('add asset bu js-client', async () => {
+    const wallet = await loadWallet(mnemonic)
+    const [account] = await wallet.getAccounts()
+    const q = await queryClient({ addr: qAddr })
+    const tx = await txClient(wallet, { addr: txAddr })
+    const { data } = await q.queryVerseAll()
+    const verseToAddAsset = faker.random.arrayElement(data.verse.filter(v => v.owner === account.address))
+    const someContractHash = '0xaFbCB330Cb235CBda761Efd22bf16c62ea0E1f0b'
 
 
+    const addAssetMessage = tx.msgAddAssetToVerse(
+      {
+        sender: account.address,
+        verseName: verseToAddAsset.name,
+        assetType: 'contract',
+        assetId: someContractHash,
+        assetCreator: account.address,
+        verseCreator: account.address
+      }
+    )
+    // console.log('addAssetMessage', addAssetMessage)
 
-  it('add asset', async () => {
+    const fee = {
+      amount: [{
+        amount: '15000000',
+        denom
+      }],
+      gas: '2000000'
+    }
+
+    const response = await tx.signAndBroadcast([addAssetMessage], { fee })
+
+    console.log("response", response)
+  })
+
+
+  it('add asset research', async () => {
     const wallet = await loadWallet(mnemonic)
     const [account] = await wallet.getAccounts()
     const q = await queryClient({ addr: qAddr })
@@ -230,7 +264,7 @@ describe('Xverse', () => {
 
     }
 
-    console.log("txR", txR)
+    console.log('txR', txR)
 
     const resp = await client.broadcastTx(tx3.TxRaw.encode(txR).finish())
     console.log('resp')
