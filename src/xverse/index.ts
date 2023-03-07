@@ -1,7 +1,4 @@
-// THIS FILE IS GENERATED AUTOMATICALLY. DO NOT MODIFY.
-
-import { StdFee } from "@imversed/stargate"
-import { SigningStargateClient } from "@imversed/stargate"
+import { SigningStargateClient, AminoConverters, StdFee } from "@imversed/stargate"
 import { Registry, OfflineSigner, EncodeObject, DirectSecp256k1HdWallet } from "@imversed/proto-signing"
 import { Api } from "./rest"
 import { MsgAddAssetToVerse } from "./types/xverse/tx"
@@ -13,6 +10,7 @@ import { MsgAuthorizeKeyToVerse } from "./types/xverse/tx"
 import { MsgRemoveAssetFromVerse } from "./types/xverse/tx"
 import { MsgUpdateVerseIcon } from "./types/xverse/tx"
 import { MsgUpdateVerseDescription } from "./types/xverse/tx"
+import { AminoMsg } from "@imversed/amino";
 
 const types = [
   ["/imversed.xverse.MsgAddAssetToVerse", MsgAddAssetToVerse],
@@ -29,6 +27,46 @@ const types = [
 export const MissingWalletError = new Error("wallet is required")
 
 export const registry = new Registry(types as any)
+
+export interface AminoMsgAddAssetToVerse extends AminoMsg {
+  readonly type: "imversed/MsgAddAssetToVerse";
+  readonly value: {
+    readonly sender: string,
+    readonly verse_name: string,
+    readonly asset_type: string,
+    readonly asset_id: string,
+    readonly asset_creator: string,
+    readonly verse_creator: string,
+  };
+}
+
+export function isAminoMsgSend(msg: AminoMsg): msg is AminoMsgAddAssetToVerse {
+  return msg.type === "imversed/MsgAddAssetToVerse";
+}
+
+export function createXverseAminoConverters(): AminoConverters {
+  return {
+    "/imversed.xverse.MsgAddAssetToVerse": {
+      aminoType: "imversed/MsgAddAssetToVerse",
+      toAmino: ({ sender, verseName, assetType, assetId, assetCreator, verseCreator}: MsgAddAssetToVerse): AminoMsgAddAssetToVerse["value"] => ({
+        sender: sender,
+        verse_name: verseName,
+        asset_type: assetType,
+        asset_id: assetId,
+        asset_creator: assetCreator,
+        verse_creator: verseCreator,
+      }),
+      fromAmino: ({ sender, verse_name, asset_type, asset_id, asset_creator, verse_creator}: AminoMsgAddAssetToVerse["value"]): MsgAddAssetToVerse => ({
+        sender: sender,
+        verseName: verse_name,
+        assetType: asset_type,
+        assetId: asset_id,
+        assetCreator: asset_creator,
+        verseCreator: verse_creator,
+      }),
+    },
+  };
+}
 
 const defaultFee = {
   amount: [],
